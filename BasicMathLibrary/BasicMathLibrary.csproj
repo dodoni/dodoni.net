@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Dodoni.BasicMathLibrary</AssemblyName>
+    <RootNamespace>Dodoni.MathLibrary</RootNamespace>
+    <Authors>Markus Wendt</Authors>
+    <Product>Dodoni.net</Product>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Basics\LowLevel\LAPACK\Native\**" />
+    <EmbeddedResource Remove="Basics\LowLevel\LAPACK\Native\**" />
+    <None Remove="Basics\LowLevel\LAPACK\Native\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="DenseMatrix.IExponential.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Surfaces\Surface2d\ve-A586.tmp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Composition" Version="1.2.0" />
+    <PackageReference Include="System.Memory" Version="4.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BasicComponents\BasicComponents.csproj" />
+  </ItemGroup>
+
+</Project>

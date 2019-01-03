@@ -1,0 +1,2 @@
+Some of the unit tests requires Lapack routines, therefore a reference to "ExternalMathLibrary.LAPACK" has been added 
+and a native .dll file for LAPACK should be provided in the bin directory to pass the unit tests.

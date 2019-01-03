@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Dodoni.MathLibrary.Native.NLopt</AssemblyName>
+    <RootNamespace>Dodoni.MathLibrary.Native.NLopt</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BasicMathLibrary\BasicMathLibrary.csproj" />
+  </ItemGroup>
+
+</Project>

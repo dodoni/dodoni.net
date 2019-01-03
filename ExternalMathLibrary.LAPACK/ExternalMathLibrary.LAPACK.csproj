@@ -1,0 +1,53 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Dodoni.MathLibrary.Basics.LowLevel.Native</RootNamespace>
+    <PackageId>Dodoni.MathLibrary.Native.LAPACK</PackageId>
+    <Authors>Markus Wendt</Authors>
+    <Company />
+    <Product>Dodoni.net</Product>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <AssemblyName>Dodoni.MathLibrary.Native.LAPACK</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile></DocumentationFile>
+    <DefineConstants>TRACE;LOWER_CASE_UNDERSCORE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>TRACE;LOWER_CASE_UNDERSCORE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="ExternalMathLibrary.LAPACK.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Composition" Version="1.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BasicComponents\BasicComponents.csproj" />
+    <ProjectReference Include="..\BasicMathLibrary\BasicMathLibrary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="LapackResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LapackResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="LapackResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LapackResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

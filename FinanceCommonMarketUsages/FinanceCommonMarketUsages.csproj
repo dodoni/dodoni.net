@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Dodoni.FinanceCommonMarketUsages</AssemblyName>
+    <RootNamespace>Dodoni.Finance.CommonMarketUsages</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BasicComponents\BasicComponents.csproj" />
+    <ProjectReference Include="..\CommonMathLibrary\CommonMathLibrary.csproj" />
+    <ProjectReference Include="..\FinanceBasics\FinanceBasics.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="GaussianInverseCumulativeDistributionFunction" xml:space="preserve">
+    <value>Use the inverse cumulative distribution method.</value>
+  </data>
+  <data name="Gaussian_BoxMuller" xml:space="preserve">
+    <value>Generates normally distributed random number x thru the pair of uniformly distributed numbers u1 and u2 according to the formula x=sqrt(-ln(u1))*sin(2*Pi*u2).</value>
+  </data>
+  <data name="Gaussian_BoxMuller2" xml:space="preserve">
+    <value>Generates pair of normally distributed random numbers x1 and x2 thru the pair of uniformly dustributed numbers u1 and u2 according to the formula x1=sqrt(-ln(u1))*sin(2*Pi*u2), x2=sqrt(-ln(u1))*cos(2*Pi*u2). This implementation correctly works with odd vector lengths.</value>
+  </data>
+  <data name="Generation_Accurate" xml:space="preserve">
+    <value>Use a more accurate approach</value>
+  </data>
+  <data name="Generation_StandardApproach" xml:space="preserve">
+    <value>Use a standard approach.</value>
+  </data>
+  <data name="LibraryDescription" xml:space="preserve">
+    <value>Use Intels MKL 10.2.x, file name "{0}".</value>
+  </data>
+  <data name="MCG31" xml:space="preserve">
+    <value>A 31-bit multiplicative congruential generator.</value>
+  </data>
+  <data name="MCG59" xml:space="preserve">
+    <value>A 59-bit multiplicative congruential generator.</value>
+  </data>
+  <data name="MRG32K3A" xml:space="preserve">
+    <value>A combined multiple recursive generator with two components of order 3.</value>
+  </data>
+  <data name="MT19937" xml:space="preserve">
+    <value>A Mersenne Twister pseudorandom number generator.</value>
+  </data>
+  <data name="MT2203" xml:space="preserve">
+    <value>A set of 1024 Mersenne Twister pseudorandom number generators.</value>
+  </data>
+  <data name="Niederreiter" xml:space="preserve">
+    <value>A 32-bit Gray code-based generator producing low-discrepancy sequences.</value>
+  </data>
+  <data name="R250" xml:space="preserve">
+    <value>A generalized feedback shift register generator.</value>
+  </data>
+  <data name="Sobol" xml:space="preserve">
+    <value>A 32-bit Gray code-based generator producing low-discrepancy sequences.</value>
+  </data>
+  <data name="Uniform_Accurate" xml:space="preserve">
+    <value>Distribution generators will produce numbers lying exactly within definitional domain for all values of distribution parameters.</value>
+  </data>
+  <data name="Uniform_Standard" xml:space="preserve">
+    <value>The standard method for generating uniform random numbers.</value>
+  </data>
+  <data name="WichmannHill" xml:space="preserve">
+    <value>A set of 273 Wichmann-Hill combined multiplicative congruential generators.</value>
+  </data>
+</root>

@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Dodoni.BasicComponents</AssemblyName>
+    <RootNamespace>Dodoni.BasicComponents</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <Authors>Markus Wendt</Authors>
+    <Product>Dodoni.net</Product>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\gimmick\Source\wc\Dodoni.net_Project\Dodoni.net\BasicComponents\Dodoni.BasicComponents.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Utilities\AddInLoader.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Dodoni.BasicComponents.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.1.1" />
+    <PackageReference Include="System.Composition" Version="1.2.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
+  </ItemGroup>
+
+</Project>

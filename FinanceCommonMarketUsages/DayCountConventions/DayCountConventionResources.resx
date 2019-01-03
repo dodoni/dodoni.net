@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Actual360" xml:space="preserve">
+    <value>This day count fraction is defined as the actual numbers of days in the period over 360.</value>
+  </data>
+  <data name="Actual360LongName" xml:space="preserve">
+    <value>Act/360</value>
+  </data>
+  <data name="Actual365" xml:space="preserve">
+    <value>This day count fraction is defined as the actual numbers of days in the period over 365.</value>
+  </data>
+  <data name="Actual365LongName" xml:space="preserve">
+    <value>Act/365</value>
+  </data>
+  <data name="Actual365_25" xml:space="preserve">
+    <value>This day count fraction is defined as the actual numbers of days in the period over 365.25.</value>
+  </data>
+  <data name="Actual365_25LongName" xml:space="preserve">
+    <value>Act/365.25</value>
+  </data>
+  <data name="ActualActualAFB" xml:space="preserve">
+    <value>The numerator is the actual number of days, the denominator is either 365 or 366 depending on whether or not the period inclues a  29 February.</value>
+  </data>
+  <data name="ActualActualAFBLongName" xml:space="preserve">
+    <value>AFB Actual/Actual (Euro)</value>
+  </data>
+  <data name="ActualActualISDA" xml:space="preserve">
+    <value>Split the period into the years in which it occurs. For each year, divide the number of actual days in the period by the number of days in that year.</value>
+  </data>
+  <data name="ActualActualISDALongName" xml:space="preserve">
+    <value>ISDA Actual/Actual (historical), Actual/Actual, Act/Act, and according to ISDA also Actual/365, Act/365, A/365.</value>
+  </data>
+  <data name="ActualActualISMA" xml:space="preserve">
+    <value>The actual number of days, divided by the product of the number of days in the period and the number of periods in the year.</value>
+  </data>
+  <data name="ActualActualISMALongName" xml:space="preserve">
+    <value>ISMA Actual/Actual (Bond)</value>
+  </data>
+  <data name="Bu252" xml:space="preserve">
+    <value>The number of business days between the start date of the interest period (inclusive) and the end date of the interest period (exclusive) over 252.</value>
+  </data>
+  <data name="Bu252LongName" xml:space="preserve">
+    <value>Bu/252 [{0}]</value>
+  </data>
+  <data name="OneOverOne" xml:space="preserve">
+    <value>Returns 1.00 for a period of a year regardless of the number of days within the year, especially year(d2) - year(d1) + (month(d2) - month(d1)) /12, where d1.m1.y1 is the first date and d2.m2.y2 is the second date.</value>
+  </data>
+  <data name="OneOverOneLongName" xml:space="preserve">
+    <value>1/1</value>
+  </data>
+  <data name="Thirty360" xml:space="preserve">
+    <value>All months have 30 days and each year has 360 days with an exception that if the last day is 31st and the first day is not 30th or 31ts then that month has 31 days.</value>
+  </data>
+  <data name="Thirty360LongName" xml:space="preserve">
+    <value>30/360 (Bond Basis)</value>
+  </data>
+  <data name="ThirtyE360" xml:space="preserve">
+    <value>All months have 30 days and each year has 360 days. If the start or end day is on the 31th, it will moved to the 30th.</value>
+  </data>
+  <data name="ThirtyE360LongName" xml:space="preserve">
+    <value>30E/360 (Eurobond Basis)</value>
+  </data>
+</root>

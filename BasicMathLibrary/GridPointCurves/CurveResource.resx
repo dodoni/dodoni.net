@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AnnotationBoundaryCubicSplineClamped" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AnnotationBoundaryCubicSplineNatural" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AnnotationExtrapolationConstantFirst" xml:space="preserve">
+    <value>Returns the value of the first grid point for the extrapolation beyond the first grid point.</value>
+  </data>
+  <data name="AnnotationExtrapolationConstantFirstIndividual" xml:space="preserve">
+    <value>Returns {0} for the extrapolation beyond the first grid point.</value>
+  </data>
+  <data name="AnnotationExtrapolationConstantLast" xml:space="preserve">
+    <value>Returns the value of the last grid point for the extrapolation beyond the last grid point.</value>
+  </data>
+  <data name="AnnotationExtrapolationConstantLastIndividual" xml:space="preserve">
+    <value>Apply a constant extrapolation beyond the last grid point {0}</value>
+  </data>
+  <data name="AnnotationExtrapolationLinearFirstDifferentiable" xml:space="preserve">
+    <value>Use a linear extrapolation beyond the first grid point, where the slope is specified as the derivative at the first grid point.</value>
+  </data>
+  <data name="AnnotationExtrapolationLinearFirstIndividual" xml:space="preserve">
+    <value>Use a linear extrapolation beyond the first grid point, where the slope is specified as {0}.</value>
+  </data>
+  <data name="AnnotationExtrapolationLinearFirstTwoSlope" xml:space="preserve">
+    <value>Use a linear extrapolation beyond the first grid point, where the slope is specified as the slope between the first two grid points.</value>
+  </data>
+  <data name="AnnotationExtrapolationLinearLastDifferentiable" xml:space="preserve">
+    <value>Use a linear extrapolation beyond the last grid point, where the slope is specified as the derivative at the last grid point.</value>
+  </data>
+  <data name="AnnotationExtrapolationLinearLastIndividual" xml:space="preserve">
+    <value>Use a linear extrapolation beyond the last grid point, where the slope is specified as {0}.</value>
+  </data>
+  <data name="AnnotationExtrapolationLinearLastTwoSlope" xml:space="preserve">
+    <value>Use a linear extrapolation beyond the last grid point, where the slope is  specified as the slope between the last two grid points.</value>
+  </data>
+  <data name="AnnotationExtrapolationNoneFirst" xml:space="preserve">
+    <value>Do not apply any extrapolation beyond the first grid point. An exception will be thrown if one tries to access to a point beyond the first grid point.</value>
+  </data>
+  <data name="AnnotationExtrapolationNoneLast" xml:space="preserve">
+    <value>Do not apply any extrapolation beyond the last grid point. An exception will be thrown if one tries to access to a point beyond the first grid point.</value>
+  </data>
+  <data name="AnnotationInterpolationBesselCubicSpline" xml:space="preserve">
+    <value>The Bessel method is an intermediate method, where the derivatives are estimated from the function values, and then the Hermite method is applied.</value>
+  </data>
+  <data name="AnnotationInterpolationCubicSpline" xml:space="preserve">
+    <value>Apply a cubic spline interpolation with a specific boundary condition. {0}</value>
+  </data>
+  <data name="AnnotationInterpolationLinear" xml:space="preserve">
+    <value>Apply a linear interpolation.</value>
+  </data>
+  <data name="AnnotationInterpolationLogLinear" xml:space="preserve">
+    <value>Apply a log-linear interpolation, the value of each grid point must be positive.</value>
+  </data>
+  <data name="AnnotationInterpolationNaturalCubicSpline" xml:space="preserve">
+    <value>Apply a natural cubic spline interpolation, i.e. </value>
+  </data>
+  <data name="AnnotationInterpolationNone" xml:space="preserve">
+    <value>Do not apply any interpolation, throw an exception if one tries to acces to a point that is not a grid point.</value>
+  </data>
+  <data name="AnnotationInterpolationPiecewiseConstant" xml:space="preserve">
+    <value>Returns the left-end point of the sub-interval specified by the grid points.</value>
+  </data>
+  <data name="LongNameBoundaryCubicSplineClamped" xml:space="preserve">
+    <value>Clamped cubic spline; y_0'={0}; y_n'={1}</value>
+  </data>
+  <data name="LongNameBoundaryNaturalCubicSpline" xml:space="preserve">
+    <value>Natural cubic spline boundary condition</value>
+  </data>
+  <data name="LongNameExtrapolationConstantFirst" xml:space="preserve">
+    <value>First grid point constant extrapolation</value>
+  </data>
+  <data name="LongNameExtrapolationConstantFirstIndividual" xml:space="preserve">
+    <value>Constant extrapolation beyond first grid point; {0}</value>
+  </data>
+  <data name="LongNameExtrapolationConstantLast" xml:space="preserve">
+    <value>Constant extrapolation beyond last grid point</value>
+  </data>
+  <data name="LongNameExtrapolationConstantLastIndividual" xml:space="preserve">
+    <value>Constant extrapolation beyond last grid point; {0}</value>
+  </data>
+  <data name="LongNameExtrapolationLinearFirstDifferentiable" xml:space="preserve">
+    <value>Linear extrapolation beyond first differentiable grid point</value>
+  </data>
+  <data name="LongNameExtrapolationLinearFirstIndividual" xml:space="preserve">
+    <value>Linear extrapolation beyond first grid point; slope ={0}</value>
+  </data>
+  <data name="LongNameExtrapolationLinearFirstTwoSlope" xml:space="preserve">
+    <value>Linear extrapolation beyond first grid point; slope of first two grid points</value>
+  </data>
+  <data name="LongNameExtrapolationLinearLastDifferentiable" xml:space="preserve">
+    <value>Linear extrapolation beyond last differentiable grid point</value>
+  </data>
+  <data name="LongNameExtrapolationLinearLastIndividual" xml:space="preserve">
+    <value>Linear extrapolation beyond last grid point; slope ={0}</value>
+  </data>
+  <data name="LongNameExtrapolationLinearLastTwoSlope" xml:space="preserve">
+    <value>Linear extrapolation beyond last grid point; slope of last two grid points</value>
+  </data>
+  <data name="LongNameExtrapolationNoneFirst" xml:space="preserve">
+    <value>No extrapolation beyond first grid point</value>
+  </data>
+  <data name="LongNameExtrapolationNoneLast" xml:space="preserve">
+    <value>No extrapolation beyond last grid point</value>
+  </data>
+  <data name="LongNameInterpolationBesselCubicSpline" xml:space="preserve">
+    <value>Bessel cubic spline interpolation</value>
+  </data>
+  <data name="LongNameInterpolationCubicSpline" xml:space="preserve">
+    <value>Cubic spline interpolation</value>
+  </data>
+  <data name="LongNameInterpolationLinear" xml:space="preserve">
+    <value>Linear interpolation</value>
+  </data>
+  <data name="LongNameInterpolationLogLinear" xml:space="preserve">
+    <value>Log-Linear interpolation</value>
+  </data>
+  <data name="LongNameInterpolationNaturalCubicSpline" xml:space="preserve">
+    <value>Natural cubic spline interpolation</value>
+  </data>
+  <data name="LongNameInterpolationNone" xml:space="preserve">
+    <value>No interpolation</value>
+  </data>
+  <data name="LongNameInterpolationPiecewiseConstant" xml:space="preserve">
+    <value>Piecewise constant interpolation</value>
+  </data>
+</root>
