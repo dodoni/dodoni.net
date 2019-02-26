@@ -57,7 +57,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="a">The input vector a.</param>
         /// <param name="b">The input vector b.</param>
         /// <param name="y">The output vector a+b.</param>
-        public void Add(int n, double[] a, double[] b, double[] y)
+        public void Add(int n, ReadOnlySpan<double> a, ReadOnlySpan<double> b, Span<double> y)
         {
             for (int j = 0; j < n; j++)
             {
@@ -70,28 +70,11 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a; overwritten by the result of the operation, i.e. a + b.</param>
         /// <param name="b">The input vector b.</param>
-        public void Add(int n, double[] a, double[] b)
+        public void Add(int n, Span<double> a, ReadOnlySpan<double> b)
         {
             for (int j = 0; j < n; j++)
             {
                 a[j] = a[j] + b[j];
-            }
-        }
-
-        /// <summary>Performs element by element addition of vector <paramref name="a"/> and vector <paramref name="b"/>.
-        /// </summary>
-        /// <param name="n">The number of elements to be calculated.</param>
-        /// <param name="a">The input vector a.</param>
-        /// <param name="b">The input vector b.</param>
-        /// <param name="y">The output vector y with y[<paramref name="startIndexY"/> + j] :=a[<paramref name="startIndexA"/> + j] + b[<paramref name="startIndexY"/> + j] for j = 0,...,<paramref name="n"/>-1.</param>
-        /// <param name="startIndexA">The null-based start index of <paramref name="a"/>.</param>
-        /// <param name="startIndexB">The null-based start index of <paramref name="b"/>.</param>
-        /// <param name="startIndexY">The null-based start index of <paramref name="y"/>.</param>
-        public void Add(int n, double[] a, double[] b, double[] y, int startIndexA, int startIndexB, int startIndexY)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                y[startIndexY + j] = a[startIndexA + j] + b[startIndexB + j];
             }
         }
 
@@ -101,7 +84,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="a">The input vector a.</param>
         /// <param name="b">The input double precision number b.</param>
         /// <param name="y">The output vector a+b.</param>
-        public void Add(int n, double[] a, double b, double[] y)
+        public void Add(int n, ReadOnlySpan<double> a, double b, Span<double> y)
         {
             for (int j = 0; j < n; j++)
             {
@@ -114,7 +97,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a; overwritten by the result of the operation, i.e. a + b.</param>
         /// <param name="b">The input double precision number b.</param>
-        public void Add(int n, double[] a, double b)
+        public void Add(int n, Span<double> a, double b)
         {
             for (int j = 0; j < n; j++)
             {
@@ -128,7 +111,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="a">The input vector a.</param>
         /// <param name="b">The input vector b.</param>
         /// <param name="y">The output vector a+b.</param>
-        public void Add(int n, Complex[] a, Complex[] b, Complex[] y)
+        public void Add(int n, ReadOnlySpan<Complex> a, ReadOnlySpan<Complex> b, Span<Complex> y)
         {
             for (int j = 0; j < n; j++)
             {
@@ -141,7 +124,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a; overwritten by the result of the operation, i.e. a + b.</param>
         /// <param name="b">The input vector b.</param>
-        public void Add(int n, Complex[] a, Complex[] b)
+        public void Add(int n, Span<Complex> a, ReadOnlySpan<Complex> b)
         {
             for (int j = 0; j < n; j++)
             {
@@ -149,30 +132,13 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
             }
         }
 
-        /// <summary>Performs element by element addition of vector <paramref name="a"/> and vector <paramref name="b"/>.
-        /// </summary>
-        /// <param name="n">The number of elements to be calculated.</param>
-        /// <param name="a">The input vector a.</param>
-        /// <param name="b">The input vector b.</param>
-        /// <param name="y">The output vector y with y[<paramref name="startIndexY"/> + j] :=a[<paramref name="startIndexA"/> + j] + b[<paramref name="startIndexY"/> + j] for j = 0,...,<paramref name="n"/>-1.</param>
-        /// <param name="startIndexA">The null-based start index of <paramref name="a"/>.</param>
-        /// <param name="startIndexB">The null-based start index of <paramref name="b"/>.</param>
-        /// <param name="startIndexY">The null-based start index of <paramref name="y"/>.</param>
-        public void Add(int n, Complex[] a, Complex[] b, Complex[] y, int startIndexA, int startIndexB, int startIndexY)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                y[startIndexY + j] = a[startIndexA + j] + b[startIndexB + j];
-            }
-        }
-
         /// <summary>Performs element by element subtraction of vector <paramref name="a"/> and vector <paramref name="b"/>.
         /// </summary>
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a.</param>
         /// <param name="b">The input vector b.</param>
         /// <param name="y">The output vector a-b.</param>
-        public void Sub(int n, double[] a, double[] b, double[] y)
+        public void Sub(int n, ReadOnlySpan<double> a, ReadOnlySpan<double> b, Span<double> y)
         {
             for (int j = 0; j < n; j++)
             {
@@ -185,7 +151,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a; overwritten by the result of the operation, i.e. a - b.</param>
         /// <param name="b">The input vector b.</param>
-        public void Sub(int n, double[] a, double[] b)
+        public void Sub(int n, Span<double> a, ReadOnlySpan<double> b)
         {
             for (int j = 0; j < n; j++)
             {
@@ -198,25 +164,8 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a.</param>
         /// <param name="b">The input vector b.</param>
-        /// <param name="y">The output vector y with y[<paramref name="startIndexY"/> + j] :=a[<paramref name="startIndexA"/> + j] - b[<paramref name="startIndexY"/> + j] for j = 0,...,<paramref name="n"/>-1.</param>
-        /// <param name="startIndexA">The null-based start index of <paramref name="a"/>.</param>
-        /// <param name="startIndexB">The null-based start index of <paramref name="b"/>.</param>
-        /// <param name="startIndexY">The null-based start index of <paramref name="y"/>.</param>
-        public void Sub(int n, double[] a, double[] b, double[] y, int startIndexA, int startIndexB, int startIndexY)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                y[startIndexY + j] = a[startIndexA + j] - b[startIndexB + j];
-            }
-        }
-
-        /// <summary>Performs element by element subtraction of vector <paramref name="a"/> and vector <paramref name="b"/>.
-        /// </summary>
-        /// <param name="n">The number of elements to be calculated.</param>
-        /// <param name="a">The input vector a.</param>
-        /// <param name="b">The input vector b.</param>
         /// <param name="y">The output vector a-b.</param>
-        public void Sub(int n, Complex[] a, Complex[] b, Complex[] y)
+        public void Sub(int n, ReadOnlySpan<Complex> a, ReadOnlySpan<Complex> b, Span<Complex> y)
         {
             for (int j = 0; j < n; j++)
             {
@@ -229,28 +178,11 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a; overwritten by the result of the operation, i.e. a - b.</param>
         /// <param name="b">The input vector b.</param>
-        public void Sub(int n, Complex[] a, Complex[] b)
+        public void Sub(int n, Span<Complex> a, ReadOnlySpan<Complex> b)
         {
             for (int j = 0; j < n; j++)
             {
                 a[j] = a[j] - b[j];
-            }
-        }
-
-        /// <summary>Performs element by element subtraction of vector <paramref name="a"/> and vector <paramref name="b"/>.
-        /// </summary>
-        /// <param name="n">The number of elements to be calculated.</param>
-        /// <param name="a">The input vector a.</param>
-        /// <param name="b">The input vector b.</param>
-        /// <param name="y">The output vector y with y[<paramref name="startIndexY"/> + j] :=a[<paramref name="startIndexA"/> + j] - b[<paramref name="startIndexY"/> + j] for j = 0,...,<paramref name="n"/>-1.</param>
-        /// <param name="startIndexA">The null-based start index of <paramref name="a"/>.</param>
-        /// <param name="startIndexB">The null-based start index of <paramref name="b"/>.</param>
-        /// <param name="startIndexY">The null-based start index of <paramref name="y"/>.</param>
-        public void Sub(int n, Complex[] a, Complex[] b, Complex[] y, int startIndexA, int startIndexB, int startIndexY)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                y[startIndexY + j] = a[startIndexA + j] - b[startIndexB + j];
             }
         }
 
@@ -259,7 +191,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a.</param>
         /// <param name="y">The output vector a[j]^2, j=0,...,<paramref name="n"/>-1.</param>
-        public void Sqr(int n, double[] a, double[] y)
+        public void Sqr(int n, ReadOnlySpan<double> a, Span<double> y)
         {
             for (int j = 0; j < n; j++)
             {
@@ -271,26 +203,11 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// </summary>
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a; overwritten by the result of the operation, i.e. a[j]^2, j=0,...,<paramref name="n" />-1.</param>
-        public void Sqr(int n, double[] a)
+        public void Sqr(int n, Span<double> a)
         {
             for (int j = 0; j < n; j++)
             {
                 a[j] *= a[j];
-            }
-        }
-
-        /// <summary>Performs element by element squaring of the vector.
-        /// </summary>
-        /// <param name="n">The number of elements to be calculated.</param>
-        /// <param name="a">The input vector a.</param>
-        /// <param name="y">The output vector y with y[<paramref name="startIndexY"/> + j] :=a[<paramref name="startIndexA"/> + j]^2 for j = 0,...,<paramref name="n"/>-1.</param>
-        /// <param name="startIndexA">The null-based start index of <paramref name="a"/>.</param>
-        /// <param name="startIndexY">The null-based start index of <paramref name="y"/>.</param>
-        public void Sqr(int n, double[] a, double[] y, int startIndexA, int startIndexY)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                y[startIndexY + j] = a[startIndexA + j] * a[startIndexA + j];
             }
         }
 
@@ -300,7 +217,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="a">The input vector a.</param>
         /// <param name="b">The input vector b.</param>
         /// <param name="y">The output vector a[j]*b[j], j=0,...,<paramref name="n"/>-1.</param>
-        public void Mul(int n, double[] a, double[] b, double[] y)
+        public void Mul(int n, ReadOnlySpan<double> a, ReadOnlySpan<double> b, Span<double> y)
         {
             for (int j = 0; j < n; j++)
             {
@@ -313,7 +230,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a; overwritten by the result of the operation, i.e. a[j]*b[j], j=0,...,<paramref name="n" />-1.</param>
         /// <param name="b">The input vector b.</param>
-        public void Mul(int n, double[] a, double[] b)
+        public void Mul(int n, Span<double> a, ReadOnlySpan<double> b)
         {
             for (int j = 0; j < n; j++)
             {
@@ -326,25 +243,8 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a.</param>
         /// <param name="b">The input vector b.</param>
-        /// <param name="y">The output vector y with y[<paramref name="startIndexY"/> + j] :=a[<paramref name="startIndexA"/> + j] * b[<paramref name="startIndexY"/> + j] for j = 0,...,<paramref name="n"/>-1.</param>
-        /// <param name="startIndexA">The null-based start index of <paramref name="a"/>.</param>
-        /// <param name="startIndexB">The null-based start index of <paramref name="b"/>.</param>
-        /// <param name="startIndexY">The null-based start index of <paramref name="y"/>.</param>
-        public void Mul(int n, double[] a, double[] b, double[] y, int startIndexA, int startIndexB, int startIndexY)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                y[startIndexY + j] = a[startIndexA + j] * b[startIndexB + j];
-            }
-        }
-
-        /// <summary>Performs element by element multiplication of vector <paramref name="a"/> and vector <paramref name="b"/>.
-        /// </summary>
-        /// <param name="n">The number of elements to be calculated.</param>
-        /// <param name="a">The input vector a.</param>
-        /// <param name="b">The input vector b.</param>
         /// <param name="y">The output vector a[j]*b[j], j=0,...,<paramref name="n"/>-1.</param>
-        public void Mul(int n, Complex[] a, Complex[] b, Complex[] y)
+        public void Mul(int n, ReadOnlySpan<Complex> a, ReadOnlySpan<Complex> b, Span<Complex> y)
         {
             for (int j = 0; j < n; j++)
             {
@@ -357,28 +257,11 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a; overwritten by the result of the operation, i.e. a[j]*b[j], j=0,...,<paramref name="n" />-1.</param>
         /// <param name="b">The input vector b.</param>
-        public void Mul(int n, Complex[] a, Complex[] b)
+        public void Mul(int n, Span<Complex> a, ReadOnlySpan<Complex> b)
         {
             for (int j = 0; j < n; j++)
             {
                 a[j] = a[j] * b[j];
-            }
-        }
-
-        /// <summary>Performs element by element multiplication of vector <paramref name="a"/> and vector <paramref name="b"/>.
-        /// </summary>
-        /// <param name="n">The number of elements to be calculated.</param>
-        /// <param name="a">The input vector a.</param>
-        /// <param name="b">The input vector b.</param>
-        /// <param name="y">The output vector y with y[<paramref name="startIndexY"/> + j] :=a[<paramref name="startIndexA"/> + j] * b[<paramref name="startIndexY"/> + j] for j = 0,...,<paramref name="n"/>-1.</param>
-        /// <param name="startIndexA">The null-based start index of <paramref name="a"/>.</param>
-        /// <param name="startIndexB">The null-based start index of <paramref name="b"/>.</param>
-        /// <param name="startIndexY">The null-based start index of <paramref name="y"/>.</param>
-        public void Mul(int n, Complex[] a, Complex[] b, Complex[] y, int startIndexA, int startIndexB, int startIndexY)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                y[startIndexY + j] = a[startIndexA + j] * b[startIndexB + j];
             }
         }
 
@@ -387,7 +270,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a.</param>
         /// <param name="y">The output vector \conj(a[j]), j=0,...,<paramref name="n"/>-1.</param>
-        public void Conjugate(int n, Complex[] a, Complex[] y)
+        public void Conjugate(int n, ReadOnlySpan<Complex> a, Span<Complex> y)
         {
             for (int j = 0; j < n; j++)
             {
@@ -399,26 +282,11 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// </summary>
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a; overwritten by the result ot the operation, i.e. \conj(a[j]), j=0,...,<paramref name="n" />-1.</param>
-        public void Conjugate(int n, Complex[] a)
+        public void Conjugate(int n, Span<Complex> a)
         {
             for (int j = 0; j < n; j++)
             {
                 a[j] = Complex.Conjugate(a[j]);
-            }
-        }
-
-        /// <summary>Performs element by element conjugation of vector <paramref name="a"/>.
-        /// </summary>
-        /// <param name="n">The number of elements to be calculated.</param>
-        /// <param name="a">The input vector a.</param>
-        /// <param name="y">The output vector y with y[<paramref name="startIndexY"/> + j] :=\conj(a[<paramref name="startIndexA"/> + j]) for j = 0,...,<paramref name="n"/>-1.</param>
-        /// <param name="startIndexA">The null-based start index of <paramref name="a"/>.</param>
-        /// <param name="startIndexY">The null-based start index of <paramref name="y"/>.</param>
-        public void Conjugate(int n, Complex[] a, Complex[] y, int startIndexA, int startIndexY)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                y[startIndexY + j] = Complex.Conjugate(a[startIndexA + j]);
             }
         }
 
@@ -427,7 +295,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a.</param>
         /// <param name="y">The output vector |a[j]|, j=0,...,<paramref name="n"/>-1.</param>
-        public void Abs(int n, double[] a, double[] y)
+        public void Abs(int n, ReadOnlySpan<double> a, Span<double> y)
         {
             for (int j = 0; j < n; j++)
             {
@@ -439,7 +307,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// </summary>
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a; overwritten by the resulf ot the operation, i.e. |a[j]|, j=0,...,<paramref name="n" />-1.</param>
-        public void Abs(int n, double[] a)
+        public void Abs(int n, Span<double> a)
         {
             for (int j = 0; j < n; j++)
             {
@@ -451,42 +319,12 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// </summary>
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a.</param>
-        /// <param name="y">The output vector y with y[<paramref name="startIndexY"/> + j] :=|a[<paramref name="startIndexA"/> + j]| for j = 0,...,<paramref name="n"/>-1.</param>
-        /// <param name="startIndexA">The null-based start index of <paramref name="a"/>.</param>
-        /// <param name="startIndexY">The null-based start index of <paramref name="y"/>.</param>
-        public void Abs(int n, double[] a, double[] y, int startIndexA, int startIndexY)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                y[startIndexY + j] = Math.Abs(a[startIndexA + j]);
-            }
-        }
-
-        /// <summary>Computes absolute value of vector elements.
-        /// </summary>
-        /// <param name="n">The number of elements to be calculated.</param>
-        /// <param name="a">The input vector a.</param>
         /// <param name="y">The output vector |a[j]|, j=0,...,<paramref name="n"/>-1.</param>
-        public void Abs(int n, Complex[] a, double[] y)
+        public void Abs(int n, ReadOnlySpan<Complex> a, Span<double> y)
         {
             for (int j = 0; j < n; j++)
             {
                 y[j] = Complex.Abs(a[j]);
-            }
-        }
-
-        /// <summary>Computes absolute value of vector elements.
-        /// </summary>
-        /// <param name="n">The number of elements to be calculated.</param>
-        /// <param name="a">The input vector a.</param>
-        /// <param name="y">The output vector y with y[<paramref name="startIndexY"/> + j] :=|a[<paramref name="startIndexA"/> + j]| for j = 0,...,<paramref name="n"/>-1.</param>
-        /// <param name="startIndexA">The null-based start index of <paramref name="a"/>.</param>
-        /// <param name="startIndexY">The null-based start index of <paramref name="y"/>.</param>
-        public void Abs(int n, Complex[] a, double[] y, int startIndexA, int startIndexY)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                y[startIndexY + j] = Complex.Abs(a[startIndexA + j]);
             }
         }
 
@@ -500,32 +338,11 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="scaleFactorB">The scaling factor for vector b.</param>
         /// <param name="shiftA">Constant value for shifting addends of vector a.</param>
         /// <param name="shiftB">Constant value for shifting addends of vector b.</param>
-        public void LinearFraction(int n, double[] a, double[] b, double[] y, double scaleFactorA, double scaleFactorB, double shiftA = 0.0, double shiftB = 0.0)
+        public void LinearFraction(int n, ReadOnlySpan<double> a, ReadOnlySpan<double> b, Span<double> y, double scaleFactorA, double scaleFactorB, double shiftA = 0.0, double shiftB = 0.0)
         {
             for (int j = 0; j < n; j++)
             {
                 y[j] = (scaleFactorA * a[j] + shiftA) / (scaleFactorB * b[j] + shiftB);
-            }
-        }
-
-        /// <summary>Performs linear fraction transformation of vector <paramref name="a"/> and vector <paramref name="b"/> with scalar parameters.
-        /// </summary>
-        /// <param name="n">The number of elements to be calculated.</param>
-        /// <param name="a">The input vector a.</param>
-        /// <param name="b">The input vector b.</param>
-        /// <param name="y">The output vector y with y[<paramref name="startIndexY"/> + j] := (<paramref name="scaleFactorA"/> * a[<paramref name="startIndexA"/> + j] + <paramref name="shiftA"/>) / (<paramref name="scaleFactorB"/> * b[<paramref name="startIndexB"/> + j] + <paramref name="shiftB"/>) for j = 0,...,<paramref name="n"/>-1.</param>
-        /// <param name="startIndexA">The null-based start index of <paramref name="a"/>.</param>
-        /// <param name="startIndexB">The null-based start index of <paramref name="b"/>.</param>
-        /// <param name="startIndexY">The null-based start index of <paramref name="y"/>.</param>
-        /// <param name="scaleFactorA">The scaling factor for vector a.</param>
-        /// <param name="scaleFactorB">The scaling factor for vector b.</param>
-        /// <param name="shiftA">Constant value for shifting addends of vector a.</param>
-        /// <param name="shiftB">Constant value for shifting addends of vector b.</param>
-        public void LinearFraction(int n, double[] a, double[] b, double[] y, int startIndexA, int startIndexB, int startIndexY, double scaleFactorA, double scaleFactorB, double shiftA = 0.0, double shiftB = 0.0)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                y[startIndexY + j] = (scaleFactorA * a[startIndexA + j] + shiftA) / (scaleFactorB * b[startIndexB + j] + shiftB);
             }
         }
         #endregion
@@ -537,7 +354,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector.</param>
         /// <param name="y">The output vector.</param>
-        public void Inv(int n, double[] a, double[] y)
+        public void Inv(int n, ReadOnlySpan<double> a, Span<double> y)
         {
             for (int j = 0; j < n; j++)
             {
@@ -549,26 +366,11 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// </summary>
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector; overwritten by the result of the operation.</param>
-        public void Inv(int n, double[] a)
+        public void Inv(int n, Span<double> a)
         {
             for (int j = 0; j < n; j++)
             {
                 a[j] = 1.0 / a[j];
-            }
-        }
-
-        /// <summary>Performs element by element inversion of the vector.
-        /// </summary>
-        /// <param name="n">The number of elements to be calculated.</param>
-        /// <param name="a">The input vector a.</param>
-        /// <param name="y">The output vector y with y[<paramref name="startIndexY"/> + j] :=1.0 / a[<paramref name="startIndexA"/> + j] for j = 0,...,<paramref name="n"/>-1.</param>
-        /// <param name="startIndexA">The null-based start index of <paramref name="a"/>.</param>
-        /// <param name="startIndexY">The null-based start index of <paramref name="y"/>.</param>
-        public void Inv(int n, double[] a, double[] y, int startIndexA, int startIndexY)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                y[startIndexY + j] = 1.0 / a[startIndexA + j];
             }
         }
 
@@ -577,7 +379,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a.</param>
         /// <param name="y">The output vector \sqrt(a[j]), j=0,...,<paramref name="n"/>-1.</param>
-        public void Sqrt(int n, double[] a, double[] y)
+        public void Sqrt(int n, ReadOnlySpan<double> a, Span<double> y)
         {
             for (int j = 0; j < n; j++)
             {
@@ -589,26 +391,11 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// </summary>
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a; overwritten by the result of the operation, i.e. \sqrt(a[j]), j=0,...,<paramref name="n" />-1.</param>
-        public void Sqrt(int n, double[] a)
+        public void Sqrt(int n, Span<double> a)
         {
             for (int j = 0; j < n; j++)
             {
                 a[j] = Math.Sqrt(a[j]);
-            }
-        }
-
-        /// <summary>Performs element by element square root calculation of the vector.
-        /// </summary>
-        /// <param name="n">The number of elements to be calculated.</param>
-        /// <param name="a">The input vector a.</param>
-        /// <param name="y">The output vector y with y[<paramref name="startIndexY"/> + j] :=\sqrt(a[<paramref name="startIndexA"/> + j]) for j = 0,...,<paramref name="n"/>-1.</param>
-        /// <param name="startIndexA">The null-based start index of <paramref name="a"/>.</param>
-        /// <param name="startIndexY">The null-based start index of <paramref name="y"/>.</param>
-        public void Sqrt(int n, double[] a, double[] y, int startIndexA, int startIndexY)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                y[startIndexY + j] = Math.Sqrt(a[startIndexA + j]);
             }
         }
 
@@ -618,7 +405,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="a">The input vector a.</param>
         /// <param name="b">The input vector b.</param>
         /// <param name="y">The output vector a[j]^b[j], j=0,...,<paramref name="n"/>-1.</param>
-        public void Pow(int n, double[] a, double[] b, double[] y)
+        public void Pow(int n, ReadOnlySpan<double> a, ReadOnlySpan<double> b, Span<double> y)
         {
             for (int j = 0; j < n; j++)
             {
@@ -631,7 +418,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a; overwritten by the result of the operation, i.e. a[j]^b[j], j=0,...,<paramref name="n" />-1.</param>
         /// <param name="b">The input vector b.</param>
-        public void Pow(int n, double[] a, double[] b)
+        public void Pow(int n, Span<double> a, ReadOnlySpan<double> b)
         {
             for (int j = 0; j < n; j++)
             {
@@ -644,25 +431,8 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a.</param>
         /// <param name="b">The input vector b.</param>
-        /// <param name="y">The output vector y with y[<paramref name="startIndexY"/> + j] :=a[<paramref name="startIndexA"/> + j]^b[<paramref name="startIndexB"/> + j] for j = 0,...,<paramref name="n"/>-1.</param>
-        /// <param name="startIndexA">The null-based start index of <paramref name="a"/>.</param>
-        /// <param name="startIndexB">The null-based start index of <paramref name="b"/>.</param>
-        /// <param name="startIndexY">The null-based start index of <paramref name="y"/>.</param>
-        public void Pow(int n, double[] a, double[] b, double[] y, int startIndexA, int startIndexB, int startIndexY)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                y[startIndexY + j] = Math.Pow(a[startIndexA + j], b[startIndexB + j]);
-            }
-        }
-
-        /// <summary>Computes a to the power b for elements of two vectors.
-        /// </summary>
-        /// <param name="n">The number of elements to be calculated.</param>
-        /// <param name="a">The input vector a.</param>
-        /// <param name="b">The input vector b.</param>
         /// <param name="y">The output vector a[j]^b[j], j=0,...,<paramref name="n"/>-1.</param>
-        public void Pow(int n, Complex[] a, Complex[] b, Complex[] y)
+        public void Pow(int n, ReadOnlySpan<Complex> a, ReadOnlySpan<Complex> b, Span<Complex> y)
         {
             for (int j = 0; j < n; j++)
             {
@@ -675,28 +445,11 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a; overwritten by the result of the operation, i.e. a[j]^b[j], j=0,...,<paramref name="n" />-1.</param>
         /// <param name="b">The input vector b.</param>
-        public void Pow(int n, Complex[] a, Complex[] b)
+        public void Pow(int n, Span<Complex> a, ReadOnlySpan<Complex> b)
         {
             for (int j = 0; j < n; j++)
             {
                 a[j] = Complex.Pow(a[j], b[j]);
-            }
-        }
-
-        /// <summary>Computes a to the power b for elements of two vectors.
-        /// </summary>
-        /// <param name="n">The number of elements to be calculated.</param>
-        /// <param name="a">The input vector a.</param>
-        /// <param name="b">The input vector b.</param>
-        /// <param name="y">The output vector y with y[<paramref name="startIndexY"/> + j] :=a[<paramref name="startIndexA"/> + j]^b[<paramref name="startIndexB"/> + j] for j = 0,...,<paramref name="n"/>-1.</param>
-        /// <param name="startIndexA">The null-based start index of <paramref name="a"/>.</param>
-        /// <param name="startIndexB">The null-based start index of <paramref name="b"/>.</param>
-        /// <param name="startIndexY">The null-based start index of <paramref name="y"/>.</param>
-        public void Pow(int n, Complex[] a, Complex[] b, Complex[] y, int startIndexA, int startIndexB, int startIndexY)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                y[startIndexY + j] = Complex.Pow(a[startIndexA + j], b[startIndexB + j]);
             }
         }
 
@@ -706,7 +459,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="a">The input vector a.</param>
         /// <param name="b">The constant power.</param>
         /// <param name="y">The output vector a[j]^b, j=0,...,<paramref name="n"/>-1.</param>
-        public void Pow(int n, double[] a, double b, double[] y)
+        public void Pow(int n, ReadOnlySpan<double> a, double b, Span<double> y)
         {
             for (int j = 0; j < n; j++)
             {
@@ -719,7 +472,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a; overwritten by the result of the operation, i.e. a[j]^b, j=0,...,<paramref name="n" />-1.</param>
         /// <param name="b">The constant power.</param>
-        public void Pow(int n, double[] a, double b)
+        public void Pow(int n, Span<double> a, double b)
         {
             for (int j = 0; j < n; j++)
             {
@@ -732,24 +485,8 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a.</param>
         /// <param name="b">The constant power.</param>
-        /// <param name="y">The output vector y with y[<paramref name="startIndexY"/> + j] :=a[<paramref name="startIndexA"/> + j]^b for j = 0,...,<paramref name="n"/>-1.</param>
-        /// <param name="startIndexA">The null-based start index of <paramref name="a"/>.</param>
-        /// <param name="startIndexY">The null-based start index of <paramref name="y"/>.</param>
-        public void Pow(int n, double[] a, double b, double[] y, int startIndexA, int startIndexY)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                y[startIndexY + j] = Math.Pow(a[startIndexA + j], b);
-            }
-        }
-
-        /// <summary>Raises each element of a vector to the constant power.
-        /// </summary>
-        /// <param name="n">The number of elements to be calculated.</param>
-        /// <param name="a">The input vector a.</param>
-        /// <param name="b">The constant power.</param>
         /// <param name="y">The output vector a[j]^b, j=0,...,<paramref name="n"/>-1.</param>
-        public void Pow(int n, Complex[] a, Complex b, Complex[] y)
+        public void Pow(int n, ReadOnlySpan<Complex> a, Complex b, Span<Complex> y)
         {
             for (int j = 0; j < n; j++)
             {
@@ -762,27 +499,11 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a; overwritten by the result of the operation, i.e. a[j]^b, j=0,...,<paramref name="n" />-1.</param>
         /// <param name="b">The constant power.</param>
-        public void Pow(int n, Complex[] a, Complex b)
+        public void Pow(int n, Span<Complex> a, Complex b)
         {
             for (int j = 0; j < n; j++)
             {
                 a[j] = Complex.Pow(a[j], b);
-            }
-        }
-
-        /// <summary>Raises each element of a vector to the constant power.
-        /// </summary>
-        /// <param name="n">The number of elements to be calculated.</param>
-        /// <param name="a">The input vector a.</param>
-        /// <param name="b">The constant power.</param>
-        /// <param name="y">The output vector y with y[<paramref name="startIndexY"/> + j] :=a[<paramref name="startIndexA"/> + j]^b for j = 0,...,<paramref name="n"/>-1.</param>
-        /// <param name="startIndexA">The null-based start index of <paramref name="a"/>.</param>
-        /// <param name="startIndexY">The null-based start index of <paramref name="y"/>.</param>
-        public void Pow(int n, Complex[] a, Complex b, Complex[] y, int startIndexA, int startIndexY)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                y[startIndexY + j] = Complex.Pow(a[startIndexA + j], b);
             }
         }
         #endregion
@@ -794,7 +515,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a.</param>
         /// <param name="y">The output vector \exp(a[j]), j=0,...,<paramref name="n"/>-1.</param>
-        public void Exp(int n, double[] a, double[] y)
+        public void Exp(int n, ReadOnlySpan<double> a, Span<double> y)
         {
             for (int j = 0; j < n; j++)
             {
@@ -806,7 +527,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// </summary>
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a; overwritten by the result of the operation, i.e. \exp(a[j]), j=0,...,<paramref name="n" />-1.</param>
-        public void Exp(int n, double[] a)
+        public void Exp(int n, Span<double> a)
         {
             for (int j = 0; j < n; j++)
             {
@@ -818,23 +539,8 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// </summary>
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a.</param>
-        /// <param name="y">The output vector y with y[<paramref name="startIndexY"/> + j] := \exp(a[<paramref name="startIndexA"/> + j]) for j = 0,...,<paramref name="n"/>-1.</param>
-        /// <param name="startIndexA">The null-based start index of <paramref name="a"/>.</param>
-        /// <param name="startIndexY">The null-based start index of <paramref name="y"/>.</param>
-        public void Exp(int n, double[] a, double[] y, int startIndexA, int startIndexY)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                y[startIndexY + j] = Math.Exp(a[startIndexA + j]);
-            }
-        }
-
-        /// <summary>Computes an exponential of vector elements.
-        /// </summary>
-        /// <param name="n">The number of elements to be calculated.</param>
-        /// <param name="a">The input vector a.</param>
         /// <param name="y">The output vector \exp(a[j]), j=0,...,<paramref name="n"/>-1.</param>
-        public void Exp(int n, Complex[] a, Complex[] y)
+        public void Exp(int n, ReadOnlySpan<Complex> a, Span<Complex> y)
         {
             for (int j = 0; j < n; j++)
             {
@@ -846,26 +552,11 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// </summary>
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a; overwritten by the result of the operation, i.e. \exp(a[j]), j=0,...,<paramref name="n" />-1.</param>
-        public void Exp(int n, Complex[] a)
+        public void Exp(int n, Span<Complex> a)
         {
             for (int j = 0; j < n; j++)
             {
                 a[j] = Complex.Exp(a[j]);
-            }
-        }
-
-        /// <summary>Computes an exponential of vector elements.
-        /// </summary>
-        /// <param name="n">The number of elements to be calculated.</param>
-        /// <param name="a">The input vector a.</param>
-        /// <param name="y">The output vector y with y[<paramref name="startIndexY"/> + j] := \exp(a[<paramref name="startIndexA"/> + j]) for j = 0,...,<paramref name="n"/>-1.</param>
-        /// <param name="startIndexA">The null-based start index of <paramref name="a"/>.</param>
-        /// <param name="startIndexY">The null-based start index of <paramref name="y"/>.</param>
-        public void Exp(int n, Complex[] a, Complex[] y, int startIndexA, int startIndexY)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                y[startIndexY + j] = Complex.Exp(a[startIndexA + j]);
             }
         }
 
@@ -874,7 +565,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a.</param>
         /// <param name="y">The output vector \log(a[j]), j=0,...,<paramref name="n"/>-1.</param>
-        public void Log(int n, double[] a, double[] y)
+        public void Log(int n, ReadOnlySpan<double> a, Span<double> y)
         {
             for (int j = 0; j < n; j++)
             {
@@ -886,7 +577,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// </summary>
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a; overwritten by the result of the operation, i.e. \log(a[j]), j=0,...,<paramref name="n" />-1.</param>
-        public void Log(int n, double[] a)
+        public void Log(int n, Span<double> a)
         {
             for (int j = 0; j < n; j++)
             {
@@ -898,23 +589,8 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// </summary>
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a.</param>
-        /// <param name="y">The output vector y with y[<paramref name="startIndexY"/> + j] := \log(a[<paramref name="startIndexA"/> + j]) for j = 0,...,<paramref name="n"/>-1.</param>
-        /// <param name="startIndexA">The null-based start index of <paramref name="a"/>.</param>
-        /// <param name="startIndexY">The null-based start index of <paramref name="y"/>.</param>
-        public void Log(int n, double[] a, double[] y, int startIndexA, int startIndexY)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                y[startIndexY + j] = Math.Log(a[startIndexA + j]);
-            }
-        }
-
-        /// <summary>Computes natural logarithm of vector elements.
-        /// </summary>
-        /// <param name="n">The number of elements to be calculated.</param>
-        /// <param name="a">The input vector a.</param>
         /// <param name="y">The output vector \log(a[j]), j=0,...,<paramref name="n"/>-1.</param>
-        public void Log(int n, Complex[] a, Complex[] y)
+        public void Log(int n, ReadOnlySpan<Complex> a, Span<Complex> y)
         {
             for (int j = 0; j < n; j++)
             {
@@ -926,26 +602,11 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// </summary>
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a; overwritten by the result of the operation, i.e. \log(a[j]), j=0,...,<paramref name="n" />-1.</param>
-        public void Log(int n, Complex[] a)
+        public void Log(int n, Span<Complex> a)
         {
             for (int j = 0; j < n; j++)
             {
                 a[j] = Complex.Log(a[j]);
-            }
-        }
-
-        /// <summary>Computes natural logarithm of vector elements.
-        /// </summary>
-        /// <param name="n">The number of elements to be calculated.</param>
-        /// <param name="a">The input vector a.</param>
-        /// <param name="y">The output vector y with y[<paramref name="startIndexY"/> + j] := \log(a[<paramref name="startIndexA"/> + j]) for j = 0,...,<paramref name="n"/>-1.</param>
-        /// <param name="startIndexA">The null-based start index of <paramref name="a"/>.</param>
-        /// <param name="startIndexY">The null-based start index of <paramref name="y"/>.</param>
-        public void Log(int n, Complex[] a, Complex[] y, int startIndexA, int startIndexY)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                y[startIndexY + j] = Complex.Log(a[startIndexA + j]);
             }
         }
 
@@ -954,7 +615,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a.</param>
         /// <param name="y">The output vector \log_10(a[j]), j=0,...,<paramref name="n"/>-1.</param>
-        public void Log10(int n, double[] a, double[] y)
+        public void Log10(int n, ReadOnlySpan<double> a, Span<double> y)
         {
             for (int j = 0; j < n; j++)
             {
@@ -966,7 +627,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// </summary>
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a; overwritten by the result of the operation, i.e. \log_10(a[j]), j=0,...,<paramref name="n" />-1.</param>
-        public void Log10(int n, double[] a)
+        public void Log10(int n, Span<double> a)
         {
             for (int j = 0; j < n; j++)
             {
@@ -978,23 +639,8 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// </summary>
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a.</param>
-        /// <param name="y">The output vector y with y[<paramref name="startIndexY"/> + j] := \log_10(a[<paramref name="startIndexA"/> + j]) for j = 0,...,<paramref name="n"/>-1.</param>
-        /// <param name="startIndexA">The null-based start index of <paramref name="a"/>.</param>
-        /// <param name="startIndexY">The null-based start index of <paramref name="y"/>.</param>
-        public void Log10(int n, double[] a, double[] y, int startIndexA, int startIndexY)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                y[startIndexY + j] = Math.Log10(a[startIndexA + j]);
-            }
-        }
-
-        /// <summary>Computes denary logarithm of vector elements.
-        /// </summary>
-        /// <param name="n">The number of elements to be calculated.</param>
-        /// <param name="a">The input vector a.</param>
         /// <param name="y">The output vector \log_10(a[j]), j=0,...,<paramref name="n"/>-1.</param>
-        public void Log10(int n, Complex[] a, Complex[] y)
+        public void Log10(int n, ReadOnlySpan<Complex> a, Span<Complex> y)
         {
             for (int j = 0; j < n; j++)
             {
@@ -1006,26 +652,11 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// </summary>
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a; overwritten by the result of the operation, i.e. \log_10(a[j]), j=0,...,<paramref name="n" />-1.</param>
-        public void Log10(int n, Complex[] a)
+        public void Log10(int n, Span<Complex> a)
         {
             for (int j = 0; j < n; j++)
             {
                 a[j] = Complex.Log10(a[j]);
-            }
-        }
-
-        /// <summary>Computes denary logarithm of vector elements.
-        /// </summary>
-        /// <param name="n">The number of elements to be calculated.</param>
-        /// <param name="a">The input vector a.</param>
-        /// <param name="y">The output vector y with y[<paramref name="startIndexY"/> + j] := \log_10(a[<paramref name="startIndexA"/> + j]) for j = 0,...,<paramref name="n"/>-1.</param>
-        /// <param name="startIndexA">The null-based start index of <paramref name="a"/>.</param>
-        /// <param name="startIndexY">The null-based start index of <paramref name="y"/>.</param>
-        public void Log10(int n, Complex[] a, Complex[] y, int startIndexA, int startIndexY)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                y[startIndexY + j] = Complex.Log10(a[startIndexA + j]);
             }
         }
         #endregion
@@ -1037,7 +668,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a.</param>
         /// <param name="y">The output vector \cos(a[j]), j=0,...,<paramref name="n"/>-1.</param>
-        public void Cos(int n, double[] a, double[] y)
+        public void Cos(int n, ReadOnlySpan<double> a, Span<double> y)
         {
             for (int j = 0; j < n; j++)
             {
@@ -1049,7 +680,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// </summary>
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a; overwritten by the result of the operation, i.e. \cos(a[j]), j=0,...,<paramref name="n" />-1.</param>
-        public void Cos(int n, double[] a)
+        public void Cos(int n, Span<double> a)
         {
             for (int j = 0; j < n; j++)
             {
@@ -1061,23 +692,8 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// </summary>
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a.</param>
-        /// <param name="y">The output vector y with y[<paramref name="startIndexY"/> + j] := \cos(a[<paramref name="startIndexA"/> + j]) for j = 0,...,<paramref name="n"/>-1.</param>
-        /// <param name="startIndexA">The null-based start index of <paramref name="a"/>.</param>
-        /// <param name="startIndexY">The null-based start index of <paramref name="y"/>.</param>
-        public void Cos(int n, double[] a, double[] y, int startIndexA, int startIndexY)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                y[startIndexY + j] = Math.Cos(a[startIndexA + j]);
-            }
-        }
-
-        /// <summary>Computes cosine of vector elements.
-        /// </summary>
-        /// <param name="n">The number of elements to be calculated.</param>
-        /// <param name="a">The input vector a.</param>
         /// <param name="y">The output vector \cos(a[j]), j=0,...,<paramref name="n"/>-1.</param>
-        public void Cos(int n, Complex[] a, Complex[] y)
+        public void Cos(int n, ReadOnlySpan<Complex> a, Span<Complex> y)
         {
             for (int j = 0; j < n; j++)
             {
@@ -1089,26 +705,11 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// </summary>
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a; overwritten by the result of the operation, i.e. \cos(a[j]), j=0,...,<paramref name="n" />-1.</param>
-        public void Cos(int n, Complex[] a)
+        public void Cos(int n, Span<Complex> a)
         {
             for (int j = 0; j < n; j++)
             {
                 a[j] = Complex.Cos(a[j]);
-            }
-        }
-
-        /// <summary>Computes cosine of vector elements.
-        /// </summary>
-        /// <param name="n">The number of elements to be calculated.</param>
-        /// <param name="a">The input vector a.</param>
-        /// <param name="y">The output vector y with y[<paramref name="startIndexY"/> + j] := \cos(a[<paramref name="startIndexA"/> + j]) for j = 0,...,<paramref name="n"/>-1.</param>
-        /// <param name="startIndexA">The null-based start index of <paramref name="a"/>.</param>
-        /// <param name="startIndexY">The null-based start index of <paramref name="y"/>.</param>
-        public void Cos(int n, Complex[] a, Complex[] y, int startIndexA, int startIndexY)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                y[startIndexY + j] = Complex.Cos(a[startIndexA + j]);
             }
         }
 
@@ -1117,7 +718,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a.</param>
         /// <param name="y">The output vector \sin(a[j]), j=0,...,<paramref name="n"/>-1.</param>
-        public void Sin(int n, double[] a, double[] y)
+        public void Sin(int n, ReadOnlySpan<double> a, Span<double> y)
         {
             for (int j = 0; j < n; j++)
             {
@@ -1129,7 +730,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// </summary>
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a; overwritten by the result of the operation, i.e. \sin(a[j]), j=0,...,<paramref name="n" />-1.</param>
-        public void Sin(int n, double[] a)
+        public void Sin(int n, Span<double> a)
         {
             for (int j = 0; j < n; j++)
             {
@@ -1141,23 +742,8 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// </summary>
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a.</param>
-        /// <param name="y">The output vector y with y[<paramref name="startIndexY"/> + j] := \sin(a[<paramref name="startIndexA"/> + j]) for j = 0,...,<paramref name="n"/>-1.</param>
-        /// <param name="startIndexA">The null-based start index of <paramref name="a"/>.</param>
-        /// <param name="startIndexY">The null-based start index of <paramref name="y"/>.</param>
-        public void Sin(int n, double[] a, double[] y, int startIndexA, int startIndexY)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                y[startIndexY + j] = Math.Sin(a[startIndexA + j]);
-            }
-        }
-
-        /// <summary>Computes sine of vector elements.
-        /// </summary>
-        /// <param name="n">The number of elements to be calculated.</param>
-        /// <param name="a">The input vector a.</param>
         /// <param name="y">The output vector \sin(a[j]), j=0,...,<paramref name="n"/>-1.</param>
-        public void Sin(int n, Complex[] a, Complex[] y)
+        public void Sin(int n, ReadOnlySpan<Complex> a, Span<Complex> y)
         {
             for (int j = 0; j < n; j++)
             {
@@ -1169,26 +755,11 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// </summary>
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a; overwritten by the result of the operation, i.e. \sin(a[j]), j=0,...,<paramref name="n" />-1.</param>
-        public void Sin(int n, Complex[] a)
+        public void Sin(int n, Span<Complex> a)
         {
             for (int j = 0; j < n; j++)
             {
                 a[j] = Complex.Sin(a[j]);
-            }
-        }
-
-        /// <summary>Computes sine of vector elements.
-        /// </summary>
-        /// <param name="n">The number of elements to be calculated.</param>
-        /// <param name="a">The input vector a.</param>
-        /// <param name="y">The output vector y with y[<paramref name="startIndexY"/> + j] := \sin(a[<paramref name="startIndexA"/> + j]) for j = 0,...,<paramref name="n"/>-1.</param>
-        /// <param name="startIndexA">The null-based start index of <paramref name="a"/>.</param>
-        /// <param name="startIndexY">The null-based start index of <paramref name="y"/>.</param>
-        public void Sin(int n, Complex[] a, Complex[] y, int startIndexA, int startIndexY)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                y[startIndexY + j] = Complex.Sin(a[startIndexA + j]);
             }
         }
 
@@ -1198,30 +769,12 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="a">The input vector a.</param>
         /// <param name="y">The output vector \sin(a[j]), j=0,...,<paramref name="n"/>-1.</param>
         /// <param name="z">The output vector \cos(a[j]), j=0,...,<paramref name="n"/>-1.</param>
-        public void SinCos(int n, double[] a, double[] y, double[] z)
+        public void SinCos(int n, ReadOnlySpan<double> a, Span<double> y, Span<double> z)
         {
             for (int j = 0; j < n; j++)
             {
                 y[j] = Math.Sin(a[j]);
                 z[j] = Math.Cos(a[j]);
-            }
-        }
-
-        /// <summary>Computes sine and cosine of vector elements.
-        /// </summary>
-        /// <param name="n">The number of elements to be calculated.</param>
-        /// <param name="a">The input vector a.</param>
-        /// <param name="y">The output vector y with y[<paramref name="startIndexY"/> + j] := \sin(a[<paramref name="startIndexA"/> + j]) for j = 0,...,<paramref name="n"/>-1.</param>
-        /// <param name="z">The output vector z with z[<paramref name="startIndexY"/> + j] := \cos(a[<paramref name="startIndexA"/> + j]) for j = 0,...,<paramref name="n"/>-1.</param>
-        /// <param name="startIndexA">The null-based start index of <paramref name="a"/>.</param>
-        /// <param name="startIndexY">The null-based start index of <paramref name="y"/>.</param>
-        /// <param name="startIndexZ">The null-based start index of <paramref name="z"/>.</param>
-        public void SinCos(int n, double[] a, double[] y, double[] z, int startIndexA, int startIndexY, int startIndexZ)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                y[startIndexY + j] = Math.Sin(a[startIndexA + j]);
-                z[startIndexZ + j] = Math.Cos(a[startIndexA + j]);
             }
         }
         #endregion

@@ -23,6 +23,8 @@ SOFTWARE.
  
 Please see http://www.dodoni-project.net/ for more information concerning the Dodoni.net project. 
 */
+using System;
+
 namespace Dodoni.MathLibrary.Basics.LowLevel
 {
     public partial class LapackLinearEquations
@@ -52,7 +54,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array of length at least 4 * <paramref name="n"/>.</param>
             /// <param name="matrixNormType">The type of the matrix norm.</param>
             /// <returns>The reciprocal of the conditional number , i.e. \norm{A} * \norm{A^{-1}}, where \norm{.} denotes the 1-norm or infinity-norm.</returns>
-            double dgecon(int n, double[] a, double normOfOriginalMatrix, double[] work, MatrixConditionNormType matrixNormType = MatrixConditionNormType.Infinity);
+            double dgecon(int n, Span<double> a, double normOfOriginalMatrix, Span<double> work, MatrixConditionNormType matrixNormType = MatrixConditionNormType.Infinity);
 
             /// <summary>Estimates the reciprocal of the conditional number of a band matrix in the 1-norm or the infinity-norm.
             /// </summary>
@@ -64,7 +66,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array of length at least 3 * <paramref name="n"/>.</param>
             /// <param name="matrixNormType">The type of the matrix norm.</param>
             /// <returns>The reciprocal of the conditional number , i.e. \norm{A} * \norm{A^{-1}}, where \norm{.} denotes the 1-norm or infinity-norm.</returns>
-            double dgbcon(int n, int kl, int ku, double[] a, double normOfOriginalMatrix, double[] work, MatrixConditionNormType matrixNormType = MatrixConditionNormType.Infinity);
+            double dgbcon(int n, int kl, int ku, Span<double> a, double normOfOriginalMatrix, Span<double> work, MatrixConditionNormType matrixNormType = MatrixConditionNormType.Infinity);
 
             /// <summary>Estimates the reciprocal of the conditional number of a tridiagonal matrix in the 1-norm or the infinity-norm using the factorization computed by <c>?gttrf</c>.
             /// </summary>
@@ -79,7 +81,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array of length at least 3 * <paramref name="n"/>.</param>
             /// <param name="matrixNormType">The type of the matrix norm.</param>
             /// <returns>The reciprocal of the conditional number , i.e. \norm{A} * \norm{A^{-1}}, where \norm{.} denotes the 1-norm or infinity-norm.</returns>
-            double dgtcon(int n, double[] dl, double[] d, double[] du, double[] du2, int[] iPivot, double normOfOriginalMatrix, double[] work, MatrixConditionNormType matrixNormType = MatrixConditionNormType.Infinity);
+            double dgtcon(int n, Span<double> dl, Span<double> d, Span<double> du, Span<double> du2, int[] iPivot, double normOfOriginalMatrix, Span<double> work, MatrixConditionNormType matrixNormType = MatrixConditionNormType.Infinity);
 
             // todo: add further LAPACK functions on demand
         }

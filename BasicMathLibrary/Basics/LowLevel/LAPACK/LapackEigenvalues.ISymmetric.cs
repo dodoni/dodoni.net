@@ -23,6 +23,7 @@ SOFTWARE.
  
 Please see http://www.dodoni-project.net/ for more information concerning the Dodoni.net project. 
 */
+using System;
 using System.Numerics;
 
 namespace Dodoni.MathLibrary.Basics.LowLevel
@@ -143,7 +144,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="tau">Further details of the orthogonal matrix in the first <paramref name="n"/> - 1 elements, tau[n] is used as workspace; the array should have at least <paramref name="n"/> elements (output).</param>
             /// <param name="work">A workspace array with at least <paramref name="n"/> elements.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of the symmetric input matrix is stored.</param>
-            void dsytrd(int n, double[] a, double[] d, double[] e, double[] tau, double[] work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void dsytrd(int n, Span<double> a, Span<double> d, Span<double> e, Span<double> tau, Span<double> work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Gets a optimal workspace array length for the <c>dorgtr</c> function.
             /// </summary>
@@ -161,7 +162,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of the symmetric input matrix is stored.</param>
             /// <remarks>The routine explicitly generates the n-by-n orthogonal matrix Q formed by dsytrd when reducing a real symmetric matrix A to tridiagonal form A = Q * T * Q'. Use this routine after a call to <c>dsytrd</c>.</remarks>
-            void dorgtr(int n, double[] a, double[] tau, double[] work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void dorgtr(int n, Span<double> a, Span<double> tau, Span<double> work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Gets a optimal workspace array length for the <c>dormtr</c> function.
             /// </summary>
@@ -185,7 +186,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="transposeState">A value indicating whether the routine multiplies C by Q or Q'.</param>
             /// <param name="triangularMatrixType">Use the same parameter as supplied to <c>dsytrd</c>.</param>
             /// <remarks>The routine multiplies a real matrix C by Q or Q', where Q is the orthogonal matrix Q formed by <c>dsytrd</c> when reducing a real symmetric matrix A to tridiagonal form A = Q * T * Q'. Use this routine after a call to <c>dsytrd</c>.</remarks>
-            void dormtr(int m, int n, double[] a, double[] tau, double[] c, double[] work, LAPACK.Side side, BLAS.MatrixTransposeState transposeState, BLAS.TriangularMatrixType triangularMatrixType);
+            void dormtr(int m, int n, Span<double> a, Span<double> tau, Span<double> c, Span<double> work, LAPACK.Side side, BLAS.MatrixTransposeState transposeState, BLAS.TriangularMatrixType triangularMatrixType);
 
             /// <summary>Gets a optimal workspace array length for the <c>zhetrd</c> function.
             /// </summary>
@@ -204,7 +205,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="tau">Further details of the orthogonal matrix in the first <paramref name="n"/> - 1 elements; the array should have at least <paramref name="n"/> - 1 elements (output).</param>
             /// <param name="work">A workspace array.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of the Hermitian input matrix is stored.</param>              
-            void zhetrd(int n, Complex[] a, double[] d, double[] e, Complex[] tau, Complex[] work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void zhetrd(int n, Span<Complex> a, Span<double> d, Span<double> e, Span<Complex> tau, Span<Complex> work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Gets a optimal workspace array length for the <c>zungtr</c> function.
             /// </summary>
@@ -222,7 +223,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array.</param>
             /// <param name="triangularMatrixType">Should be the same as supplied to <c>zhetrd</c>.</param>
             /// <remarks>The routine explicitly generates the n-by-n unitary matrix Q formed by <c>zhetrd</c> when reducing a complex Hermitian matrix A to tridiagonal form A = Q * T * Q^H. Use this routine after a call to <c>zhetrd</c>.</remarks>
-            void zungtr(int n, Complex[] a, Complex[] tau, Complex[] work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void zungtr(int n, Span<Complex> a, Span<Complex> tau, Span<Complex> work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Gets a optimal workspace array length for the <c>zunmtr</c> function.
             /// </summary>
@@ -245,7 +246,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="side">A value indicating whether op(Q) is applied to matrix C from the left or from the right.</param>
             /// <param name="transposeState">A value indicating whether the routine multiplies C by Q or Q'.</param>
             /// <param name="triangularMatrixType">Use the same parameter as supplied to <c>zhetrd</c>.</param>
-            void zunmtr(int m, int n, Complex[] a, Complex[] tau, Complex[] c, Complex[] work, LAPACK.Side side, BLAS.MatrixTransposeState transposeState, BLAS.TriangularMatrixType triangularMatrixType);
+            void zunmtr(int m, int n, Span<Complex> a, Span<Complex> tau, Span<Complex> c, Span<Complex> work, LAPACK.Side side, BLAS.MatrixTransposeState transposeState, BLAS.TriangularMatrixType triangularMatrixType);
 
             /// <summary>Reduces a real symmetric matrix to tridiagonal form using packed storage, i.e. a packed real symmetric matrix A is transformed to symmetric tridiagonal form T by an orthogonal similarity transformation A = Q * T * Q'.
             /// </summary>
@@ -255,7 +256,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="e">The off-diagonal elements of the tridiagonal matrix; the array should have at least <paramref name="n"/> - 1 elements (output).</param>
             /// <param name="tau">Further details of the orthogonal matrix in the first <paramref name="n"/> - 1 elements; the array should have at least <paramref name="n"/> - 1 elements (output).</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of the symmetric input matrix is stored.</param>
-            void dsptrd(int n, double[] ap, double[] d, double[] e, double[] tau, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void dsptrd(int n, Span<double> ap, Span<double> d, Span<double> e, Span<double> tau, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Generates the real orthogonal matrix Q determined by <c>dsptrd</c>.
             /// </summary>
@@ -265,7 +266,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="q">Contains the computed matrix Q of dimension <paramref name="n"/> x <paramref name="n"/>, provided column-by-column (output).</param>
             /// <param name="work">A workspace array with at least <paramref name="n"/> - 1 elements.</param>
             /// <param name="triangularMatrixType">Use the same parameter as supplied to <c>dsptrd</c>.</param>
-            void dopgtr(int n, double[] ap, double[] tau, double[] q, double[] work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void dopgtr(int n, Span<double> ap, Span<double> tau, Span<double> q, Span<double> work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Multiplies a real matrix by the real orthogonal matrix Q determined by <c>dsptrd</c>.
             /// </summary>
@@ -279,7 +280,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="transposeState">A value indicating whether the routine multiplies C by Q or Q'.</param>
             /// <param name="triangularMatrixType">Use the same parameter as supplied to <c>zhetrd</c>.</param>
             /// <remarks>The routine multiplies a real matrix C by Q or Q', where Q is the orthogonal matrix Q formed by <c>dsptrd</c> when reducing a packed real symmetric matrix A to tridiagonal form A = Q * T * Q'. Use this routine after a call to <c>dsptrd</c>.</remarks>
-            void dopmtr(int m, int n, double[] ap, double[] tau, double[] c, double[] work, LAPACK.Side side = LAPACK.Side.Left, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void dopmtr(int m, int n, Span<double> ap, Span<double> tau, Span<double> c, Span<double> work, LAPACK.Side side = LAPACK.Side.Left, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Reduces a complex Hermitian matrix to tridiagonal form T by a unitary similarity transformation A = Q * T *Q^H using packed storage.
             /// </summary>
@@ -289,7 +290,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="e">The off-diagonal elements of the tridiagonal matrix; the array should have at least <paramref name="n"/> - 1 elements (output).</param>
             /// <param name="tau">Further details of the orthogonal matrix in the first <paramref name="n"/> - 1 elements; the array should have at least <paramref name="n"/> - 1 elements (output).</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of the Hermitian input matrix is stored.</param>        
-            void zhptrd(int n, Complex[] ap, double[] d, double[] e, Complex[] tau, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void zhptrd(int n, Span<Complex> ap, Span<double> d, Span<double> e, Span<Complex> tau, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Generates the complex unitary matrix Q determined by <c>zhptrd</c>.
             /// </summary>
@@ -299,7 +300,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="q">The computed matrix Q provided column-by-column of dimension n x n (output).</param>
             /// <param name="work">A workspace array with at least <paramref name="n"/> -1 elements.</param>
             /// <param name="triangularMatrixType">Should be the same as supplied to <c>zhptrd</c>.</param>
-            void zupgtr(int n, Complex[] ap, Complex[] tau, Complex[] q, Complex[] work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void zupgtr(int n, Span<Complex> ap, Span<Complex> tau, Span<Complex> q, Span<Complex> work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Multiplies a complex matrix by the unitary matrix Q determined by <c>zhptrd</c>.
             /// </summary>
@@ -312,7 +313,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="side">A value indicating whether op(Q) is applied to matrix C from the left or from the right.</param>
             /// <param name="transposeState">A value indicating whether the routine multiplies C by Q or Q^H.</param>
             /// <param name="triangularMatrixType">Use the same parameter as supplied to <c>zhptrd</c>.</param>
-            void zupmtr(int m, int n, Complex[] ap, Complex[] tau, Complex[] c, Complex[] work, LAPACK.Side side = LAPACK.Side.Left, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void zupmtr(int m, int n, Span<Complex> ap, Span<Complex> tau, Span<Complex> c, Span<Complex> work, LAPACK.Side side = LAPACK.Side.Left, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Reduces a real symmetric band matrix to tridiagonal form T by an orthogonal similarity transformation A = Q * T * Q'.
             /// </summary>
@@ -326,7 +327,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array with at least <paramref name="n"/> elements.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of the symmetric input matrix is stored.</param>        
             /// <remarks>Note that diagonal (d) and off-diagonal (e) elements of the matrix T are omitted because they are kept in the matrix A on exit.</remarks>
-            void dsbtrd(LapackEigenvalues.SymmetricXxbtrdJob job, int n, int kd, double[] ab, double[] d, double[] e, double[] q, double[] work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void dsbtrd(LapackEigenvalues.SymmetricXxbtrdJob job, int n, int kd, Span<double> ab, Span<double> d, Span<double> e, Span<double> q, Span<double> work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Reduces a complex Hermitian band matrix to tridiagonal form T by an unitary similarity transformation A = Q * T * Q^H.
             /// </summary>
@@ -340,14 +341,14 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array with at least <paramref name="n"/> elements.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of the symmetric input matrix is stored.</param>        
             /// <remarks>Note that diagonal (d) and off-diagonal (e) elements of the matrix T are omitted because they are kept in the matrix A on exit.</remarks>
-            void zhbtrd(LapackEigenvalues.SymmetricXxbtrdJob job, int n, int kd, Complex[] ab, double[] d, double[] e, Complex[] q, Complex[] work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void zhbtrd(LapackEigenvalues.SymmetricXxbtrdJob job, int n, int kd, Span<Complex> ab, Span<double> d, Span<double> e, Span<Complex> q, Span<Complex> work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Computes all eigenvalues of a real symmetric tridiagonal matrix T (which can be obtained by reducing a symmetric or Hermitian matrix to tridiagonal form) using QR algorithm.
             /// </summary>
             /// <param name="n">The order of the matrix.</param>
             /// <param name="d">Contails the diagonal element of the specified tridiagonal matrix T, i.e. the array should have at least <paramref name="n"/> elements; on exit overwritten by the <paramref name="n"/> eigenvalues in ascending order.</param>
             /// <param name="e">Contains the off-diagonal elements of the specified tridiagonal matrix T, i.e. the array should have at least <paramref name="n"/> -1 elements; will be overwritten on exit.</param>
-            void dsterf(int n, double[] d, double[] e);
+            void dsterf(int n, Span<double> d, Span<double> e);
 
             /// <summary>Computes all eigenvalues and eigenvectors of a symmetric matrix reduced to tridiagonal form (QR algorithm), i.e. T = Z * D * Z', where
             /// D is the diagonal matrix whose diagonal elements are the eigenvalues, Z is an orthogonal matrix whose columns are eigenvectors.
@@ -359,7 +360,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="z">If <paramref name="job"/> indicates to take into account this parameter the n-by-n matrix Q on exit (output).</param>
             /// <param name="work">A workspace array with at least 2 * <paramref name="n"/> -2 elements if <paramref name="job"/> indicates to calculate eigenvalues and eigenvectors; otherwise at least 1 element.</param>
             /// <remarks>Before calling <c>dsteqr</c>, you must reduce A to tridiagonal form and generate the explicit matrix Q by calling on specific LAPACK routines.</remarks>
-            void dsteqr(LapackEigenvalues.SymmetricJob job, int n, double[] d, double[] e, double[] z, double[] work);
+            void dsteqr(LapackEigenvalues.SymmetricJob job, int n, Span<double> d, Span<double> e, Span<double> z, Span<double> work);
 
             /// <summary>Computes all eigenvalues and eigenvectors of a Hermitian matrix reduced to tridiagonal form (QR algorithm)
             /// </summary>
@@ -370,7 +371,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="z">If <paramref name="job"/> indicates to take into account this parameter the n-by-n matrix Q on exit (output).</param>
             /// <param name="work">A workspace array with at least 2 * <paramref name="n"/> -2 elements if <paramref name="job"/> indicates to calculate eigenvalues and eigenvectors; otherwise at least 1 element.</param>
             /// <remarks>Before calling <c>zsteqr</c>, you must reduce A to tridiagonal form and generate the explicit matrix Q by calling on specific LAPACK routines.</remarks>
-            void zsteqr(LapackEigenvalues.SymmetricJob job, int n, double[] d, double[] e, Complex[] z, double[] work);
+            void zsteqr(LapackEigenvalues.SymmetricJob job, int n, Span<double> d, Span<double> e, Span<Complex> z, Span<double> work);
 
             /// <summary>Gets a optimal workspace array length for the <c>dstemr</c> function.
             /// </summary>
@@ -407,7 +408,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="tryrac"><c>true</c> indicates that the code should check whether the tridiagonal matrix defines its eigenvalues to high relative accuracy. If so, the code uses relative-accuracy preserving algorithms 
             /// that might be (a bit) slower depending on the matrix. If the matrix does not define its eigenvalues to high relative accuracy, the code can uses possibly faster algorithms;
             /// otherwise the code is not required to guarantee relatively accurate eigenvalues and can use the fastest possible techniques.</param>
-            void dstemr(LapackEigenvalues.SymmetricGeneralJob job, LapackEigenvalues.SymmetricEigenvaluesRange range, int n, double[] d, double[] e, double vl, double vu, int il, int iu, out int m, double[] w, double[] z, int nzc, int[] isuppz, double[] work, int[] iwork, bool tryrac = true);
+            void dstemr(LapackEigenvalues.SymmetricGeneralJob job, LapackEigenvalues.SymmetricEigenvaluesRange range, int n, Span<double> d, Span<double> e, double vl, double vu, int il, int iu, out int m, Span<double> w, Span<double> z, int nzc, int[] isuppz, Span<double> work, int[] iwork, bool tryrac = true);
 
             /// <summary>Computes selected eigenvalues and eigenvectors of a real symmetric tridiagonal matrix.
             /// </summary>
@@ -430,7 +431,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="tryrac"><c>true</c> indicates that the code should check whether the tridiagonal matrix defines its eigenvalues to high relative accuracy. If so, the code uses relative-accuracy preserving algorithms 
             /// that might be (a bit) slower depending on the matrix. If the matrix does not define its eigenvalues to high relative accuracy, the code can uses possibly faster algorithms;
             /// otherwise the code is not required to guarantee relatively accurate eigenvalues and can use the fastest possible techniques.</param>
-            void zstemr(LapackEigenvalues.SymmetricGeneralJob job, LapackEigenvalues.SymmetricEigenvaluesRange range, int n, double[] d, double[] e, double vl, double vu, int il, int iu, out int m, double[] w, Complex[] z, int nzc, int[] isuppz, double[] work, int[] iwork, bool tryrac = true);
+            void zstemr(LapackEigenvalues.SymmetricGeneralJob job, LapackEigenvalues.SymmetricEigenvaluesRange range, int n, Span<double> d, Span<double> e, double vl, double vu, int il, int iu, out int m, Span<double> w, Span<Complex> z, int nzc, int[] isuppz, Span<double> work, int[] iwork, bool tryrac = true);
 
             /// <summary>Gets a optimal workspace array length for the <c>dstedc</c> function.
             /// </summary>
@@ -449,7 +450,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="z">The orthogonal matrix used to reduce the original matrix to tridiagonal form; on exist contains the orthonormal eigenvectors (output).</param>
             /// <param name="work">A workspace array.</param>
             /// <param name="iwork">A workspace array.</param>
-            void dstedc(LapackEigenvalues.SymmetricJob job, int n, double[] d, double[] e, double[] z, double[] work, int[] iwork);
+            void dstedc(LapackEigenvalues.SymmetricJob job, int n, Span<double> d, Span<double> e, Span<double> z, Span<double> work, int[] iwork);
 
             /// <summary>Gets a optimal workspace array length for the <c>zstedc</c> function.
             /// </summary>
@@ -470,7 +471,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array.</param>
             /// <param name="iwork">A workspace array.</param>
             /// <param name="rwork">A workspace array.</param>
-            void zstedc(LapackEigenvalues.SymmetricJob job, int n, double[] d, double[] e, Complex[] z, Complex[] work, int[] iwork, double[] rwork);
+            void zstedc(LapackEigenvalues.SymmetricJob job, int n, Span<double> d, Span<double> e, Span<Complex> z, Span<Complex> work, int[] iwork, Span<double> rwork);
 
             /// <summary>Computes selected eigenvalues and eigenvectors of a real symmetric tridiagonal matrix
             /// </summary>
@@ -489,7 +490,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="isuppz">The support of the eigenvectors in matrix Z, that is the indices indicating the nonzero elements in z (output).</param>
             /// <param name="work">A workspace array with at least 18 * <paramref name="n"/> elements.</param>
             /// <param name="iwork">A workspace array with at least 10 * <paramref name="n"/> elements; at least 8 * <paramref name="n"/> elements if only eigenvalues to be computed.</param>
-            void dstegr(LapackEigenvalues.SymmetricGeneralJob job, LapackEigenvalues.SymmetricEigenvaluesRange range, int n, double[] d, double[] e, double vl, double vu, int il, int iu, out int m, double[] w, double[] z, int[] isuppz, double[] work, int[] iwork);
+            void dstegr(LapackEigenvalues.SymmetricGeneralJob job, LapackEigenvalues.SymmetricEigenvaluesRange range, int n, Span<double> d, Span<double> e, double vl, double vu, int il, int iu, out int m, Span<double> w, Span<double> z, int[] isuppz, Span<double> work, int[] iwork);
 
             /// <summary>Computes selected eigenvalues and eigenvectors of a real symmetric tridiagonal matrix
             /// </summary>
@@ -508,7 +509,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="isuppz">The support of the eigenvectors in matrix Z, that is the indices indicating the nonzero elements in z (output).</param>
             /// <param name="work">A workspace array with at least 18 * <paramref name="n"/> elements.</param>
             /// <param name="iwork">A workspace array with at least 10 * <paramref name="n"/> elements; at least 8 * <paramref name="n"/> elements if only eigenvalues to be computed.</param>
-            void zstegr(LapackEigenvalues.SymmetricGeneralJob job, LapackEigenvalues.SymmetricEigenvaluesRange range, int n, double[] d, double[] e, double vl, double vu, int il, int iu, out int m, double[] w, Complex[] z, int[] isuppz, double[] work, int[] iwork);
+            void zstegr(LapackEigenvalues.SymmetricGeneralJob job, LapackEigenvalues.SymmetricEigenvaluesRange range, int n, Span<double> d, Span<double> e, double vl, double vu, int il, int iu, out int m, Span<double> w, Span<Complex> z, int[] isuppz, Span<double> work, int[] iwork);
 
             /// <summary>Computes all eigenvalues and (optionally) all eigenvectors of a real symmetric positive-definite tridiagonal matrix.
             /// </summary>
@@ -518,7 +519,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="e">The off-diagonal elements of the tridiagonal matrix T, i.e. at least <paramref name="n"/> -1 elements.</param>
             /// <param name="z">If <paramref name="job"/> indicates to take into account this parameter the n-by-n matrix Q on exit.</param>
             /// <param name="work">A workspace array with at least 4 * <paramref name="n"/> -4 elements.</param>
-            void dpteqr(LapackEigenvalues.SymmetricJob job, int n, double[] d, double[] e, double[] z, double[] work);
+            void dpteqr(LapackEigenvalues.SymmetricJob job, int n, Span<double> d, Span<double> e, Span<double> z, Span<double> work);
 
             /// <summary>Computes all eigenvalues and (optionally) all eigenvectors of a real symmetric positive-definite tridiagonal matrix.
             /// </summary>
@@ -528,7 +529,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="e">The off-diagonal elements of the tridiagonal matrix T, i.e. at least <paramref name="n"/> -1 elements.</param>
             /// <param name="z">If <paramref name="job"/> indicates to take into account this parameter the n-by-n matrix Q on exit.</param>
             /// <param name="work">A workspace array with at least 4 * <paramref name="n"/> -4 elements.</param>
-            void zpteqr(LapackEigenvalues.SymmetricJob job, int n, double[] d, double[] e, Complex[] z, double[] work);
+            void zpteqr(LapackEigenvalues.SymmetricJob job, int n, Span<double> d, Span<double> e, Span<Complex> z, Span<double> work);
 
             /// <summary>Computes selected eigenvalues of a real symmetric tridiagonal matrix by bisection.
             /// </summary>
@@ -548,7 +549,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array with at least 3 * <paramref name="n"/> elements.</param>
             /// <param name="iblock">A positive value iblock(i) is the block number of the eigenvalue stored in w(i) (see Lapack documentation for further information).</param>
             /// <param name="abstol">The absolute tolerance to which each eigenvalue is required. An eigenvalue (or cluster) is considered to have converged if it lies in an interval of width abstol.</param>
-            void dstebz(LapackEigenvalues.SymmetricEigenvaluesRange range, LapackEigenvalues.SymmetricDstebzOrder order, int n, double[] d, double[] e, double vl, double vu, int il, int iu, out int m, double[] w, out int nsplit, int[] iblock, int[] isplit, double[] work, double abstol = MachineConsts.Epsilon);
+            void dstebz(LapackEigenvalues.SymmetricEigenvaluesRange range, LapackEigenvalues.SymmetricDstebzOrder order, int n, Span<double> d, Span<double> e, double vl, double vu, int il, int iu, out int m, Span<double> w, out int nsplit, int[] iblock, int[] isplit, Span<double> work, double abstol = MachineConsts.Epsilon);
 
             /// <summary>Computes the eigenvectors corresponding to specified eigenvalues of a real symmetric tridiagonal matrix.
             /// </summary>
@@ -563,7 +564,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="ifailv">Contains the indices of any eigenvectors that failed to converge; i.e. at least <paramref name="m"/> elements.</param>
             /// <param name="work">A workspace array with at least 5 * <paramref name="n"/> elements.</param>
             /// <param name="iwork">A workspace array with at least <paramref name="n"/> elements.</param>
-            void dstein(int n, double[] d, double[] e, int m, double[] w, int[] iblock, int[] isplit, double[] z, int[] ifailv, double[] work, int[] iwork);
+            void dstein(int n, Span<double> d, Span<double> e, int m, Span<double> w, int[] iblock, int[] isplit, Span<double> z, int[] ifailv, Span<double> work, int[] iwork);
 
             /// <summary>Computes the eigenvectors corresponding to specified eigenvalues of a real symmetric tridiagonal matrix.
             /// </summary>
@@ -578,7 +579,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="ifailv">Contains the indices of any eigenvectors that failed to converge; i.e. at least <paramref name="m"/> elements.</param>
             /// <param name="work">A workspace array with at least 5 * <paramref name="n"/> elements.</param>
             /// <param name="iwork">A workspace array with at least <paramref name="n"/> elements.</param>
-            void zstein(int n, double[] d, double[] e, int m, double[] w, int[] iblock, int[] isplit, Complex[] z, int[] ifailv, double[] work, int[] iwork);
+            void zstein(int n, Span<double> d, Span<double> e, int m, Span<double> w, int[] iblock, int[] isplit, Span<Complex> z, int[] ifailv, Span<double> work, int[] iwork);
 
             /// <summary>Computes the reciprocal condition numbers for the eigenvectors of a symmetric/ Hermitian matrix or for the left or right singular vectors of a general matrix.
             /// </summary>
@@ -587,7 +588,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="n">The number of columns of the matrix.</param>
             /// <param name="d">Contains the eigenvalues or singular values of the matrix, in either increasing or decreasing order.</param>
             /// <param name="sep">The reciprocal condition numbers of the vectors (output).</param>
-            void ddisna(LapackEigenvalues.SymmetricDdisnaJob job, int m, int n, double[] d, double[] sep);
+            void ddisna(LapackEigenvalues.SymmetricDdisnaJob job, int m, int n, Span<double> d, Span<double> sep);
 
             /// <summary>Gets a optimal workspace array length for the <c>driver_dsyev</c> function.
             /// </summary>
@@ -606,7 +607,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="w">The eigenvalues of <paramref name="a"/> in ascending order, i.e. the array should have at least <paramref name="n"/> elements (output).</param>
             /// <param name="work">A workspace array with at least 3 * <paramref name="n"/> - 1 elements.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of the symmetric input matrix is stored.</param>
-            void driver_dsyev(LapackEigenvalues.SymmetricGeneralJob job, int n, double[] a, double[] w, double[] work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void driver_dsyev(LapackEigenvalues.SymmetricGeneralJob job, int n, Span<double> a, Span<double> w, Span<double> work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Gets a optimal workspace array length for the <c>driver_zheev</c> function.
             /// </summary>
@@ -625,7 +626,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="w">The eigenvalues of <paramref name="a"/> in ascending order, i.e. the array should have at least <paramref name="n"/> elements (output).</param>
             /// <param name="work">A workspace array with at least 3 * <paramref name="n"/> - 1 elements.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of the symmetric input matrix is stored.</param>
-            void driver_zheev(LapackEigenvalues.SymmetricGeneralJob job, int n, Complex[] a, double[] w, Complex[] work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void driver_zheev(LapackEigenvalues.SymmetricGeneralJob job, int n, Span<Complex> a, Span<double> w, Span<Complex> work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Gets a optimal workspace array length for the <c>driver_dsyevd</c> function.
             /// </summary>
@@ -646,7 +647,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array.</param>
             /// <param name="iwork">A workspace array.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of the symmetric input matrix is stored.</param>
-            void driver_dsyevd(LapackEigenvalues.SymmetricGeneralJob job, int n, double[] a, double[] w, double[] work, int[] iwork, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void driver_dsyevd(LapackEigenvalues.SymmetricGeneralJob job, int n, Span<double> a, Span<double> w, Span<double> work, int[] iwork, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Gets a optimal workspace array length for the <c>driver_zheevd</c> function.
             /// </summary>
@@ -669,7 +670,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="rwork">A workspace array.</param>
             /// <param name="iwork">A workspace array.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of the symmetric input matrix is stored.</param>
-            void driver_zheevd(LapackEigenvalues.SymmetricGeneralJob job, int n, Complex[] a, double[] w, Complex[] work, double[] rwork, int[] iwork, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void driver_zheevd(LapackEigenvalues.SymmetricGeneralJob job, int n, Span<Complex> a, Span<double> w, Span<Complex> work, Span<double> rwork, int[] iwork, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Gets a optimal workspace array length for the <c>driver_dsyevx</c> function.
             /// </summary>
@@ -704,7 +705,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="iwork">A workspace array with at least 5 * <paramref name="n"/> elements.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of the symmetric input matrix is stored.</param>
             /// <param name="abstol">The absolute error tolerance for the eigenvalues.</param>
-            void driver_dsyevx(LapackEigenvalues.SymmetricGeneralJob job, LapackEigenvalues.SymmetricEigenvaluesRange range, int n, double[] a, double vl, double vu, int il, int iu, out int m, double[] w, double[] z, int[] ifail, double[] work, int[] iwork, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, double abstol = MachineConsts.Epsilon);
+            void driver_dsyevx(LapackEigenvalues.SymmetricGeneralJob job, LapackEigenvalues.SymmetricEigenvaluesRange range, int n, Span<double> a, double vl, double vu, int il, int iu, out int m, Span<double> w, Span<double> z, int[] ifail, Span<double> work, int[] iwork, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, double abstol = MachineConsts.Epsilon);
 
             /// <summary>Gets a optimal workspace array length for the <c>driver_zheevx</c> function.
             /// </summary>
@@ -740,7 +741,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="iwork">A workspace array with at least 5 * <paramref name="n"/> elements.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of the symmetric input matrix is stored.</param>
             /// <param name="abstol">The absolute error tolerance for the eigenvalues.</param>
-            void driver_zheevx(LapackEigenvalues.SymmetricGeneralJob job, LapackEigenvalues.SymmetricEigenvaluesRange range, int n, Complex[] a, double vl, double vu, int il, int iu, out int m, double[] w, Complex[] z, int[] ifail, Complex[] work, double[] rwork, int[] iwork, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, double abstol = MachineConsts.Epsilon);
+            void driver_zheevx(LapackEigenvalues.SymmetricGeneralJob job, LapackEigenvalues.SymmetricEigenvaluesRange range, int n, Span<Complex> a, double vl, double vu, int il, int iu, out int m, Span<double> w, Span<Complex> z, int[] ifail, Span<Complex> work, Span<double> rwork, int[] iwork, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, double abstol = MachineConsts.Epsilon);
 
             /// <summary>Gets a optimal workspace array length for the <c>driver_dsyevr</c> function.
             /// </summary>
@@ -776,7 +777,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="iwork">A workspace array with at least 10 * <paramref name="n"/> elements.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of the symmetric input matrix is stored.</param>
             /// <param name="abstol">The absolute error tolerance for the eigenvalues.</param>
-            void driver_dsyevr(LapackEigenvalues.SymmetricGeneralJob job, LapackEigenvalues.SymmetricEigenvaluesRange range, int n, double[] a, double vl, double vu, int il, int iu, out int m, double[] w, double[] z, int[] isuppz, double[] work, int[] iwork, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, double abstol = MachineConsts.Epsilon);
+            void driver_dsyevr(LapackEigenvalues.SymmetricGeneralJob job, LapackEigenvalues.SymmetricEigenvaluesRange range, int n, Span<double> a, double vl, double vu, int il, int iu, out int m, Span<double> w, Span<double> z, int[] isuppz, Span<double> work, int[] iwork, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, double abstol = MachineConsts.Epsilon);
 
             /// <summary>Gets a optimal workspace array length for the <c>driver_zheevr</c> function.
             /// </summary>
@@ -814,7 +815,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="iwork">A workspace array with at least 10 * <paramref name="n"/> elements.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of the symmetric input matrix is stored.</param>
             /// <param name="abstol">The absolute error tolerance for the eigenvalues.</param>
-            void driver_zheevr(LapackEigenvalues.SymmetricGeneralJob job, LapackEigenvalues.SymmetricEigenvaluesRange range, int n, Complex[] a, double vl, double vu, int il, int iu, out int m, double[] w, Complex[] z, int[] isuppz, Complex[] work, double[] rwork, int[] iwork, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, double abstol = MachineConsts.Epsilon);
+            void driver_zheevr(LapackEigenvalues.SymmetricGeneralJob job, LapackEigenvalues.SymmetricEigenvaluesRange range, int n, Span<Complex> a, double vl, double vu, int il, int iu, out int m, Span<double> w, Span<Complex> z, int[] isuppz, Span<Complex> work, Span<double> rwork, int[] iwork, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, double abstol = MachineConsts.Epsilon);
 
             /// <summary>Computes all eigenvalues and, optionally, eigenvectors of a real symmetric matrix in packed storage.
             /// </summary>
@@ -825,7 +826,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="z">If <paramref name="job"/> indicates to compute eigenvectors, this parameter contains the orthonormal eigenvectors (output).</param>
             /// <param name="work">A workspace array with at least 3 * <paramref name="n"/> elements.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of the symmetric input matrix is stored.</param>
-            void driver_dspev(LapackEigenvalues.SymmetricGeneralJob job, int n, double[] ap, double[] w, double[] z, double[] work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void driver_dspev(LapackEigenvalues.SymmetricGeneralJob job, int n, Span<double> ap, Span<double> w, Span<double> z, Span<double> work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Computes all eigenvalues and, optionally, eigenvectors of a Hermitian matrix in packed storage.
             /// </summary>
@@ -837,7 +838,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array with at least 2 * <paramref name="n"/> - 1 elements.</param>
             /// <param name="rwork">A workspace array with at least 3 * <paramref name="n"/> - 2 elements.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of the Hermitian input matrix is stored.</param>
-            void driver_zhpev(LapackEigenvalues.SymmetricGeneralJob job, int n, Complex[] ap, double[] w, Complex[] z, Complex[] work, double[] rwork, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void driver_zhpev(LapackEigenvalues.SymmetricGeneralJob job, int n, Span<Complex> ap, Span<double> w, Span<Complex> z, Span<Complex> work, Span<double> rwork, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
         }
     }
 }

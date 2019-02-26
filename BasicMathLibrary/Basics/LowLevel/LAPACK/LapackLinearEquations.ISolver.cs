@@ -23,6 +23,7 @@ SOFTWARE.
  
 Please see http://www.dodoni-project.net/ for more information concerning the Dodoni.net project. 
 */
+using System;
 using System.Numerics;
 
 namespace Dodoni.MathLibrary.Basics.LowLevel
@@ -42,7 +43,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="transposeState">A value indicating whether op(A) is matrix A or its transposed.</param>
-            void dgetrs(int n, double[] a, int[] ipiv, double[] b, int nrhs = 1, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
+            void dgetrs(int n, Span<double> a, int[] ipiv, Span<double> b, int nrhs = 1, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
 
             /// <summary>Solves a system of linear equations with a LU-factored square matrix, with multiple right-hand sides, i.e. op(A) * X = B.
             /// </summary>
@@ -52,7 +53,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="transposeState">A value indicating whether op(A) is matrix A, its transposed or its Hermitian.</param>
-            void zgetrs(int n, Complex[] a, int[] ipiv, Complex[] b, int nrhs = 1, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
+            void zgetrs(int n, Span<Complex> a, int[] ipiv, Span<Complex> b, int nrhs = 1, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
 
             /// <summary>Solves a system of linear equations with a LU-factored band matrix, with multiple right-hand sides, i.e. op(A) * X = B.
             /// </summary>
@@ -64,7 +65,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="transposeState">A value indicating whether op(A) is matrix A or its transposed.</param>
-            void dgbtrs(int n, int kl, int ku, double[] ab, int[] ipiv, double[] b, int nrhs = 1, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
+            void dgbtrs(int n, int kl, int ku, Span<double> ab, int[] ipiv, Span<double> b, int nrhs = 1, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
 
             /// <summary>Solves a system of linear equations with a LU-factored band matrix, with multiple right-hand sides, i.e. op(A) * X = B.
             /// </summary>
@@ -76,7 +77,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="transposeState">A value indicating whether op(A) is matrix A, its transposed or its Hermitian.</param>
-            void zgbtrs(int n, int kl, int ku, Complex[] ab, int[] ipiv, Complex[] b, int nrhs = 1, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
+            void zgbtrs(int n, int kl, int ku, Span<Complex> ab, int[] ipiv, Span<Complex> b, int nrhs = 1, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
 
             /// <summary>Solves a system of linear equations with a tridiagonal matrix using the LU factorization computed by <c>dgttrf</c>, i.e. op(A) * X = B.
             /// </summary>
@@ -89,7 +90,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="transposeState">A value indicating whether op(A) is matrix A or its transposed.</param>
-            void dgttrs(int n, double[] dl, double[] d, double[] du, double[] du2, int[] ipiv, double[] b, int nrhs = 1, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
+            void dgttrs(int n, Span<double> dl, Span<double> d, Span<double> du, Span<double> du2, int[] ipiv, Span<double> b, int nrhs = 1, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
 
             /// <summary>Solves a system of linear equations with a tridiagonal matrix using the LU factorization computed by <c>dgttrf</c>, i.e. op(A) * X = B.
             /// </summary>
@@ -102,7 +103,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="transposeState">A value indicating whether op(A) is matrix A, its transposed or its Hermitian.</param>
-            void zgttrs(int n, Complex[] dl, Complex[] d, Complex[] du, Complex[] du2, int[] ipiv, Complex[] b, int nrhs = 1, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
+            void zgttrs(int n, Span<Complex> dl, Span<Complex> d, Span<Complex> du, Span<Complex> du2, int[] ipiv, Span<Complex> b, int nrhs = 1, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
 
             /// <summary>Solves a system of linear equations with a Cholesky-factored symmetric (Hermitian) positive-definite matrix computed by <c>dpotrf</c>, i.e. A * X = B.
             /// </summary>
@@ -111,7 +112,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of matrix A is stored and how matrix A is factored.</param>
-            void dpotrs(int n, double[] a, double[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void dpotrs(int n, Span<double> a, Span<double> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Solves a system of linear equations with a Cholesky-factored symmetric (Hermitian) positive-definite matrix computed by <c>zpotrf</c>, i.e. A * X = B.
             /// </summary>
@@ -120,7 +121,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of matrix A is stored and how matrix A is factored.</param>
-            void zpotrs(int n, Complex[] a, Complex[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void zpotrs(int n, Span<Complex> a, Span<Complex> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Solves a system of linear equations with a Cholesky-factored symmetric (Hermitian) positive-definite matrix using the Rectangular Full Packed (RFP) format computed by <c>dpftrf</c>, i.e. A * X = B.
             /// </summary>
@@ -130,7 +131,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of matrix A is stored and how matrix A is factored.</param>
             /// <param name="transposeState">A value indicating whether matrix A or A' is stored  in RFP format.</param>
-            void dpftrs(int n, double[] a, double[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
+            void dpftrs(int n, Span<double> a, Span<double> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
 
             /// <summary>Solves a system of linear equations with a Cholesky-factored symmetric (Hermitian) positive-definite matrix using the Rectangular Full Packed (RFP) format computed by <c>zpftrf</c>, i.e. A * X = B.
             /// </summary>
@@ -140,7 +141,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of matrix A is stored and how matrix A is factored.</param>
             /// <param name="transposeState">A value indicating whether matrix A, A' or A^H is stored  in RFP format.</param>
-            void zpftrs(int n, Complex[] a, Complex[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
+            void zpftrs(int n, Span<Complex> a, Span<Complex> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
 
             /// <summary>Solves a system of linear equations with a packed Cholesky-factored symmetric (Hermitian) positive-definite matrix computed by <c>dpptrf</c>, i.e. A * X = B.
             /// </summary>
@@ -149,7 +150,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of matrix A is stored and how matrix A is factored.</param>
-            void dpptrs(int n, double[] ap, double[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void dpptrs(int n, Span<double> ap, Span<double> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Solves a system of linear equations with a packed Cholesky-factored symmetric (Hermitian) positive-definite matrix computed by <c>zpptrf</c>, i.e. A * X = B.
             /// </summary>
@@ -158,7 +159,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of matrix A is stored and how matrix A is factored.</param>
-            void zpptrs(int n, Complex[] ap, Complex[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void zpptrs(int n, Span<Complex> ap, Span<Complex> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Solves a system of linear equations with a Cholesky-factored symmetric (Hermitian) positive-definite band matrix computed by <c>dpbtrf</c>, i.e. A * X = B.
             /// </summary>
@@ -168,7 +169,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of matrix A is stored and how matrix A is factored.</param>
-            void dpbtrs(int n, int kd, double[] ab, double[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void dpbtrs(int n, int kd, Span<double> ab, Span<double> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Solves a system of linear equations with a Cholesky-factored symmetric (Hermitian) positive-definite band matrix computed by <c>zpbtrf</c>, i.e. A * X = B.
             /// </summary>
@@ -178,7 +179,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of matrix A is stored and how matrix A is factored.</param>
-            void zpbtrs(int n, int kd, Complex[] ab, Complex[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void zpbtrs(int n, int kd, Span<Complex> ab, Span<Complex> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Solves a system of linear equations with a symmetric (Hermitian) positive-definite tridiagonal matrix using the factorization computed by <c>dpttrf</c>, i.e. A * X = B.
             /// </summary>
@@ -187,7 +188,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="e">The <paramref name="n"/> - 1 off-diagonal elements of the unit bidiagonal factor U or L from the factorization computed by <c>dpttrf</c>.</param>
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
-            void dpttrs(int n, double[] d, double[] e, double[] b, int nrhs = 1);
+            void dpttrs(int n, Span<double> d, Span<double> e, Span<double> b, int nrhs = 1);
 
             /// <summary>Solves a system of linear equations with a symmetric (Hermitian) positive-definite tridiagonal matrix using the factorization computed by <c>zpttrf</c>, i.e. A * X = B.
             /// </summary>
@@ -197,7 +198,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of matrix A is stored and how matrix A is factored.</param>
-            void zpttrs(int n, double[] d, Complex[] e, Complex[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void zpttrs(int n, Span<double> d, Span<Complex> e, Span<Complex> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Solves a system of linear equations with a UDU- or LDL-factored symmetric matrix, computed by <c>dsytrf</c>, i.e. A * X = B.
             /// </summary>
@@ -207,7 +208,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of matrix A is stored and how matrix A is factored.</param>
-            void dsytrs(int n, double[] a, int[] ipiv, double[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void dsytrs(int n, Span<double> a, int[] ipiv, Span<double> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Solves a system of linear equations with a UDU- or LDL-factored symmetric matrix, computed by <c>zsytrf</c>, i.e. A * X = B.
             /// </summary>
@@ -217,7 +218,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of matrix A is stored and how matrix A is factored.</param>
-            void zsytrs(int n, Complex[] a, int[] ipiv, Complex[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void zsytrs(int n, Span<Complex> a, int[] ipiv, Span<Complex> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Solves a system of linear equations with a UDU- or LDL-factored Hermitian matrix, as computed by <c>zhetrf</c>, i.e. A * X = B.
             /// </summary>
@@ -227,7 +228,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of matrix A is stored and how matrix A is factored.</param>
-            void zhetrs(int n, Complex[] a, int[] ipiv, Complex[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void zhetrs(int n, Span<Complex> a, int[] ipiv, Span<Complex> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Solves a system of linear equations with a UDU- or LDL-factored symmetric matrix computed by <c>dsytrf</c> and converted by <c>dsyconv</c>, i.e. A * X = B.
             /// </summary>
@@ -238,7 +239,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array of dimension at least <paramref name="n"/>.</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of matrix A is stored and how matrix A is factored.</param>
-            void dsytrs2(int n, double[] a, int[] ipiv, double[] b, double[] work, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void dsytrs2(int n, Span<double> a, int[] ipiv, Span<double> b, Span<double> work, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Solves a system of linear equations with a UDU- or LDL-factored symmetric matrix computed by <c>zsytrf</c> and converted by <c>zsyconv</c>, i.e. A * X = B.
             /// </summary>
@@ -249,7 +250,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array of dimension at least <paramref name="n"/>.</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of matrix A is stored and how matrix A is factored.</param>
-            void zsytrs2(int n, Complex[] a, int[] ipiv, Complex[] b, Complex[] work, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void zsytrs2(int n, Span<Complex> a, int[] ipiv, Span<Complex> b, Span<Complex> work, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Solves a system of linear equations with a UDU- or LDL-factored Hermitian matrix computed by <c>zhetrf</c> and converted by <c>zsyconv</c>, i.e. A * X = B.
             /// </summary>
@@ -260,7 +261,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array of dimension at least <paramref name="n"/>.</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of matrix A is stored and how matrix A is factored.</param>
-            void zhetrs2(int n, Complex[] a, int[] ipiv, Complex[] b, Complex[] work, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void zhetrs2(int n, Span<Complex> a, int[] ipiv, Span<Complex> b, Span<Complex> work, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Solves a system of linear equations with a UDU- or LDL-factored symmetric matrix using packed storage, as computed by <c>dsptrf</c>, i.e. A * X = B.
             /// </summary>
@@ -270,7 +271,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of matrix A is stored and how matrix A is factored.</param>
-            void dsptrs(int n, double[] ap, int[] ipiv, double[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void dsptrs(int n, Span<double> ap, int[] ipiv, Span<double> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Solves a system of linear equations with a UDU- or LDL-factored symmetric matrix using packed storage, as computed by <c>zsptrf</c>, i.e. A * X = B.
             /// </summary>
@@ -280,7 +281,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of matrix A is stored and how matrix A is factored.</param>
-            void zsptrs(int n, Complex[] ap, int[] ipiv, Complex[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void zsptrs(int n, Span<Complex> ap, int[] ipiv, Span<Complex> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Solves a system of linear equations with a UDU- or LDL-factored Hermitian matrix using packed storage, computed by <c>dhptrf</c>, i.e. A * X = B.
             /// </summary>
@@ -290,7 +291,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of matrix A is stored and how matrix A is factored.</param>
-            void zhptrs(int n, Complex[] ap, int[] ipiv, Complex[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void zhptrs(int n, Span<Complex> ap, int[] ipiv, Span<Complex> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Solves a system of linear equations with a triangular matrix, with multiple right-hand sides, i.e. op(A) * X = B.
             /// </summary>
@@ -301,7 +302,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="isUnitTriangularMatrix">A value indicating whether matrix A is unit triangular, i.e. diagonal elements of A are assumed to be 1 and not referenced in the array <paramref name="a"/>.</param>
             /// <param name="triangularMatrixType">A value indicating whether matrix A is upper or lower triangular.</param>
             /// <param name="transposeState">A value indicating whether op(A) is matrix A or its transposed.</param>
-            void dtrtrs(int n, double[] a, double[] b, int nrhs = 1, bool isUnitTriangularMatrix = true, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
+            void dtrtrs(int n, Span<double> a, Span<double> b, int nrhs = 1, bool isUnitTriangularMatrix = true, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
 
             /// <summary>Solves a system of linear equations with a triangular matrix, with multiple right-hand sides, i.e. op(A) * X = B.
             /// </summary>
@@ -312,7 +313,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="isUnitTriangularMatrix">A value indicating whether matrix A is unit triangular, i.e. diagonal elements of A are assumed to be 1 and not referenced in the array <paramref name="a"/>.</param>
             /// <param name="triangularMatrixType">A value indicating whether matrix A is upper or lower triangular.</param>
             /// <param name="transposeState">A value indicating whether op(A) is matrix A, its transposed or its Hermitian.</param>
-            void ztrtrs(int n, Complex[] a, Complex[] b, int nrhs = 1, bool isUnitTriangularMatrix = true, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
+            void ztrtrs(int n, Span<Complex> a, Span<Complex> b, int nrhs = 1, bool isUnitTriangularMatrix = true, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
 
             /// <summary>Solves a system of linear equations with a packed triangular matrix, with multiple right-hand sides, i.e. op(A) * X = B.
             /// </summary>
@@ -323,7 +324,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="isUnitTriangularMatrix">A value indicating whether matrix A is unit triangular, i.e. diagonal elements of A are assumed to be 1 and not referenced in the array <paramref name="ap"/>.</param>
             /// <param name="triangularMatrixType">A value indicating whether matrix A is upper or lower triangular.</param>
             /// <param name="transposeState">A value indicating whether op(A) is matrix A or its transposed.</param>
-            void dtptrs(int n, double[] ap, double[] b, int nrhs = 1, bool isUnitTriangularMatrix = true, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
+            void dtptrs(int n, Span<double> ap, Span<double> b, int nrhs = 1, bool isUnitTriangularMatrix = true, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
 
             /// <summary>Solves a system of linear equations with a packed triangular matrix, with multiple right-hand sides, i.e. op(A) * X = B.
             /// </summary>
@@ -334,7 +335,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="isUnitTriangularMatrix">A value indicating whether matrix A is unit triangular, i.e. diagonal elements of A are assumed to be 1 and not referenced in the array <paramref name="ap"/>.</param>
             /// <param name="triangularMatrixType">A value indicating whether matrix A is upper or lower triangular.</param>
             /// <param name="transposeState">A value indicating whether op(A) is matrix A, its transposed or its Hermitian.</param>
-            void ztptrs(int n, Complex[] ap, Complex[] b, int nrhs = 1, bool isUnitTriangularMatrix = true, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
+            void ztptrs(int n, Span<Complex> ap, Span<Complex> b, int nrhs = 1, bool isUnitTriangularMatrix = true, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
 
             /// <summary>Solves a system of linear equations with a band triangular matrix, with multiple right-hand sides, i.e. op(A) * X = B.
             /// </summary>
@@ -346,7 +347,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="isUnitTriangularMatrix">A value indicating whether matrix A is unit triangular, i.e. diagonal elements of A are assumed to be 1 and not referenced in the array <paramref name="ab"/>.</param>
             /// <param name="triangularMatrixType">A value indicating whether matrix A is upper or lower triangular.</param>
             /// <param name="transposeState">A value indicating whether op(A) is matrix A or its transposed.</param>
-            void dtbtrs(int n, int kd, double[] ab, double[] b, int nrhs = 1, bool isUnitTriangularMatrix = true, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
+            void dtbtrs(int n, int kd, Span<double> ab, Span<double> b, int nrhs = 1, bool isUnitTriangularMatrix = true, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
 
             /// <summary>Solves a system of linear equations with a band triangular matrix, with multiple right-hand sides, i.e. op(A) * X = B.
             /// </summary>
@@ -358,7 +359,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="isUnitTriangularMatrix">A value indicating whether matrix A is unit triangular, i.e. diagonal elements of A are assumed to be 1 and not referenced in the array <paramref name="ab"/>.</param>
             /// <param name="triangularMatrixType">A value indicating whether matrix A is upper or lower triangular.</param>
             /// <param name="transposeState">A value indicating whether op(A) is matrix A, its transposed or its Hermitian.</param>
-            void ztbtrs(int n, int kd, Complex[] ab, Complex[] b, int nrhs = 1, bool isUnitTriangularMatrix = true, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
+            void ztbtrs(int n, int kd, Span<Complex> ab, Span<Complex> b, int nrhs = 1, bool isUnitTriangularMatrix = true, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
 
             /// <summary>Computes the solution to the system of linear equations with a square matrix A and multiple right-hand sides, i.e. A * X = B.
             /// </summary>
@@ -367,7 +368,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="ipiv">Array of dimension at least <paramref name="n"/>, where the pivot indices define the permutation matrix P.</param>
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
-            void driver_dgesv(int n, double[] a, int[] ipiv, double[] b, int nrhs = 1);
+            void driver_dgesv(int n, Span<double> a, int[] ipiv, Span<double> b, int nrhs = 1);
 
             /// <summary>Computes the solution to the system of linear equations with a square matrix A and multiple right-hand sides, i.e. A * X = B.
             /// </summary>
@@ -376,7 +377,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="ipiv">Array of dimension at least <paramref name="n"/>, where the pivot indices define the permutation matrix P.</param>
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
-            void driver_zgesv(int n, Complex[] a, int[] ipiv, Complex[] b, int nrhs = 1);
+            void driver_zgesv(int n, Span<Complex> a, int[] ipiv, Span<Complex> b, int nrhs = 1);
 
             /// <summary>Computes the solution to the system of linear equations with a band matrix A and multiple right-hand sides, i.e. A * X = B.
             /// </summary>
@@ -387,7 +388,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="ipiv">Array of dimension at least <paramref name="n"/>, where the pivot indices define the permutation matrix P.</param>
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
-            void driver_dgbsv(int n, int kl, int ku, double[] ab, int[] ipiv, double[] b, int nrhs = 1);
+            void driver_dgbsv(int n, int kl, int ku, Span<double> ab, int[] ipiv, Span<double> b, int nrhs = 1);
 
             /// <summary>Computes the solution to the system of linear equations with a band matrix A and multiple right-hand sides, i.e. A * X = B.
             /// </summary>
@@ -398,7 +399,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="ipiv">Array of dimension at least <paramref name="n"/>, where the pivot indices define the permutation matrix P.</param>
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
-            void driver_zgbsv(int n, int kl, int ku, Complex[] ab, int[] ipiv, Complex[] b, int nrhs = 1);
+            void driver_zgbsv(int n, int kl, int ku, Span<Complex> ab, int[] ipiv, Span<Complex> b, int nrhs = 1);
 
             /// <summary>Computes the solution to the system of linear equations with a tridiagonal matrix A and multiple right-hand sides, i.e. A * X = B.
             /// </summary>
@@ -408,7 +409,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="du">The <paramref name="n"/> - 1 superdiagonal elements of A; overwritten by the <paramref name="n"/> - 1 elements of the first superdiagonal of U.</param>
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
-            void driver_dgtsv(int n, double[] dl, double[] d, double[] du, double[] b, int nrhs = 1);
+            void driver_dgtsv(int n, Span<double> dl, Span<double> d, Span<double> du, Span<double> b, int nrhs = 1);
 
             /// <summary>Computes the solution to the system of linear equations with a tridiagonal matrix A and multiple right-hand sides, i.e. A * X = B.
             /// </summary>
@@ -418,7 +419,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="du">The <paramref name="n"/> - 1 superdiagonal elements of A; overwritten by the <paramref name="n"/> - 1 elements of the first superdiagonal of U.</param>
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
-            void driver_zgtsv(int n, Complex[] dl, Complex[] d, Complex[] du, Complex[] b, int nrhs = 1);
+            void driver_zgtsv(int n, Span<Complex> dl, Span<Complex> d, Span<Complex> du, Span<Complex> b, int nrhs = 1);
 
             /// <summary>Computes the solution to the system of linear equations with a symmetric positive-definite matrix A and multiple right-hand sides, i.e. A * X = B.
             /// </summary>
@@ -427,7 +428,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of matrix A is stored and how matrix A is factored.</param>        
-            void driver_dposv(int n, double[] a, double[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void driver_dposv(int n, Span<double> a, Span<double> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Computes the solution to the system of linear equations with a Hermitian positive-definite matrix A and multiple right-hand sides, i.e. A * X = B.
             /// </summary>
@@ -436,7 +437,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of matrix A is stored and how matrix A is factored.</param>        
-            void driver_zposv(int n, Complex[] a, Complex[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void driver_zposv(int n, Span<Complex> a, Span<Complex> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Computes the solution to the system of linear equations with a symmetric positive definite packed matrix A and multiple right-hand sides, i.e. A * X = B.
             /// </summary>
@@ -445,7 +446,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of matrix A is stored and how matrix A is factored.</param>        
-            void driver_dppsv(int n, double[] ap, double[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void driver_dppsv(int n, Span<double> ap, Span<double> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Computes the solution to the system of linear equations with a Hermitian positive definite packed matrix A and multiple right-hand sides, i.e. A * X = B.
             /// </summary>
@@ -454,7 +455,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of matrix A is stored and how matrix A is factored.</param>        
-            void driver_zppsv(int n, Complex[] ap, Complex[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void driver_zppsv(int n, Span<Complex> ap, Span<Complex> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Computes the solution to the system of linear equations with a symmetric positive-definite band matrix A and multiple right-hand sides, i.e. A * X = B.
             /// </summary>
@@ -464,7 +465,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of matrix A is stored and how matrix A is factored.</param>        
-            void driver_dpbsv(int n, int kd, double[] ab, double[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void driver_dpbsv(int n, int kd, Span<double> ab, Span<double> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Computes the solution to the system of linear equations with a Hermitian positive-definite band matrix A and multiple right-hand sides, i.e. A * X = B.
             /// </summary>
@@ -474,7 +475,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of matrix A is stored and how matrix A is factored.</param>
             /// <param name="n">The order of matrix A.</param>        
-            void driver_zpbsv(int n, int kd, Complex[] ab, Complex[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void driver_zpbsv(int n, int kd, Span<Complex> ab, Span<Complex> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Computes the solution to the system of linear equations with a symmetric positive definite tridiagonal matrix A and multiple right-hand sides, i.e. A * X = B.
             /// </summary>
@@ -483,7 +484,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="e">Contains the <paramref name="n"/> - 1 subdiagonal elements of matrix A; overwritten by the <paramref name="n"/> - 1 subdiagonal elements of the unit bidiagonal factor L from the factorization of A.</param>
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
-            void driver_dptsv(int n, double[] d, double[] e, double[] b, int nrhs = 1);
+            void driver_dptsv(int n, Span<double> d, Span<double> e, Span<double> b, int nrhs = 1);
 
             /// <summary>Computes the solution to the system of linear equations with a Hermitian positive definite tridiagonal matrix A and multiple right-hand sides, i.e. A * X = B.
             /// </summary>
@@ -492,7 +493,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="e">Contains the <paramref name="n"/> - 1 subdiagonal elements of matrix A; overwritten by the <paramref name="n"/> - 1 subdiagonal elements of the unit bidiagonal factor L from the factorization of A.</param>
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
-            void driver_zptsv(int n, double[] d, Complex[] e, Complex[] b, int nrhs = 1);
+            void driver_zptsv(int n, Span<double> d, Span<Complex> e, Span<Complex> b, int nrhs = 1);
 
             /// <summary>Gets a optimal workspace array length for the <c>driver_dsysv</c> function.
             /// </summary>
@@ -512,7 +513,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array.</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of matrix A is stored and how matrix A is factored.</param>        
-            void driver_dsysv(int n, double[] a, int[] ipiv, double[] b, double[] work, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void driver_dsysv(int n, Span<double> a, int[] ipiv, Span<double> b, Span<double> work, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Gets a optimal workspace array length for the <c>driver_zsysv</c> function.
             /// </summary>
@@ -532,7 +533,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array.</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of matrix A is stored and how matrix A is factored.</param>        
-            void driver_zsysv(int n, Complex[] a, int[] ipiv, Complex[] b, Complex[] work, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void driver_zsysv(int n, Span<Complex> a, int[] ipiv, Span<Complex> b, Span<Complex> work, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Gets a optimal workspace array length for the <c>driver_zhesv</c> function.
             /// </summary>
@@ -552,7 +553,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array.</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of matrix A is stored and how matrix A is factored.</param>        
-            void driver_zhesv(int n, Complex[] a, int[] ipiv, Complex[] b, Complex[] work, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void driver_zhesv(int n, Span<Complex> a, int[] ipiv, Span<Complex> b, Span<Complex> work, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Computes the solution to the system of linear equations with a real symmetric matrix A stored in packed format, and multiple right-hand sides, i.e. A * X = B.
             /// </summary>
@@ -562,7 +563,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of matrix A is stored and how matrix A is factored.</param>        
-            void driver_dspsv(int n, double[] ap, int[] ipiv, double[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void driver_dspsv(int n, Span<double> ap, int[] ipiv, Span<double> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Computes the solution to the system of linear equations with a complex symmetric matrix A stored in packed format, and multiple right-hand sides, i.e. A * X = B.
             /// </summary>
@@ -572,7 +573,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of matrix A is stored and how matrix A is factored.</param>        
-            void driver_zspsv(int n, Complex[] ap, int[] ipiv, Complex[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void driver_zspsv(int n, Span<Complex> ap, int[] ipiv, Span<Complex> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Computes the solution to the system of linear equations with a Hermitian matrix A stored in packed format, and multiple right-hand sides, i.e. A * X = B.
             /// </summary>
@@ -582,7 +583,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="b">Contains matrix B whose columns are the right-hand side for the systems of equations; overwritten by the solution matrix X on exit (output).</param>
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of matrix A is stored and how matrix A is factored.</param>        
-            void driver_zhpsv(int n, Complex[] ap, int[] ipiv, Complex[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void driver_zhpsv(int n, Span<Complex> ap, int[] ipiv, Span<Complex> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
         }
     }
 }

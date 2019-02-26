@@ -199,10 +199,10 @@ namespace Dodoni.MathLibrary.Miscellaneous
             /// <param name="equalityVector">The equality vector 'd'. On exit the number of elements is at least equal to the number of columns of <paramref name="equalityMatrix"/>, i.e. will be filled with respect to the constraints represented by the current instance (output).</param>
             /// <param name="offset">The arguments will be filled under the assumption that a specific number of constraints are already contained.</param>
             /// <returns>The nummber of contraints added to the arguments, i.e. identical to <see cref="MultiDimRegion.LinearEquality.EqualityCount"/>.</returns>
-            public int GetRegionConstraints(double[] equalityMatrix, double[] equalityVector, int offset = 0)
+            public int GetRegionConstraints(Span<double> equalityMatrix, Span<double> equalityVector, int offset = 0)
             {
-                BLAS.Level1.dcopy(EqualityCount, m_EqualityVector, equalityVector, 1, 1, 0, offset);
-                BLAS.Level1.dcopy(Dimension * EqualityCount, m_EqualityMatrix.Data, equalityMatrix, 1, 1, 0, offset * Dimension);
+                BLAS.Level1.dcopy(EqualityCount, m_EqualityVector, equalityVector.Slice(offset));
+                BLAS.Level1.dcopy(Dimension * EqualityCount, m_EqualityMatrix.Data, equalityMatrix.Slice(offset * Dimension));
 
                 return EqualityCount;
             }

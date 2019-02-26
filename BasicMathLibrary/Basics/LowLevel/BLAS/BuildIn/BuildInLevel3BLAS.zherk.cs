@@ -24,12 +24,7 @@ SOFTWARE.
 Please see http://www.dodoni-project.net/ for more information concerning the Dodoni.net project. 
 */
 using System;
-using System.Text;
 using System.Numerics;
-using System.Collections.Generic;
-
-using Dodoni.MathLibrary.Basics;
-using Dodoni.MathLibrary.Basics.LowLevel;
 
 namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
 {
@@ -43,14 +38,14 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="n">The order of matrix C.</param>
         /// <param name="k">The number of columns of matrix A if to calculate C := \alpha * A * A^h + \beta*C; otherwise the number of rows of matrix A.</param>
         /// <param name="alpha">The scalar \alpha.</param>
-        /// <param name="a">The matrix A supplied column-by-column of dimension (<paramref name="lda"/>, ka), where ka equals to <paramref name="k"/> if to calculate C := \alpha * A * A^h + \beta*C; <paramref name="n"/> otherwise.</param>
+        /// <param name="a">The matrix A supplied column-by-column of dimension (<paramref name="lda" />, ka), where ka equals to <paramref name="k" /> if to calculate C := \alpha * A * A^h + \beta*C; <paramref name="n" /> otherwise.</param>
         /// <param name="beta">The scalar \beta.</param>
-        /// <param name="c">The Hermitian matrix C supplied column-by-column of dimension (<paramref name="ldc"/>, <paramref name="n"/>).</param>
-        /// <param name="lda">The leading dimension of <paramref name="a"/>, must be at least max(1,<paramref name="n"/>) if to calculate  C := \alpha * A * A^h + \beta*C ; max(1, <paramref name="k"/>) otherwise.</param>
-        /// <param name="ldc">The leading dimension of <paramref name="c"/>, must be at least max(1, <paramref name="n"/>).</param>
+        /// <param name="c">The Hermitian matrix C supplied column-by-column of dimension (<paramref name="ldc" />, <paramref name="n" />).</param>
+        /// <param name="lda">The leading dimension of <paramref name="a" />, must be at least max(1,<paramref name="n" />) if to calculate  C := \alpha * A * A^h + \beta*C ; max(1, <paramref name="k" />) otherwise.</param>
+        /// <param name="ldc">The leading dimension of <paramref name="c" />, must be at least max(1, <paramref name="n" />).</param>
         /// <param name="triangularMatrixType">A value whether matrix C is in its upper or lower triangular representation.</param>
         /// <param name="operation">A value indicating whether to calculate C := \alpha * A * A^h + \beta*C or C := alpha*A^h * A + beta*C.</param>
-        public void zherk(int n, int k, double alpha, Complex[] a, double beta, Complex[] c, int lda, int ldc, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, BLAS.ZherkOperation operation = BLAS.ZherkOperation.ATimesAHermite)
+        public void zherk(int n, int k, double alpha, ReadOnlySpan<Complex> a, double beta, Span<Complex> c, int lda, int ldc, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, BLAS.ZherkOperation operation = BLAS.ZherkOperation.ATimesAHermite)
         {
             if (n == 0 || ((alpha == 0.0 || k == 0) && (beta == 1.0)))
             {

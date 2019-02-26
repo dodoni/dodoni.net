@@ -24,12 +24,7 @@ SOFTWARE.
 Please see http://www.dodoni-project.net/ for more information concerning the Dodoni.net project. 
 */
 using System;
-using System.Text;
 using System.Numerics;
-using System.Collections.Generic;
-
-using Dodoni.MathLibrary.Basics;
-using Dodoni.MathLibrary.Basics.LowLevel;
 
 namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
 {
@@ -49,8 +44,8 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="a">The matrix A of dimension (<paramref name="lda" />, <paramref name="n" />) supplied column-by-column.</param>
         /// <param name="lda">The leading dimension of <paramref name="a" />, must be at least max(1,<paramref name="m" />).</param>
         /// <param name="incX">The increment for the elements of <paramref name="x" />.</param>
-        /// <param name="incY">The increment for the elements of <paramref name="y" />.</param>        
-        public void zgerc(int m, int n, Complex alpha, Complex[] x, Complex[] y, Complex[] a, int lda, int incX = 1, int incY = 1)
+        /// <param name="incY">The increment for the elements of <paramref name="y" />.</param>
+        public void zgerc(int m, int n, Complex alpha, ReadOnlySpan<Complex> x, ReadOnlySpan<Complex> y, Span<Complex> a, int lda, int incX = 1, int incY = 1)
         {
             if (m == 0 || n == 0 || alpha == 0.0)
             {

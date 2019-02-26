@@ -24,12 +24,7 @@ SOFTWARE.
 Please see http://www.dodoni-project.net/ for more information concerning the Dodoni.net project. 
 */
 using System;
-using System.Text;
 using System.Numerics;
-using System.Collections.Generic;
-
-using Dodoni.MathLibrary.Basics;
-using Dodoni.MathLibrary.Basics.LowLevel;
 
 namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
 {
@@ -52,7 +47,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="ldc">The leading dimension of <paramref name="c" />, must be at least max(1,<paramref name="m" />).</param>
         /// <param name="side">A value indicating whether to calculate C := \alpha * A*B + \beta*C or C := \alpha * B*A +\beta*C.</param>
         /// <param name="triangularMatrixType">A value whether matrix A is in its upper or lower triangular representation.</param>
-        public void zsymm(int m, int n, Complex alpha, Complex[] a, Complex[] b, Complex beta, Complex[] c, int lda, int ldb, int ldc, BLAS.Side side = BLAS.Side.Left, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix)
+        public void zsymm(int m, int n, Complex alpha, ReadOnlySpan<Complex> a, ReadOnlySpan<Complex> b, Complex beta, Span<Complex> c, int lda, int ldb, int ldc, BLAS.Side side = BLAS.Side.Left, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix)
         {
             if (side == BLAS.Side.Left) // C := \alpha *A*B + \beta * C
             {

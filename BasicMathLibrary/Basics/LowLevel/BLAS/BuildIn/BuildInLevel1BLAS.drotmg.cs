@@ -24,13 +24,6 @@ SOFTWARE.
 Please see http://www.dodoni-project.net/ for more information concerning the Dodoni.net project. 
 */
 using System;
-using System.Text;
-using System.Numerics;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-
-using Dodoni.MathLibrary.Basics;
-using Dodoni.MathLibrary.Basics.LowLevel;
 
 namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
 {
@@ -48,7 +41,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="y1">Provides the y-coordinate of the input vector.</param>
         /// <param name="param">The elements of the param array are: param(0) contains a switch, flag. param(1-4) contain h11, h21, h12, and h22, respectively,
         /// the components of the array H.</param>
-        public void drotmg(ref double d1, ref double d2, ref double x1, double y1, double[] param)
+        public void drotmg(ref double d1, ref double d2, ref double x1, double y1, Span<double> param)
         {
             /*
              * CONSTRUCT THE MODIFIED GIVENS TRANSFORMATION MATRIX H WHICH ZEROS

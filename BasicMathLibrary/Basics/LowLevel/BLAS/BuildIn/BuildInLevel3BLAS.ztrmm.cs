@@ -24,12 +24,7 @@ SOFTWARE.
 Please see http://www.dodoni-project.net/ for more information concerning the Dodoni.net project. 
 */
 using System;
-using System.Text;
 using System.Numerics;
-using System.Collections.Generic;
-
-using Dodoni.MathLibrary.Basics;
-using Dodoni.MathLibrary.Basics.LowLevel;
 
 namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
 {
@@ -51,7 +46,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="side">A value indicating whether to calculate B := \alpha * op(A)*B or B:= \alpha *B * op(A).</param>
         /// <param name="triangularMatrixType">A value whether matrix A is in its upper or lower triangular representation.</param>
         /// <param name="transpose">A value indicating whether 'op(A)=A' or 'op(A)=A^t'.</param>
-        public void ztrmm(int m, int n, Complex alpha, Complex[] a, Complex[] b, int lda, int ldb, bool isUnitTriangular = true, BLAS.Side side = BLAS.Side.Left, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose)
+        public void ztrmm(int m, int n, Complex alpha, ReadOnlySpan<Complex> a, Span<Complex> b, int lda, int ldb, bool isUnitTriangular = true, BLAS.Side side = BLAS.Side.Left, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose)
         {
             if (side == BLAS.Side.Left)
             {

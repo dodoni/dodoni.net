@@ -404,7 +404,8 @@ namespace Dodoni.MathLibrary.Surfaces
 
                     if (originalColumnIndex > j)
                     {
-                        BLAS.Level1.dswap(rowCount, m_Data, 1, m_Data, 1, j * rowCount, originalColumnIndex * rowCount);
+                        Span<double> spanData = m_Data;
+                        BLAS.Level1.dswap(rowCount, spanData.Slice(j * rowCount), spanData.Slice(originalColumnIndex * rowCount));
                     }
                 }
             }
@@ -424,7 +425,8 @@ namespace Dodoni.MathLibrary.Surfaces
                     int originalRowIndex = verticalLabels.IndexOf(verticalLabel);
                     if (originalRowIndex > i)
                     {
-                        BLAS.Level1.dswap(columnCount, m_Data, rowCount, m_Data, rowCount, i, originalRowIndex);
+                        Span<double> spanData = m_Data;
+                        BLAS.Level1.dswap(columnCount, spanData.Slice(i), spanData.Slice(originalRowIndex), incX: rowCount, incY: rowCount);
                     }
                 }
             }
@@ -582,7 +584,8 @@ namespace Dodoni.MathLibrary.Surfaces
                 column = new double[m_RowCount];
             }
             // set 'column[j] = m_Data[j + m_RowCount * columnIndex]' for j=0,..,m_RowCount-1:
-            BLAS.Level1.dcopy(m_RowCount, m_Data, column, 1, 1, m_RowCount * columnIndex, 0);
+            BLAS.Level1.dcopy(m_RowCount, m_Data.AsSpan().Slice(m_RowCount * columnIndex), column);
+
             return new DenseMatrix(m_RowCount, 1, column);
         }
 
@@ -601,7 +604,8 @@ namespace Dodoni.MathLibrary.Surfaces
                 row = new double[m_ColumnCount];
             }
             // set 'row[j] = m_Data[rowIndex + m_RowCount * j]' for j =0,...,m_ColumnCount-1:
-            BLAS.Level1.dcopy(m_ColumnCount, m_Data, row, m_RowCount, 1, rowIndex, 0);
+            BLAS.Level1.dcopy(m_ColumnCount, m_Data.AsSpan().Slice(rowIndex), row, incX: m_RowCount);
+
             return new DenseMatrix(m_ColumnCount, 1, row);
         }
 
@@ -633,7 +637,7 @@ namespace Dodoni.MathLibrary.Surfaces
             int sourceArrayOffset = startRowIndex + startColumnIndex * m_RowCount;
             for (int i = 0; i < subRowCount; i++)
             {
-                BLAS.Level1.dcopy(subColumnCount, m_Data, subMatrix, m_RowCount, subRowCount, i + sourceArrayOffset, i);
+                BLAS.Level1.dcopy(subColumnCount, m_Data.AsSpan().Slice(i + sourceArrayOffset), subMatrix.AsSpan().Slice(i), incX: m_RowCount, incY: subRowCount);
             }
             return new DenseMatrix(subRowCount, subColumnCount, subMatrix);
         }

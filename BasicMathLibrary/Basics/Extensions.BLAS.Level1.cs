@@ -23,6 +23,7 @@ SOFTWARE.
  
 Please see http://www.dodoni-project.net/ for more information concerning the Dodoni.net project. 
 */
+using System;
 using System.Numerics;
 
 using Dodoni.MathLibrary.Basics.LowLevel;
@@ -38,7 +39,7 @@ namespace Dodoni.MathLibrary.Basics
         /// <param name="x">The vector 'x' with at least <paramref name="n"/> elements.</param>
         /// <param name="incX">The increment for <paramref name="x"/>.</param>
         /// <returns>The square of the euclidian norm of x, i.e. x_0^2 + ... + x_n^2.</returns>
-        public static double dnrm2sq(this ILevel1BLAS level1, int n, double[] x, int incX = 1)
+        public static double dnrm2sq(this ILevel1BLAS level1, int n, Span<double> x, int incX = 1)
         {
             var norm = level1.dnrm2(n, x, incX);
             return norm * norm;

@@ -24,13 +24,6 @@ SOFTWARE.
 Please see http://www.dodoni-project.net/ for more information concerning the Dodoni.net project. 
 */
 using System;
-using System.Text;
-using System.Numerics;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-
-using Dodoni.MathLibrary.Basics;
-using Dodoni.MathLibrary.Basics.LowLevel;
 
 namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
 {
@@ -39,37 +32,21 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
     /// <remarks>Some of the methods are straightforward ports of the Fortran implementation (http://www.netlib.org/blas). It is recommended to use wrapper of a native code implementation.</remarks>
     internal partial class BuildInLevel1BLAS
     {
-        /// <summary>Swaps a vector with another vector.
+        /// <summary>Swaps a vector with another vector, i.e. y[j * <paramref name="incY" />] = x[j * <paramref name="incX" />] and
+        /// x[j * <paramref name="incX" />] y[j * <paramref name="incY" />]  for j = 0,...,n-1.
         /// </summary>
-        /// <param name="n">The number of elements of <paramref name="x"/> and <paramref name="y"/>.</param>
-        /// <param name="x">The vector 'x' with at least <paramref name="n"/> elements.</param>
-        /// <param name="y">The vector 'y' with at least <paramref name="n"/> elements.</param>
-        public void dswap(int n, double[] x, double[] y)
+        /// <param name="n">The number of elements of <paramref name="x" /> and <paramref name="y" />.</param>
+        /// <param name="x">The vector 'x' with at least 1 + ( <paramref name="n" /> - 1) * <paramref name="incX" /> elements.</param>
+        /// <param name="y">The vector 'y' with at least 1 + ( <paramref name="n" /> - 1) * <paramref name="incY" /> elements.</param>
+        /// <param name="incX">The increment for <paramref name="x" />.</param>
+        /// <param name="incY">The increment for <paramref name="y" />.</param>
+        public void dswap(int n, Span<double> x, Span<double> y, int incX = 1, int incY = 1)
         {
             for (int j = 0; j < n; j++)
             {
-                double temp = x[j];
-                x[j] = y[j];
-                y[j] = temp;
-            }
-        }
-
-        /// <summary>Swaps a vector with another vector.
-        /// </summary>
-        /// <param name="n">The number of elements of <paramref name="x"/> and <paramref name="y"/>.</param>
-        /// <param name="x">The vector 'x' with at least <paramref name="n"/> elements.</param>
-        /// <param name="incX">The increment for <paramref name="x"/>.</param>
-        /// <param name="y">The vector 'y' with at least <paramref name="n"/> elements.</param>
-        /// <param name="incY">The increment for <paramref name="y"/>.</param>
-        /// <param name="startIndexX">The null-based start index for <paramref name="x"/>.</param>
-        /// <param name="startIndexY">The null-based start index for <paramref name="y"/>.</param>
-        public void dswap(int n, double[] x, int incX, double[] y, int incY, int startIndexX, int startIndexY)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                double temp = x[startIndexX + j * incX];
-                x[startIndexX + j * incX] = y[startIndexY + j * incY];
-                y[startIndexY + j * incY] = temp;
+                var temp = x[j * incX];
+                x[j * incX] = y[j * incY];
+                y[j * incY] = temp;
             }
         }
     }

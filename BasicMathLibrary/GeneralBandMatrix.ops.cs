@@ -52,7 +52,7 @@ namespace Dodoni.MathLibrary
         /// <returns>The result of the operator, i.e. 'A = D * A', where 'A' represents the matrix specified by the current instance.</returns>
         /// <exception cref="ArgumentNullException">Thrown, if <paramref name="diagonalMatrix"/> is <c>null</c>.</exception>
         /// <exception cref="ArgumentException">Thrown, if the number of elements of <paramref name="diagonalMatrix"/> is less than the number of rows of the current object.</exception>
-        public GeneralBandMatrix LeftMultiplyDiagonalMatrixAssignment(double[] diagonalMatrix)
+        public GeneralBandMatrix LeftMultiplyDiagonalMatrixAssignment(Span<double> diagonalMatrix)
         {
             if (diagonalMatrix == null)
             {
@@ -79,7 +79,7 @@ namespace Dodoni.MathLibrary
                      */
                     for (int i = 0; i < m_RowCount; i++)
                     {
-                        BLAS.Level1.dscal(k, diagonalMatrix[i], m_Data, subPlusSuperDiagonalCount, i + m_SuperDiagonalCount + (i - m_SubDiagonalCount) * subPlusSuperDiagonalCount);
+                        BLAS.Level1.dscal(k, diagonalMatrix[i], m_Data.AsSpan().Slice(i + m_SuperDiagonalCount + (i - m_SubDiagonalCount) * subPlusSuperDiagonalCount), incX: subPlusSuperDiagonalCount);
                     }
                     break;
 

@@ -24,12 +24,6 @@ SOFTWARE.
 Please see http://www.dodoni-project.net/ for more information concerning the Dodoni.net project. 
 */
 using System;
-using System.Text;
-using System.Numerics;
-using System.Collections.Generic;
-
-using Dodoni.MathLibrary.Basics;
-using Dodoni.MathLibrary.Basics.LowLevel;
 
 namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
 {
@@ -43,16 +37,17 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="m">The number of rows of the matrix C.</param>
         /// <param name="n">The number of columns of the matrix C.</param>
         /// <param name="alpha">The scalar \alpha.</param>
-        /// <param name="a">The symmetric matrix A supplied column-by-column of dimension (<paramref name="lda"/>, ka), where ka is <paramref name="m"/> if to calculate C := \alpha * A*B + \beta*C; otherwise <paramref name="n"/>.</param>
-        /// <param name="b">The matrix B supplied column-by-column of dimension (<paramref name="ldb"/>,<paramref name="n"/>).</param>
+        /// <param name="a">The symmetric matrix A supplied column-by-column of dimension (<paramref name="lda" />, ka), where ka is <paramref name="m" /> if to calculate C := \alpha * A*B + \beta*C; otherwise <paramref name="n" />.</param>
+        /// <param name="b">The matrix B supplied column-by-column of dimension (<paramref name="ldb" />,<paramref name="n" />).</param>
         /// <param name="beta">The scalar \beta.</param>
-        /// <param name="c">The matrix C supplied column-by-column of dimension (<paramref name="ldc"/>,<paramref name="n"/>); input/output.</param>
-        /// <param name="lda">The leading dimension of <paramref name="a"/>, must be at least max(1,<paramref name="m"/>) if <paramref name="side"/>=left; max(1,n) otherwise.</param>
-        /// <param name="ldb">The leading dimension of <paramref name="b"/>, must be at least max(1,<paramref name="m"/>).</param>
-        /// <param name="ldc">The leading dimension of <paramref name="c"/>, must be at least max(1,<paramref name="m"/>).</param>
+        /// <param name="c">The matrix C supplied column-by-column of dimension (<paramref name="ldc" />,<paramref name="n" />); input/output.</param>
+        /// <param name="lda">The leading dimension of <paramref name="a" />, must be at least max(1,<paramref name="m" />) if <paramref name="side" />=left; max(1,n) otherwise.</param>
+        /// <param name="ldb">The leading dimension of <paramref name="b" />, must be at least max(1,<paramref name="m" />).</param>
+        /// <param name="ldc">The leading dimension of <paramref name="c" />, must be at least max(1,<paramref name="m" />).</param>
         /// <param name="side">A value indicating whether to calculate C := \alpha * A*B + \beta*C or C := \alpha * B*A +\beta*C.</param>
         /// <param name="triangularMatrixType">A value whether matrix A is in its upper or lower triangular representation.</param>
-        public void dsymm(int m, int n, double alpha, double[] a, double[] b, double beta, double[] c, int lda, int ldb, int ldc, BLAS.Side side = BLAS.Side.Left, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix)
+        /// <exception cref="NotImplementedException"></exception>
+        public void dsymm(int m, int n, double alpha, ReadOnlySpan<double> a, ReadOnlySpan<double> b, double beta, Span<double> c, int lda, int ldb, int ldc, BLAS.Side side = BLAS.Side.Left, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix)
         {
             if (m == 0 || n == 0 || ((alpha == 0.0) && (beta == 1.0)))
             {

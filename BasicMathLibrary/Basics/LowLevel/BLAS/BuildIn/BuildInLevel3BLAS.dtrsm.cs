@@ -24,12 +24,6 @@ SOFTWARE.
 Please see http://www.dodoni-project.net/ for more information concerning the Dodoni.net project. 
 */
 using System;
-using System.Text;
-using System.Numerics;
-using System.Collections.Generic;
-
-using Dodoni.MathLibrary.Basics;
-using Dodoni.MathLibrary.Basics.LowLevel;
 
 namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
 {
@@ -43,15 +37,15 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="m">The number of rows of matrix B.</param>
         /// <param name="n">The number of column of matrix B.</param>
         /// <param name="alpha">The scalar \alpha.</param>
-        /// <param name="a">The triangular matrix A supplied column-by-column of dimension (<paramref name="lda"/>, k), where k is <paramref name="m"/> if to calculate op(A) * X = \alpha * B; <paramref name="n"/> otherwise.</param>
-        /// <param name="b">The matrix B supplied column-by-column of dimension (<paramref name="ldb"/>, <paramref name="n"/>).</param>
-        /// <param name="lda">The leading dimension of <paramref name="a"/>, must be at least max(1,<paramref name="m"/>) if to calculate op(A) * X = \alpha * B; max(1,<paramref name="n"/>) otherwise.</param>
-        /// <param name="ldb">The leading dimension of <paramref name="b"/>, must be at least max(1,<paramref name="m"/>).</param>
+        /// <param name="a">The triangular matrix A supplied column-by-column of dimension (<paramref name="lda" />, k), where k is <paramref name="m" /> if to calculate op(A) * X = \alpha * B; <paramref name="n" /> otherwise.</param>
+        /// <param name="b">The matrix B supplied column-by-column of dimension (<paramref name="ldb" />, <paramref name="n" />).</param>
+        /// <param name="lda">The leading dimension of <paramref name="a" />, must be at least max(1,<paramref name="m" />) if to calculate op(A) * X = \alpha * B; max(1,<paramref name="n" />) otherwise.</param>
+        /// <param name="ldb">The leading dimension of <paramref name="b" />, must be at least max(1,<paramref name="m" />).</param>
         /// <param name="isUnitTriangular">A value indicating whether the matrix A is unit triangular.</param>
         /// <param name="side">A value indicating whether to calculate op(A) * X = \alpha * B or X * op(A) = \alpha *B.</param>
         /// <param name="triangularMatrixType">A value whether matrix A is in its upper or lower triangular representation.</param>
         /// <param name="transpose">A value indicating whether 'op(A)=A' or 'op(A)=A^t'.</param>
-        public void dtrsm(int m, int n, double alpha, double[] a, double[] b, int lda, int ldb, bool isUnitTriangular = true, BLAS.Side side = BLAS.Side.Left, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose)
+        public void dtrsm(int m, int n, double alpha, ReadOnlySpan<double> a, Span<double> b, int lda, int ldb, bool isUnitTriangular = true, BLAS.Side side = BLAS.Side.Left, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose)
         {
             if (n == 0)
             {

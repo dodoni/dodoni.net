@@ -50,7 +50,21 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="a">The matrix provided column-by-column (column-major ordering).</param>
         /// <param name="work">A workspace array.</param>
         /// <remarks>The implementation is base on 'A decomposition for In-place Matrix Transposition', Bryan Catanzaro, Alexander Keller, Michael Garland; 2014.</remarks>
-        public void aux_zgetrans(int rowCount, int columnCount, Complex[] a, Complex[] work = null)
+        public void aux_zgetrans(int rowCount, int columnCount, Span<Complex> a)
+        {
+            int lwork = Math.Max(rowCount, columnCount);
+            var work = new Complex[lwork];
+            aux_zgetrans(rowCount, columnCount, a, work);
+        }
+
+        /// <summary>Performs in-place transposition of a specific matrix.
+        /// </summary>
+        /// <param name="rowCount">The number of rows.</param>
+        /// <param name="columnCount">The number of columns.</param>
+        /// <param name="a">The matrix provided column-by-column (column-major ordering).</param>
+        /// <param name="work">A workspace array.</param>
+        /// <remarks>The implementation is base on 'A decomposition for In-place Matrix Transposition', Bryan Catanzaro, Alexander Keller, Michael Garland; 2014.</remarks>
+        public void aux_zgetrans(int rowCount, int columnCount, Span<Complex> a, Span<Complex> work)
         {
             int lwork = Math.Max(rowCount, columnCount);
             if ((work == null) || (work.Length < lwork))

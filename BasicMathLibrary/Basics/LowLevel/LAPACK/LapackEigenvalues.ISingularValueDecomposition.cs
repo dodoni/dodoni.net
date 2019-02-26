@@ -358,7 +358,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="tauq">Contains further details of the matrix Q, the dimension must be at least max(<paramref name="m"/>, <paramref name="n"/>) (output).</param>
             /// <param name="taup">Contains further details of the matrix P, the dimension must be at least max(<paramref name="m"/>, <paramref name="n"/>) (output).</param>
             /// <param name="work">A workspace array with dimension at least max(<paramref name="m"/>, <paramref name="n"/>).</param>
-            void dgebrd(int m, int n, double[] a, double[] d, double[] e, double[] tauq, double[] taup, double[] work);
+            void dgebrd(int m, int n, Span<double> a, Span<double> d, Span<double> e, Span<double> tauq, Span<double> taup, Span<double> work);
 
             /// <summary>Gets a optimal workspace array length for the <c>zgebrd</c> function.
             /// </summary>
@@ -377,7 +377,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="tauq">Contains further details of the matrix Q, the dimension must be at least max(<paramref name="m"/>, <paramref name="n"/>) (output).</param>
             /// <param name="taup">Contains further details of the matrix P, the dimension must be at least max(<paramref name="m"/>, <paramref name="n"/>) (output).</param>
             /// <param name="work">A workspace array with dimension at least max(<paramref name="m"/>, <paramref name="n"/>).</param>
-            void zgebrd(int m, int n, Complex[] a, double[] d, double[] e, Complex[] tauq, Complex[] taup, Complex[] work);
+            void zgebrd(int m, int n, Span<Complex> a, Span<double> d, Span<double> e, Span<Complex> tauq, Span<Complex> taup, Span<Complex> work);
 
             /// <summary>Reduces a general band matrix to bidiagonal form, i.e. A = Q * B * P'. The routine can also update a matrix C as C = Q' * C.
             /// </summary>
@@ -394,7 +394,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="pt">Contains the <paramref name="n"/>-by-<paramref name="n"/> matrix P' (output).</param>
             /// <param name="c">The matrix <paramref name="m"/>-by-<paramref name="ncc"/> matrix C; overwritten by the product Q' * C; if <paramref name="ncc"/> == 0, the parameter is not referenced.</param>
             /// <param name="work">A workspace array with dimension at least 2 * max(<paramref name="m"/>, <paramref name="n"/>).</param>
-            void dgbbrd(SVDxgbbrdJob job, int m, int n, int ncc, int kl, int ku, double[] ab, double[] d, double[] e, double[] q, double[] pt, double[] c, double[] work);
+            void dgbbrd(SVDxgbbrdJob job, int m, int n, int ncc, int kl, int ku, Span<double> ab, Span<double> d, Span<double> e, Span<double> q, Span<double> pt, Span<double> c, Span<double> work);
 
             /// <summary>Reduces a general band matrix to bidiagonal form, i.e. A = Q * B * P^H. The routine can also update a matrix C as C = Q^H * C.
             /// </summary>
@@ -412,7 +412,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="c">The matrix <paramref name="m"/>-by-<paramref name="ncc"/> matrix C; overwritten by the product Q^H * C; if <paramref name="ncc"/> == 0, the parameter is not referenced.</param>
             /// <param name="work">A workspace array with dimension at least max(<paramref name="m"/>, <paramref name="n"/>).</param>
             /// <param name="rwork">A workspace array with dimension at least max(<paramref name="m"/>, <paramref name="n"/>).</param>
-            void zgbbrd(SVDxgbbrdJob job, int m, int n, int ncc, int kl, int ku, Complex[] ab, double[] d, double[] e, Complex[] q, Complex[] pt, Complex[] c, Complex[] work, double[] rwork);
+            void zgbbrd(SVDxgbbrdJob job, int m, int n, int ncc, int kl, int ku, Span<Complex> ab, Span<double> d, Span<double> e, Span<Complex> q, Span<Complex> pt, Span<Complex> c, Span<Complex> work, Span<double> rwork);
 
             /// <summary>Gets a optimal workspace array length for the <c>dorgbr</c> function.
             /// </summary>
@@ -432,7 +432,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="a">The vectors which define the elementary reflectors, as returned by <c>dgebrd</c>; overwritten by the orthogonal matrix Q or P'.</param>
             /// <param name="tau">Scalar factor of the elementary reflector H(i) or G(i) which determines Q and P' as returned by <c>dgebrd</c> in the array <c>tauq</c> or <c>taup</c>.</param>
             /// <param name="work">A workspace array.</param>
-            void dorgbr(SVDxorgbrJob job, int m, int n, int k, double[] a, double[] tau, double[] work);
+            void dorgbr(SVDxorgbrJob job, int m, int n, int k, Span<double> a, Span<double> tau, Span<double> work);
 
             /// <summary>Gets a optimal workspace array length for the <c>dormbr</c> function.
             /// </summary>
@@ -457,7 +457,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array with dimension at least <paramref name="n"/> if <paramref name="side"/> indicates a multiplication on the left side; at least <paramref name="m"/> otherwise.</param>
             /// <param name="side">A value indicating whether multipliers are applied to matrix C from the left or from the right.</param>
             /// <param name="transposeState">A value indicating whether the routine multiplies C by X or X', where X is matrix P or matrix Q with respect to <paramref name="job"/>.</param>
-            void dormbr(SVDxormbrJob job, int m, int n, int k, double[] a, double[] tau, double[] c, double[] work, LAPACK.Side side = LAPACK.Side.Left, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
+            void dormbr(SVDxormbrJob job, int m, int n, int k, Span<double> a, Span<double> tau, Span<double> c, Span<double> work, LAPACK.Side side = LAPACK.Side.Left, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
 
             /// <summary>Gets a optimal workspace array length for the <c>zungbr</c> function.
             /// </summary>
@@ -477,7 +477,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="a">The vectors which define the elementary reflectors, as returned by <c>dgebrd</c>; overwritten by the orthogonal matrix Q or P'.</param>
             /// <param name="tau">Scalar factor of the elementary reflector H(i) or G(i) which determines Q and P' as returned by <c>dgebrd</c> in the array <c>tauq</c> or <c>taup</c>.</param>
             /// <param name="work">A workspace array.</param>
-            void zungbr(SVDxorgbrJob job, int m, int n, int k, Complex[] a, Complex[] tau, Complex[] work);
+            void zungbr(SVDxorgbrJob job, int m, int n, int k, Span<Complex> a, Span<Complex> tau, Span<Complex> work);
 
             /// <summary>Gets a optimal workspace array length for the <c>zunmbr</c> function.
             /// </summary>
@@ -502,7 +502,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array with dimension at least <paramref name="n"/> if <paramref name="side"/> indicates a multiplication on the left side; at least <paramref name="m"/> otherwise.</param>
             /// <param name="side">A value indicating whether multipliers are applied to matrix C from the left or from the right.</param>
             /// <param name="transposeState">A value indicating whether the routine multiplies C by X or X^H, where X is matrix P or matrix Q with respect to <paramref name="job"/>.</param>
-            void zunmbr(SVDxormbrJob job, int m, int n, int k, Complex[] a, Complex[] tau, Complex[] c, Complex[] work, LAPACK.Side side = LAPACK.Side.Left, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
+            void zunmbr(SVDxormbrJob job, int m, int n, int k, Span<Complex> a, Span<Complex> tau, Span<Complex> c, Span<Complex> work, LAPACK.Side side = LAPACK.Side.Left, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
 
             /// <summary>Computes the singular value decomposition of a general matrix that has been reduced to bidiagonal form, i.e. B = Q * S * P^H. Optionally, the subroutine may compute also Q^H * C for a specific matrix C.
             /// </summary>
@@ -517,7 +517,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="c">The matrix C for computing the product Q^H * C. This parameter is not referenced if <paramref name="ncc"/> = 0.</param>
             /// <param name="work">A workspace array; the dimension must be at least 4 * <paramref name="n"/>.</param>
             /// <param name="triangularMatrixType">A value indicating whether B is upper or lower bidiagonal matrix.</param>
-            void dbsdsqr(int n, int ncvt, int nru, int ncc, double[] d, double[] e, double[] vt, double[] u, double[] c, double[] work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void dbsdsqr(int n, int ncvt, int nru, int ncc, Span<double> d, Span<double> e, Span<double> vt, Span<double> u, Span<double> c, Span<double> work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Computes the singular value decomposition of a general matrix that has been reduced to bidiagonal form, i.e. B = Q * S * P^H. Optionally, the subroutine may compute also Q^H * C for a specific matrix C.
             /// </summary>
@@ -532,7 +532,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="c">The matrix C for computing the product Q^H * C. This parameter is not referenced if <paramref name="ncc"/> = 0.</param>
             /// <param name="work">A workspace array; the dimension must be at least 4 * <paramref name="n"/>.</param>
             /// <param name="triangularMatrixType">A value indicating whether B is upper or lower bidiagonal matrix.</param>
-            void zbsdsqr(int n, int ncvt, int nru, int ncc, double[] d, double[] e, Complex[] vt, Complex[] u, Complex[] c, double[] work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void zbsdsqr(int n, int ncvt, int nru, int ncc, Span<double> d, Span<double> e, Span<Complex> vt, Span<Complex> u, Span<Complex> c, Span<double> work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Computes the singular value decomposition of a real bidiagonal matrix using a divide and conquer method.
             /// </summary>
@@ -547,7 +547,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array with dimension at least 4*<paramref name="n"/>, 6 * <paramref name="n"/> or 3*<paramref name="n"/>^2 + 4 * <paramref name="n"/> as specified by <paramref name="job"/>.</param>
             /// <param name="iwork">A workspace array with dimension at least 8 * <paramref name="n"/>.</param>
             /// <param name="triangularMatrixType">A value indicating whether matrix B is upper or lower diagonal matrix.</param>
-            void dbdsdc(SVDdbdsdcJob job, int n, double[] d, double[] e, double[] u, double[] vt, double[] q, int[] iq, double[] work, int[] iwork, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            void dbdsdc(SVDdbdsdcJob job, int n, Span<double> d, Span<double> e, Span<double> u, Span<double> vt, Span<double> q, int[] iq, Span<double> work, int[] iwork, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Gets a optimal workspace array length for the <c>dgesvd</c> function.
             /// </summary>
@@ -570,7 +570,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="uJob">A value indicating what kind of job to do by the LAPACK function (for matrix U).</param>
             /// <param name="vtJob">A value indicating what kind of job to do by the LAPACK function (for matrix V').</param>
             /// <remarks>The singular values are the roots of the non-negative eigenvalues of A^t*A.</remarks>        
-            void driver_dgesvd(int m, int n, double[] a, double[] s, double[] u, double[] vt, double[] work, LapackEigenvalues.SVDleftSingularVectorsJob uJob = SVDleftSingularVectorsJob.All, LapackEigenvalues.SVDrightSingularVectorsJob vtJob = SVDrightSingularVectorsJob.All);
+            void driver_dgesvd(int m, int n, Span<double> a, Span<double> s, Span<double> u, Span<double> vt, Span<double> work, LapackEigenvalues.SVDleftSingularVectorsJob uJob = SVDleftSingularVectorsJob.All, LapackEigenvalues.SVDrightSingularVectorsJob vtJob = SVDrightSingularVectorsJob.All);
 
             /// <summary>Gets a optimal workspace array length for the <c>zgesvd</c> function.
             /// </summary>
@@ -594,7 +594,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="uJob">A value indicating what kind of job to do by the LAPACK function (for matrix U).</param>
             /// <param name="vtJob">A value indicating what kind of job to do by the LAPACK function (for matrix V').</param>
             /// <remarks>The singular values are the roots of the non-negative eigenvalues of A^t*A.</remarks>        
-            void driver_zgesvd(int m, int n, Complex[] a, double[] s, Complex[] u, Complex[] vt, Complex[] work, double[] rwork, LapackEigenvalues.SVDleftSingularVectorsJob uJob = LapackEigenvalues.SVDleftSingularVectorsJob.All, LapackEigenvalues.SVDrightSingularVectorsJob vtJob = LapackEigenvalues.SVDrightSingularVectorsJob.All);
+            void driver_zgesvd(int m, int n, Span<Complex> a, Span<double> s, Span<Complex> u, Span<Complex> vt, Span<Complex> work, Span<double> rwork, LapackEigenvalues.SVDleftSingularVectorsJob uJob = LapackEigenvalues.SVDleftSingularVectorsJob.All, LapackEigenvalues.SVDrightSingularVectorsJob vtJob = LapackEigenvalues.SVDrightSingularVectorsJob.All);
 
             /// <summary>Gets a optimal workspace array length for the <c>driver_dgesdd</c> function.
             /// </summary>
@@ -615,7 +615,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="vt">The right singular vectors 'V^t' as specified by <paramref name="job"/>. See Lapack documentation for further details (http://www.netlib.org/lapack/index.html).</param>
             /// <param name="work">A workspace array.</param>
             /// <param name="iwork">A workspace array with dimension at least 8 * min(<paramref name="m"/>, <paramref name="n"/>).</param>
-            void driver_dgesdd(LapackEigenvalues.SVDxgesddJob job, int m, int n, double[] a, double[] s, double[] u, double[] vt, double[] work, int[] iwork);
+            void driver_dgesdd(LapackEigenvalues.SVDxgesddJob job, int m, int n, Span<double> a, Span<double> s, Span<double> u, Span<double> vt, Span<double> work, int[] iwork);
 
             /// <summary>Gets a optimal workspace array length for the <c>driver_zgesdd</c> function.
             /// </summary>
@@ -637,7 +637,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array.</param>
             /// <param name="rwork">A workspace array with dimension at least 5 * min(<paramref name="m"/>, <paramref name="n"/>) if <paramref name="job"/> equals <see cref="SVDxgesddJob.None"/>; min(m,n) * max(5*min(m,n) + 7, 2 * max(m,n) + 2 * min(m,n) +1) otherwise.</param>
             /// <param name="iwork">A workspace array with dimension at least 8 * min(<paramref name="m"/>, <paramref name="n"/>).</param>
-            void driver_zgesdd(LapackEigenvalues.SVDxgesddJob job, int m, int n, Complex[] a, double[] s, Complex[] u, Complex[] vt, Complex[] work, double[] rwork, int[] iwork);
+            void driver_zgesdd(LapackEigenvalues.SVDxgesddJob job, int m, int n, Span<Complex> a, Span<double> s, Span<Complex> u, Span<Complex> vt, Span<Complex> work, Span<double> rwork, int[] iwork);
 
             /// <summary>Computes the singular value decomposition of a real matrix using a preconditioned Jacobi SVD method.
             /// </summary>
@@ -655,7 +655,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="v">Contains the right singular vectors as specified by <paramref name="jobv"/> (output).</param>
             /// <param name="work">A workspace array which minimal length depends on the other parameters. See Lapack documentation for further details (http://www.netlib.org/lapack/index.html).</param>
             /// <param name="iwork">A workspace array with dimension at least max(3, <paramref name="m"/> + 3 * <paramref name="n"/>).</param>
-            void driver_dgejsv(LapackEigenvalues.SVDdgejsvJobA joba, LapackEigenvalues.SVDdgejsvJobU jobu, LapackEigenvalues.SVDdgejsvJobV jobv, LapackEigenvalues.SVDdgejsvJobR jobr, LapackEigenvalues.SVDdgejsvJobT jobt, LapackEigenvalues.SVDdgejsvJobP jobp, int m, int n, double[] a, double[] sva, double[] u, double[] v, double[] work, int[] iwork);
+            void driver_dgejsv(LapackEigenvalues.SVDdgejsvJobA joba, LapackEigenvalues.SVDdgejsvJobU jobu, LapackEigenvalues.SVDdgejsvJobV jobv, LapackEigenvalues.SVDdgejsvJobR jobr, LapackEigenvalues.SVDdgejsvJobT jobt, LapackEigenvalues.SVDdgejsvJobP jobp, int m, int n, Span<double> a, Span<double> sva, Span<double> u, Span<double> v, Span<double> work, int[] iwork);
 
             /// <summary>Computes the singular value decomposition of a real matrix using Jacobi plane rotations.
             /// </summary>
@@ -669,7 +669,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="mv">The product of Jacobi rotations applied to the first mv rows of <paramref name="v"/>.</param>
             /// <param name="v">Contains the right singular vectors as specified by <paramref name="jobv"/> (output).</param>
             /// <param name="work">A workspace array with dimension at least max(4, <paramref name="m"/> + <paramref name="n"/>).</param>
-            void driver_dgesvj(LapackEigenvalues.SVDdgesvjJobA joba, LapackEigenvalues.SVDdgesvjJobU jobu, LapackEigenvalues.SVDdgesvjJobV jobv, int m, int n, double[] a, double[] sva, int mv, double[] v, double[] work);
+            void driver_dgesvj(LapackEigenvalues.SVDdgesvjJobA joba, LapackEigenvalues.SVDdgesvjJobU jobu, LapackEigenvalues.SVDdgesvjJobV jobv, int m, int n, Span<double> a, Span<double> sva, int mv, Span<double> v, Span<double> work);
 
             /// <summary>Computes the generalized singular value decomposition of a pair of general rectangular matrices.
             /// </summary>
@@ -690,7 +690,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="q">Contains the <paramref name="n"/>-by-<paramref name="n"/> orthogonal matrix Q if specified by <paramref name="jobq"/> (output).</param>
             /// <param name="work">A workspace array with dimension at least max(3 * n, m, p) + n.</param>
             /// <param name="iwork">A workspace array with dimension at least <paramref name="n"/>.</param>
-            void driver_dggsvd(LapackEigenvalues.SVDxggsvdJob jobu, LapackEigenvalues.SVDxggsvdJob jobv, LapackEigenvalues.SVDxggsvdJob jobq, int m, int n, int p, out int k, out int l, double[] a, double[] b, double[] alpha, double[] beta, double[] u, double[] v, double[] q, double[] work, int[] iwork);
+            void driver_dggsvd(LapackEigenvalues.SVDxggsvdJob jobu, LapackEigenvalues.SVDxggsvdJob jobv, LapackEigenvalues.SVDxggsvdJob jobq, int m, int n, int p, out int k, out int l, Span<double> a, Span<double> b, Span<double> alpha, Span<double> beta, Span<double> u, Span<double> v, Span<double> q, Span<double> work, int[] iwork);
 
             /// <summary>Computes the generalized singular value decomposition of a pair of general rectangular matrices.
             /// </summary>
@@ -712,7 +712,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array with dimension at least max(3 * n, m, p) + n.</param>
             /// <param name="rwork">A workspace array with dimension at least 2 * <paramref name="n"/>.</param>
             /// <param name="iwork">A workspace array with dimension at least <paramref name="n"/>.</param>
-            void driver_zggsvd(LapackEigenvalues.SVDxggsvdJob jobu, LapackEigenvalues.SVDxggsvdJob jobv, LapackEigenvalues.SVDxggsvdJob jobq, int m, int n, int p, out int k, out int l, Complex[] a, Complex[] b, double[] alpha, double[] beta, Complex[] u, Complex[] v, Complex[] q, Complex[] work, double[] rwork, int[] iwork);
+            void driver_zggsvd(LapackEigenvalues.SVDxggsvdJob jobu, LapackEigenvalues.SVDxggsvdJob jobv, LapackEigenvalues.SVDxggsvdJob jobq, int m, int n, int p, out int k, out int l, Span<Complex> a, Span<Complex> b, Span<double> alpha, Span<double> beta, Span<Complex> u, Span<Complex> v, Span<Complex> q, Span<Complex> work, Span<double> rwork, int[] iwork);
         }
     }
 }

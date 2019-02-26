@@ -24,13 +24,6 @@ SOFTWARE.
 Please see http://www.dodoni-project.net/ for more information concerning the Dodoni.net project. 
 */
 using System;
-using System.Text;
-using System.Numerics;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-
-using Dodoni.MathLibrary.Basics;
-using Dodoni.MathLibrary.Basics.LowLevel;
 
 namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
 {
@@ -41,12 +34,11 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
     {
         /// <summary>Computes the Euclidean norm of a vector, i.e. ||x||.
         /// </summary>
-        /// <param name="n">The number of elements of <paramref name="x"/>.</param>
-        /// <param name="x">The vector 'x' with at least <paramref name="n"/> elements.</param>
-        /// <param name="incX">The increment for <paramref name="x"/>.</param>
-        /// <returns>The euclidian norm of <paramref name="x"/>, i.e. \sqrt(x_0^2 + ... + x_n^2).
-        /// </returns>
-        public double dnrm2(int n, double[] x, int incX = 1)
+        /// <param name="n">The number of elements of <paramref name="x" />.</param>
+        /// <param name="x">The vector 'x' with at least <paramref name="n" /> elements.</param>
+        /// <param name="incX">The increment for <paramref name="x" />.</param>
+        /// <returns>The euclidian norm of <paramref name="x" />, i.e. \sqrt(x_0^2 + ... + x_n^2).</returns>
+        public double dnrm2(int n, ReadOnlySpan<double> x, int incX = 1)
         {
             double value = 0.0;
             for (int j = 0; j < n; j++)

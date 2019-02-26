@@ -47,142 +47,142 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         LapackLinearEquations.ISolver,
         LapackLinearEquations.IErrorEstimationSolver
     {
-        public double dgbcon(int n, int kl, int ku, double[] a, double normOfOriginalMatrix, double[] work, LapackLinearEquations.MatrixConditionNormType matrixNormType = LapackLinearEquations.MatrixConditionNormType.Infinity)
+        public double dgbcon(int n, int kl, int ku, Span<double> a, double normOfOriginalMatrix, Span<double> work, LapackLinearEquations.MatrixConditionNormType matrixNormType = LapackLinearEquations.MatrixConditionNormType.Infinity)
         {
             throw new NotImplementedException();
         }
 
-        public void dgbtrf(int m, int n, int kl, int ku, double[] a, int[] iPivot)
+        public void dgbtrf(int m, int n, int kl, int ku, Span<double> a, int[] iPivot)
         {
             throw new NotImplementedException();
         }
 
-        public void dgbtrs(int n, int kl, int ku, double[] ab, int[] ipiv, double[] b, int nrhs = 1, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose)
+        public void dgbtrs(int n, int kl, int ku, Span<double> ab, int[] ipiv, Span<double> b, int nrhs = 1, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose)
         {
             throw new NotImplementedException();
         }
 
-        public double dgecon(int n, double[] a, double normOfOriginalMatrix, double[] work, LapackLinearEquations.MatrixConditionNormType matrixNormType = LapackLinearEquations.MatrixConditionNormType.Infinity)
+        public double dgecon(int n, Span<double> a, double normOfOriginalMatrix, Span<double> work, LapackLinearEquations.MatrixConditionNormType matrixNormType = LapackLinearEquations.MatrixConditionNormType.Infinity)
         {
             throw new NotImplementedException();
         }
 
-        public void dgetrf(int m, int n, double[] a, int[] iPivot)
+        public void dgetrf(int m, int n, Span<double> a, int[] iPivot)
         {
             throw new NotImplementedException();
         }
 
-        public void dgetrs(int n, double[] a, int[] ipiv, double[] b, int nrhs = 1, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose)
+        public void dgetrs(int n, Span<double> a, int[] ipiv, Span<double> b, int nrhs = 1, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose)
         {
             throw new NotImplementedException();
         }
 
-        public double dgtcon(int n, double[] dl, double[] d, double[] du, double[] du2, int[] iPivot, double normOfOriginalMatrix, double[] work, LapackLinearEquations.MatrixConditionNormType matrixNormType = LapackLinearEquations.MatrixConditionNormType.Infinity)
+        public double dgtcon(int n, Span<double> dl, Span<double> d, Span<double> du, Span<double> du2, int[] iPivot, double normOfOriginalMatrix, Span<double> work, LapackLinearEquations.MatrixConditionNormType matrixNormType = LapackLinearEquations.MatrixConditionNormType.Infinity)
         {
             throw new NotImplementedException();
         }
 
-        public void dgttrf(int n, double[] dl, double[] d, double[] du, double[] du2, int[] iPivot)
+        public void dgttrf(int n, Span<double> dl, Span<double> d, Span<double> du, Span<double> du2, int[] iPivot)
         {
             throw new NotImplementedException();
         }
 
-        public void dgttrs(int n, double[] dl, double[] d, double[] du, double[] du2, int[] ipiv, double[] b, int nrhs = 1, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose)
+        public void dgttrs(int n, Span<double> dl, Span<double> d, Span<double> du, Span<double> du2, int[] ipiv, Span<double> b, int nrhs = 1, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose)
         {
             throw new NotImplementedException();
         }
 
-        public void dpbtrf(int n, int kd, double[] a, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void dpbtrf(int n, int kd, Span<double> a, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void dpbtrs(int n, int kd, double[] ab, double[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void dpbtrs(int n, int kd, Span<double> ab, Span<double> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void dpftrf(int n, double[] a, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose)
+        public void dpftrf(int n, Span<double> a, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose)
         {
             throw new NotImplementedException();
         }
 
-        public void dpftrs(int n, double[] a, double[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose)
+        public void dpftrs(int n, Span<double> a, Span<double> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose)
         {
             throw new NotImplementedException();
         }
 
-        public void dpotrf(int n, double[] a, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void dpotrf(int n, Span<double> a, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void dpotrs(int n, double[] a, double[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void dpotrs(int n, Span<double> a, Span<double> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void dpptrf(int n, double[] aPacked, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void dpptrf(int n, Span<double> aPacked, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void dpptrs(int n, double[] ap, double[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void dpptrs(int n, Span<double> ap, Span<double> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void dpttrf(int n, double[] diagonalElements, double[] e)
+        public void dpttrf(int n, Span<double> diagonalElements, Span<double> e)
         {
             throw new NotImplementedException();
         }
 
-        public void dpttrs(int n, double[] d, double[] e, double[] b, int nrhs = 1)
+        public void dpttrs(int n, Span<double> d, Span<double> e, Span<double> b, int nrhs = 1)
         {
             throw new NotImplementedException();
         }
 
-        public void driver_dgbsv(int n, int kl, int ku, double[] ab, int[] ipiv, double[] b, int nrhs = 1)
+        public void driver_dgbsv(int n, int kl, int ku, Span<double> ab, int[] ipiv, Span<double> b, int nrhs = 1)
         {
             throw new NotImplementedException();
         }
 
-        public void driver_dgesv(int n, double[] a, int[] ipiv, double[] b, int nrhs = 1)
+        public void driver_dgesv(int n, Span<double> a, int[] ipiv, Span<double> b, int nrhs = 1)
         {
             throw new NotImplementedException();
         }
 
-        public void driver_dgtsv(int n, double[] dl, double[] d, double[] du, double[] b, int nrhs = 1)
+        public void driver_dgtsv(int n, Span<double> dl, Span<double> d, Span<double> du, Span<double> b, int nrhs = 1)
         {
             throw new NotImplementedException();
         }
 
-        public void driver_dpbsv(int n, int kd, double[] ab, double[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void driver_dpbsv(int n, int kd, Span<double> ab, Span<double> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void driver_dposv(int n, double[] a, double[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void driver_dposv(int n, Span<double> a, Span<double> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void driver_dppsv(int n, double[] ap, double[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void driver_dppsv(int n, Span<double> ap, Span<double> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void driver_dptsv(int n, double[] d, double[] e, double[] b, int nrhs = 1)
+        public void driver_dptsv(int n, Span<double> d, Span<double> e, Span<double> b, int nrhs = 1)
         {
             throw new NotImplementedException();
         }
 
-        public void driver_dspsv(int n, double[] ap, int[] ipiv, double[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void driver_dspsv(int n, Span<double> ap, int[] ipiv, Span<double> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void driver_dsysv(int n, double[] a, int[] ipiv, double[] b, double[] work, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void driver_dsysv(int n, Span<double> a, int[] ipiv, Span<double> b, Span<double> work, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
@@ -192,22 +192,22 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             throw new NotImplementedException();
         }
 
-        public void driver_zgbsv(int n, int kl, int ku, Complex[] ab, int[] ipiv, Complex[] b, int nrhs = 1)
+        public void driver_zgbsv(int n, int kl, int ku, Span<Complex> ab, int[] ipiv, Span<Complex> b, int nrhs = 1)
         {
             throw new NotImplementedException();
         }
 
-        public void driver_zgesv(int n, Complex[] a, int[] ipiv, Complex[] b, int nrhs = 1)
+        public void driver_zgesv(int n, Span<Complex> a, int[] ipiv, Span<Complex> b, int nrhs = 1)
         {
             throw new NotImplementedException();
         }
 
-        public void driver_zgtsv(int n, Complex[] dl, Complex[] d, Complex[] du, Complex[] b, int nrhs = 1)
+        public void driver_zgtsv(int n, Span<Complex> dl, Span<Complex> d, Span<Complex> du, Span<Complex> b, int nrhs = 1)
         {
             throw new NotImplementedException();
         }
 
-        public void driver_zhesv(int n, Complex[] a, int[] ipiv, Complex[] b, Complex[] work, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void driver_zhesv(int n, Span<Complex> a, int[] ipiv, Span<Complex> b, Span<Complex> work, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
@@ -217,37 +217,37 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             throw new NotImplementedException();
         }
 
-        public void driver_zhpsv(int n, Complex[] ap, int[] ipiv, Complex[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void driver_zhpsv(int n, Span<Complex> ap, int[] ipiv, Span<Complex> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void driver_zpbsv(int n, int kd, Complex[] ab, Complex[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void driver_zpbsv(int n, int kd, Span<Complex> ab, Span<Complex> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void driver_zposv(int n, Complex[] a, Complex[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void driver_zposv(int n, Span<Complex> a, Span<Complex> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void driver_zppsv(int n, Complex[] ap, Complex[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void driver_zppsv(int n, Span<Complex> ap, Span<Complex> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void driver_zptsv(int n, double[] d, Complex[] e, Complex[] b, int nrhs = 1)
+        public void driver_zptsv(int n, Span<double> d, Span<Complex> e, Span<Complex> b, int nrhs = 1)
         {
             throw new NotImplementedException();
         }
 
-        public void driver_zspsv(int n, Complex[] ap, int[] ipiv, Complex[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void driver_zspsv(int n, Span<Complex> ap, int[] ipiv, Span<Complex> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void driver_zsysv(int n, Complex[] a, int[] ipiv, Complex[] b, Complex[] work, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void driver_zsysv(int n, Span<Complex> a, int[] ipiv, Span<Complex> b, Span<Complex> work, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
@@ -257,17 +257,17 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             throw new NotImplementedException();
         }
 
-        public void dsptrf(int n, double[] aPacked, int[] iPivot, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void dsptrf(int n, Span<double> aPacked, int[] iPivot, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void dsptrs(int n, double[] ap, int[] ipiv, double[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void dsptrs(int n, Span<double> ap, int[] ipiv, Span<double> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void dsytrf(int n, double[] a, int[] iPivot, double[] work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void dsytrf(int n, Span<double> a, int[] iPivot, Span<double> work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
@@ -277,62 +277,62 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             throw new NotImplementedException();
         }
 
-        public void dsytrs(int n, double[] a, int[] ipiv, double[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void dsytrs(int n, Span<double> a, int[] ipiv, Span<double> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void dsytrs2(int n, double[] a, int[] ipiv, double[] b, double[] work, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void dsytrs2(int n, Span<double> a, int[] ipiv, Span<double> b, Span<double> work, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void dtbtrs(int n, int kd, double[] ab, double[] b, int nrhs = 1, bool isUnitTriangularMatrix = true, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose)
+        public void dtbtrs(int n, int kd, Span<double> ab, Span<double> b, int nrhs = 1, bool isUnitTriangularMatrix = true, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose)
         {
             throw new NotImplementedException();
         }
 
-        public void dtptrs(int n, double[] ap, double[] b, int nrhs = 1, bool isUnitTriangularMatrix = true, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose)
+        public void dtptrs(int n, Span<double> ap, Span<double> b, int nrhs = 1, bool isUnitTriangularMatrix = true, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose)
         {
             throw new NotImplementedException();
         }
 
-        public void dtrtrs(int n, double[] a, double[] b, int nrhs = 1, bool isUnitTriangularMatrix = true, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose)
+        public void dtrtrs(int n, Span<double> a, Span<double> b, int nrhs = 1, bool isUnitTriangularMatrix = true, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose)
         {
             throw new NotImplementedException();
         }
 
-        public void zgbtrf(int m, int n, int kl, int ku, Complex[] a, int[] iPivot)
+        public void zgbtrf(int m, int n, int kl, int ku, Span<Complex> a, int[] iPivot)
         {
             throw new NotImplementedException();
         }
 
-        public void zgbtrs(int n, int kl, int ku, Complex[] ab, int[] ipiv, Complex[] b, int nrhs = 1, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose)
+        public void zgbtrs(int n, int kl, int ku, Span<Complex> ab, int[] ipiv, Span<Complex> b, int nrhs = 1, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose)
         {
             throw new NotImplementedException();
         }
 
-        public void zgetrf(int m, int n, Complex[] a, int[] iPivot)
+        public void zgetrf(int m, int n, Span<Complex> a, int[] iPivot)
         {
             throw new NotImplementedException();
         }
 
-        public void zgetrs(int n, Complex[] a, int[] ipiv, Complex[] b, int nrhs = 1, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose)
+        public void zgetrs(int n, Span<Complex> a, int[] ipiv, Span<Complex> b, int nrhs = 1, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose)
         {
             throw new NotImplementedException();
         }
 
-        public void zgttrf(int n, Complex[] dl, Complex[] d, Complex[] du, Complex[] du2, int[] iPivot)
+        public void zgttrf(int n, Span<Complex> dl, Span<Complex> d, Span<Complex> du, Span<Complex> du2, int[] iPivot)
         {
             throw new NotImplementedException();
         }
 
-        public void zgttrs(int n, Complex[] dl, Complex[] d, Complex[] du, Complex[] du2, int[] ipiv, Complex[] b, int nrhs = 1, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose)
+        public void zgttrs(int n, Span<Complex> dl, Span<Complex> d, Span<Complex> du, Span<Complex> du2, int[] ipiv, Span<Complex> b, int nrhs = 1, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose)
         {
             throw new NotImplementedException();
         }
 
-        public void zhetrf(int n, Complex[] a, int[] iPivot, Complex[] work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void zhetrf(int n, Span<Complex> a, int[] iPivot, Span<Complex> work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
@@ -342,87 +342,87 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             throw new NotImplementedException();
         }
 
-        public void zhetrs(int n, Complex[] a, int[] ipiv, Complex[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void zhetrs(int n, Span<Complex> a, int[] ipiv, Span<Complex> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void zhetrs2(int n, Complex[] a, int[] ipiv, Complex[] b, Complex[] work, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void zhetrs2(int n, Span<Complex> a, int[] ipiv, Span<Complex> b, Span<Complex> work, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void zhptrf(int n, Complex[] aPacked, int[] iPivot, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void zhptrf(int n, Span<Complex> aPacked, int[] iPivot, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void zhptrs(int n, Complex[] ap, int[] ipiv, Complex[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void zhptrs(int n, Span<Complex> ap, int[] ipiv, Span<Complex> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void zpbtrf(int n, int kd, Complex[] a, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void zpbtrf(int n, int kd, Span<Complex> a, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void zpbtrs(int n, int kd, Complex[] ab, Complex[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void zpbtrs(int n, int kd, Span<Complex> ab, Span<Complex> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void zpftrf(int n, Complex[] a, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose)
+        public void zpftrf(int n, Span<Complex> a, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose)
         {
             throw new NotImplementedException();
         }
 
-        public void zpftrs(int n, Complex[] a, Complex[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose)
+        public void zpftrs(int n, Span<Complex> a, Span<Complex> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose)
         {
             throw new NotImplementedException();
         }
 
-        public void zpotrf(int n, Complex[] a, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void zpotrf(int n, Span<Complex> a, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void zpotrs(int n, Complex[] a, Complex[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void zpotrs(int n, Span<Complex> a, Span<Complex> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void zpptrf(int n, Complex[] aPacked, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void zpptrf(int n, Span<Complex> aPacked, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void zpptrs(int n, Complex[] ap, Complex[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void zpptrs(int n, Span<Complex> ap, Span<Complex> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void zpttrf(int n, Complex[] diagonalElements, Complex[] e)
+        public void zpttrf(int n, Span<Complex> diagonalElements, Span<Complex> e)
         {
             throw new NotImplementedException();
         }
 
-        public void zpttrs(int n, double[] d, Complex[] e, Complex[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void zpttrs(int n, Span<double> d, Span<Complex> e, Span<Complex> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void zsptrf(int n, Complex[] aPacked, int[] iPivot, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void zsptrf(int n, Span<Complex> aPacked, int[] iPivot, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void zsptrs(int n, Complex[] ap, int[] ipiv, Complex[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void zsptrs(int n, Span<Complex> ap, int[] ipiv, Span<Complex> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void zsytrf(int n, Complex[] a, int[] iPivot, Complex[] work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void zsytrf(int n, Span<Complex> a, int[] iPivot, Span<Complex> work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
@@ -432,27 +432,27 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             throw new NotImplementedException();
         }
 
-        public void zsytrs(int n, Complex[] a, int[] ipiv, Complex[] b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void zsytrs(int n, Span<Complex> a, int[] ipiv, Span<Complex> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void zsytrs2(int n, Complex[] a, int[] ipiv, Complex[] b, Complex[] work, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public void zsytrs2(int n, Span<Complex> a, int[] ipiv, Span<Complex> b, Span<Complex> work, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public void ztbtrs(int n, int kd, Complex[] ab, Complex[] b, int nrhs = 1, bool isUnitTriangularMatrix = true, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose)
+        public void ztbtrs(int n, int kd, Span<Complex> ab, Span<Complex> b, int nrhs = 1, bool isUnitTriangularMatrix = true, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose)
         {
             throw new NotImplementedException();
         }
 
-        public void ztptrs(int n, Complex[] ap, Complex[] b, int nrhs = 1, bool isUnitTriangularMatrix = true, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose)
+        public void ztptrs(int n, Span<Complex> ap, Span<Complex> b, int nrhs = 1, bool isUnitTriangularMatrix = true, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose)
         {
             throw new NotImplementedException();
         }
 
-        public void ztrtrs(int n, Complex[] a, Complex[] b, int nrhs = 1, bool isUnitTriangularMatrix = true, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose)
+        public void ztrtrs(int n, Span<Complex> a, Span<Complex> b, int nrhs = 1, bool isUnitTriangularMatrix = true, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose)
         {
             throw new NotImplementedException();
         }

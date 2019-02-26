@@ -24,12 +24,7 @@ SOFTWARE.
 Please see http://www.dodoni-project.net/ for more information concerning the Dodoni.net project. 
 */
 using System;
-using System.Text;
 using System.Numerics;
-using System.Collections.Generic;
-
-using Dodoni.MathLibrary.Basics;
-using Dodoni.MathLibrary.Basics.LowLevel;
 
 namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
 {
@@ -52,7 +47,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="transpose">A value indicating whether 'op(A)=A' or 'op(A)=A^t'.</param>
         /// <param name="incX">The increment for the elements of <paramref name="x" />.</param>
         /// <param name="incY">The increment for the elements of <paramref name="y" />.</param>
-        public void zgemv(int m, int n, Complex alpha, Complex[] a, Complex[] x, Complex beta, Complex[] y, int lda, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose, int incX = 1, int incY = 1)
+        public void zgemv(int m, int n, Complex alpha, ReadOnlySpan<Complex> a, ReadOnlySpan<Complex> x, Complex beta, Span<Complex> y, int lda, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose, int incX = 1, int incY = 1)
         {
             if (m == 0 || n == 0 || alpha == 0.0 && beta == 1.0)
             {

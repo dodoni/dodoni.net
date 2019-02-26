@@ -230,7 +230,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="a">The <paramref name="n"/>-by-<paramref name="n"/> matrix A supplied column-by-column; overwritten by the upper Hessenberg matrix H and details of the matrix Q.</param>
             /// <param name="tau">A array of dimension at least max(1, n-1) containing additional informations on the matrix Q (output).</param>
             /// <param name="work">A workspace array.</param>
-            void dgehrd(int n, int ilo, int ihi, double[] a, double[] tau, double[] work);
+            void dgehrd(int n, int ilo, int ihi, Span<double> a, Span<double> tau, Span<double> work);
 
             /// <summary>Gets a optimal workspace array length for the <c>zgehrd</c> function.
             /// </summary>
@@ -248,7 +248,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="a">The <paramref name="n"/>-by-<paramref name="n"/> matrix A supplied column-by-column; overwritten by the upper Hessenberg matrix H and details of the matrix Q.</param>
             /// <param name="tau">A array of dimension at least max(1, n-1) containing additional informations on the matrix Q (output).</param>
             /// <param name="work">A workspace array.</param>
-            void zgehrd(int n, int ilo, int ihi, Complex[] a, Complex[] tau, Complex[] work);
+            void zgehrd(int n, int ilo, int ihi, Span<Complex> a, Span<Complex> tau, Span<Complex> work);
 
             /// <summary>Gets a optimal workspace array length for the <c>dorghr</c> function.
             /// </summary>
@@ -266,7 +266,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="a">Contains on input details of the vectors which define the elementary reflectors, as returned by <c>dgehrd</c>; overwritten by the n-by-n orthogonal matrix Q.</param>
             /// <param name="tau">A array of dimension at least max(1, n-1) containing additional informations on the matrix Q as returned by <c>dgehrd</c>.</param>
             /// <param name="work">A workspace array.</param>
-            void dorghr(int n, int ilo, int ihi, double[] a, double[] tau, double[] work);
+            void dorghr(int n, int ilo, int ihi, Span<double> a, Span<double> tau, Span<double> work);
 
             /// <summary>Gets a optimal workspace array length for the <c>dormhr</c> function.
             /// </summary>
@@ -291,7 +291,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="tau">Contains further details of the elementary reflectors as returned by <c>dgehrd</c>.</param>
             /// <param name="c">The m-by-n matrix C supplied column-by-column.</param>
             /// <param name="work">A workspace array.</param>
-            void dormhr(LAPACK.Side side, BLAS.MatrixTransposeState transposeState, int m, int n, int ilo, int ihi, double[] a, double[] tau, double[] c, double[] work);
+            void dormhr(LAPACK.Side side, BLAS.MatrixTransposeState transposeState, int m, int n, int ilo, int ihi, Span<double> a, Span<double> tau, Span<double> c, Span<double> work);
 
             /// <summary>Gets a optimal workspace array length for the <c>zunghr</c> function.
             /// </summary>
@@ -309,7 +309,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="a">Contains on input details of the vectors which define the elementary reflectors, as returned by <c>zgehrd</c>; overwritten by the n-by-n unitary matrix Q.</param>
             /// <param name="tau">A array of dimension at least max(1, n-1) containing additional informations on the matrix Q as returned by <c>zgehrd</c>.</param>
             /// <param name="work">A workspace array.</param>
-            void zunghr(int n, int ilo, int ihi, Complex[] a, Complex[] tau, Complex[] work);
+            void zunghr(int n, int ilo, int ihi, Span<Complex> a, Span<Complex> tau, Span<Complex> work);
 
             /// <summary>Gets a optimal workspace array length for the <c>zunmhr</c> function.
             /// </summary>
@@ -334,7 +334,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="tau">Contains further details of the elementary reflectors as returned by <c>zgehrd</c>.</param>
             /// <param name="c">The m-by-n matrix C supplied column-by-column.</param>
             /// <param name="work">A workspace array.</param>
-            void zunmhr(LAPACK.Side side, BLAS.MatrixTransposeState transposeState, int m, int n, int ilo, int ihi, Complex[] a, Complex[] tau, Complex[] c, Complex[] work);
+            void zunmhr(LAPACK.Side side, BLAS.MatrixTransposeState transposeState, int m, int n, int ilo, int ihi, Span<Complex> a, Span<Complex> tau, Span<Complex> c, Span<Complex> work);
 
             /// <summary>Balances a general matrix to improve the accuracy of computed eigenvalues and eigenvectors.
             /// </summary>
@@ -344,7 +344,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="ilo">A null-based index such that a[i,j] is zero for i &gt; j and 1 &lt; j &lt;= <paramref name="ilo" /> or <paramref name="ihi" /> &lt; i &lt;= n.</param>
             /// <param name="ihi">A null-based index such that a[i,j] is zero for i &gt; j and 1 &lt; j &lt;= <paramref name="ilo" /> or <paramref name="ihi" /> &lt; i &lt;= n.</param>
             /// <param name="scale">Contains details of the permutations and scaling factors; at least <paramref name="n" /> elements (output).</param>
-            void dgebal(LapackEigenvalues.NonSymmetricMatrixBalancesType job, int n, double[] a, out int ilo, out int ihi, double[] scale);
+            void dgebal(LapackEigenvalues.NonSymmetricMatrixBalancesType job, int n, Span<double> a, out int ilo, out int ihi, Span<double> scale);
 
             /// <summary>Balances a general matrix to improve the accuracy of computed eigenvalues and eigenvectors.
             /// </summary>
@@ -354,7 +354,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="ilo">A null-based index such that a[i,j] is zero for i &gt; j and 1 &lt; j &lt;= <paramref name="ilo" /> or <paramref name="ihi" /> &lt; i &lt;= n.</param>
             /// <param name="ihi">A null-based index such that a[i,j] is zero for i &gt; j and 1 &lt; j &lt;= <paramref name="ilo" /> or <paramref name="ihi" /> &lt; i &lt;= n.</param>
             /// <param name="scale">Contains details of the permutations and scaling factors; at least <paramref name="n" /> elements (output).</param>
-            void zgebal(LapackEigenvalues.NonSymmetricMatrixBalancesType job, int n, Complex[] a, out int ilo, out int ihi, double[] scale);
+            void zgebal(LapackEigenvalues.NonSymmetricMatrixBalancesType job, int n, Span<Complex> a, out int ilo, out int ihi, Span<double> scale);
 
             /// <summary>Transforms eigenvectors of a balanced matrix to those of the original nonsymmetric matrix. Is intended to be used after a matrix has been balanced by a call to <c>dgebal</c>.
             /// </summary>
@@ -366,7 +366,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="scale">The returned value of <c>dgebal</c>.</param>
             /// <param name="m">The number of columns of the matrix of eigenvectors.</param>
             /// <param name="v">The matrix of left or right eigenvectors to be transformed; overwritten by the transformed eigenvectors</param>
-            void dgebak(LapackEigenvalues.NonSymmetricMatrixBalancesType job, LAPACK.Side side, int n, int ilo, int ihi, double[] scale, int m, double[] v);
+            void dgebak(LapackEigenvalues.NonSymmetricMatrixBalancesType job, LAPACK.Side side, int n, int ilo, int ihi, Span<double> scale, int m, Span<double> v);
 
             /// <summary>Transforms eigenvectors of a balanced matrix to those of the original nonsymmetric matrix. Is intended to be used after a matrix has been balanced by a call to <c>zgebal</c>.
             /// </summary>
@@ -378,7 +378,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="scale">The returned value of <c>zgebal</c>.</param>
             /// <param name="m">The number of columns of the matrix of eigenvectors.</param>
             /// <param name="v">The matrix of left or right eigenvectors to be transformed; overwritten by the transformed eigenvectors</param>
-            void zgebak(LapackEigenvalues.NonSymmetricMatrixBalancesType job, LAPACK.Side side, int n, int ilo, int ihi, double[] scale, int m, Complex[] v);
+            void zgebak(LapackEigenvalues.NonSymmetricMatrixBalancesType job, LAPACK.Side side, int n, int ilo, int ihi, Span<double> scale, int m, Span<Complex> v);
 
             /// <summary>Gets a optimal workspace array length for the <c>dhseqr</c> function.
             /// </summary>
@@ -403,7 +403,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="wi">The imaginary part of the eigenvalues, i.e. an array with at least <paramref name="n" /> elements (output).</param>
             /// <param name="z">Contains the matrix Q reduced to Hessenberg form; perhaps this parameter will not referenced.</param>
             /// <param name="work">A workspace array.</param>
-            void dhseqr(LapackEigenvalues.NonSymmetricXhseqrJob job, LapackEigenvalues.NonSymmetricXhseqrOperation operation, int n, int ilo, int ihi, double[] h, double[] wr, double[] wi, double[] z, double[] work);
+            void dhseqr(LapackEigenvalues.NonSymmetricXhseqrJob job, LapackEigenvalues.NonSymmetricXhseqrOperation operation, int n, int ilo, int ihi, Span<double> h, Span<double> wr, Span<double> wi, Span<double> z, Span<double> work);
 
             /// <summary>Gets a optimal workspace array length for the <c>zhseqr</c> function.
             /// </summary>
@@ -427,7 +427,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="w">The eigenvalues, i.e. an array with at least <paramref name="n" /> elements (output).</param>
             /// <param name="z">Contains the matrix Q reduced to Hessenberg form; perhaps this parameter will not referenced.</param>
             /// <param name="work">A workspace array.</param>
-            void zhseqr(LapackEigenvalues.NonSymmetricXhseqrJob job, LapackEigenvalues.NonSymmetricXhseqrOperation operation, int n, int ilo, int ihi, Complex[] h, Complex[] w, Complex[] z, Complex[] work);
+            void zhseqr(LapackEigenvalues.NonSymmetricXhseqrJob job, LapackEigenvalues.NonSymmetricXhseqrOperation operation, int n, int ilo, int ihi, Span<Complex> h, Span<Complex> w, Span<Complex> z, Span<Complex> work);
 
             /// <summary>Computes selected eigenvectors of an upper Hessenberg matrix that correspond to specified eigenvalues.
             /// </summary>
@@ -446,7 +446,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array with dimension at least <paramref name="n"/> * (2 + <paramref name="n"/>).</param>
             /// <param name="ifaill">Indicates whether the calculation of a specific eigenvector fails; dimension at least <paramref name="mm"/>.</param>
             /// <param name="ifailr">Indicates whether the calculation of a specific eigenvector fails; dimension at least <paramref name="mm"/>.</param>
-            void dhsein(NonSymmetricEigenValueVectorsJob job, NonSymmetricEigenvalueSource eigenvalueSource, NonSymmetricXhseinInitV initv, bool[] select, int n, double[] h, double[] wr, double[] wi, double[] vl, double[] vr, int mm, out int m, double[] work, int[] ifaill, int[] ifailr);
+            void dhsein(NonSymmetricEigenValueVectorsJob job, NonSymmetricEigenvalueSource eigenvalueSource, NonSymmetricXhseinInitV initv, bool[] select, int n, Span<double> h, Span<double> wr, Span<double> wi, Span<double> vl, Span<double> vr, int mm, out int m, Span<double> work, int[] ifaill, int[] ifailr);
 
             /// <summary>Computes selected eigenvectors of an upper Hessenberg matrix that correspond to specified eigenvalues.
             /// </summary>
@@ -465,7 +465,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="rwork">A workspace array with dimension at least <paramref name="n"/>.</param>
             /// <param name="ifaill">Indicates whether the calculation of a specific eigenvector fails; dimension at least <paramref name="mm"/>.</param>
             /// <param name="ifailr">Indicates whether the calculation of a specific eigenvector fails; dimension at least <paramref name="mm"/>.</param>
-            void zhsein(NonSymmetricEigenValueVectorsJob job, NonSymmetricEigenvalueSource eigenvalueSource, NonSymmetricXhseinInitV initv, bool[] select, int n, Complex[] h, Complex[] w, Complex[] vl, Complex[] vr, int mm, out int m, Complex[] work, double[] rwork, int[] ifaill, int[] ifailr);
+            void zhsein(NonSymmetricEigenValueVectorsJob job, NonSymmetricEigenvalueSource eigenvalueSource, NonSymmetricXhseinInitV initv, bool[] select, int n, Span<Complex> h, Span<Complex> w, Span<Complex> vl, Span<Complex> vr, int mm, out int m, Span<Complex> work, Span<double> rwork, int[] ifaill, int[] ifailr);
 
             /// <summary>Computes selected eigenvectors of an upper (quasi-) triangular matrix computed by <c>dhseqr</c>, i.e. A = Q * T * Q^H.
             /// </summary>
@@ -479,7 +479,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="mm">The number of columns in <paramref name="vl"/> and/or <paramref name="vr"/>. Must be at least <paramref name="m"/>.</param>
             /// <param name="m">The number of columsn of <paramref name="vl"/> and/or <paramref name="vr"/> actually used to store the selected eigenvectors (output).</param>
             /// <param name="work">A workspace array with dimension at least 3 * <paramref name="n"/>.</param>
-            void dtrevc(LapackEigenvalues.NonSymmetricEigenValueVectorsJob job, LapackEigenvalues.NonSymmetricXtrevcOperation howmny, bool[] select, int n, double[] t, double[] vl, double[] vr, int mm, out int m, double[] work);
+            void dtrevc(LapackEigenvalues.NonSymmetricEigenValueVectorsJob job, LapackEigenvalues.NonSymmetricXtrevcOperation howmny, bool[] select, int n, Span<double> t, Span<double> vl, Span<double> vr, int mm, out int m, Span<double> work);
 
             /// <summary>Computes selected eigenvectors of an upper (quasi-) triangular matrix computed by <c>zhseqr</c>, i.e. A = Q * T * Q^H.
             /// </summary>
@@ -494,7 +494,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="m">The number of columsn of <paramref name="vl"/> and/or <paramref name="vr"/> actually used to store the selected eigenvectors (output).</param>
             /// <param name="work">A workspace array with dimension at least 2 * <paramref name="n"/>.</param>
             /// <param name="rwork">A workspace array with dimension at least <paramref name="n"/>.</param>
-            void ztrevc(LapackEigenvalues.NonSymmetricEigenValueVectorsJob job, LapackEigenvalues.NonSymmetricXtrevcOperation howmny, bool[] select, int n, Complex[] t, Complex[] vl, Complex[] vr, int mm, out int m, Complex[] work, double[] rwork);
+            void ztrevc(LapackEigenvalues.NonSymmetricEigenValueVectorsJob job, LapackEigenvalues.NonSymmetricXtrevcOperation howmny, bool[] select, int n, Span<Complex> t, Span<Complex> vl, Span<Complex> vr, int mm, out int m, Span<Complex> work, Span<double> rwork);
 
             /// <summary>Reorders the Schur factorization of a general matrix.
             /// </summary>
@@ -505,7 +505,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="ifst">Specify the reordering of the diagonal elements of matrix T. The element with row index <c>ifst</c> is moved to row <c>ilst</c> by a sequence of exchanges between adjacent elements.</param>
             /// <param name="ilst">Specify the reordering of the diagonal elements of matrix T. The element with row index <c>ifst</c> is moved to row <c>ilst</c> by a sequence of exchanges between adjacent elements.</param>
             /// <param name="work">A workspace array with dimension at least <paramref name="n"/>.</param>
-            void dtrexc(bool updatedSchurVectors, int n, double[] t, double[] q, int ifst, int ilst, double[] work);
+            void dtrexc(bool updatedSchurVectors, int n, Span<double> t, Span<double> q, int ifst, int ilst, Span<double> work);
 
             /// <summary>Reorders the Schur factorization of a general matrix.
             /// </summary>
@@ -515,7 +515,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="q">The matrix Q; will not referenced if <paramref name="updatedSchurVectors"/> is <c>false</c>.</param>
             /// <param name="ifst">Specify the reordering of the diagonal elements of matrix T. The element with row index <c>ifst</c> is moved to row <c>ilst</c> by a sequence of exchanges between adjacent elements.</param>
             /// <param name="ilst">Specify the reordering of the diagonal elements of matrix T. The element with row index <c>ifst</c> is moved to row <c>ilst</c> by a sequence of exchanges between adjacent elements.</param>
-            void ztrexc(bool updatedSchurVectors, int n, Complex[] t, Complex[] q, int ifst, int ilst);
+            void ztrexc(bool updatedSchurVectors, int n, Span<Complex> t, Span<Complex> q, int ifst, int ilst);
 
             /// <summary>Solves Sylvester equation for real quasi-triangular or complex triangular matrices.
             /// </summary>
@@ -528,7 +528,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="b">The matrix B.</param>
             /// <param name="c">The matrix C.</param>
             /// <param name="scale">The scale factor (output).</param>
-            void dtrsyl(BLAS.MatrixTransposeState transposeStateA, BLAS.MatrixTransposeState transposeStateB, int sign, int m, int n, double[] a, double[] b, double[] c, out double scale);
+            void dtrsyl(BLAS.MatrixTransposeState transposeStateA, BLAS.MatrixTransposeState transposeStateB, int sign, int m, int n, Span<double> a, Span<double> b, Span<double> c, out double scale);
 
             /// <summary>Solves Sylvester equation for real quasi-triangular or complex triangular matrices.
             /// </summary>
@@ -541,7 +541,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="b">The matrix B.</param>
             /// <param name="c">The matrix C.</param>
             /// <param name="scale">The scale factor (output).</param>
-            void ztrsyl(BLAS.MatrixTransposeState transposeStateA, BLAS.MatrixTransposeState transposeStateB, int sign, int m, int n, Complex[] a, Complex[] b, Complex[] c, out double scale);
+            void ztrsyl(BLAS.MatrixTransposeState transposeStateA, BLAS.MatrixTransposeState transposeStateB, int sign, int m, int n, Span<Complex> a, Span<Complex> b, Span<Complex> c, out double scale);
 
             /// <summary>Gets a optimal workspace array length for the <c>driver_dgees</c> function.
             /// </summary>
@@ -564,7 +564,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="vs">Contains the ortogonal matrix Z of Schur vectors as specified by <paramref name="job"/> (output).</param>
             /// <param name="work">A workspace array.</param>
             /// <param name="bwork">A workspace array of length at least <paramref name="n"/>.</param>
-            void driver_dgees(NonSymmetricSchurVectorsJob job, NonSymmetricEigenvalueOrdering sort, Func<double, double, bool> select, int n, double[] a, out int sdim, double[] wr, double[] wi, double[] vs, double[] work, bool[] bwork);
+            void driver_dgees(NonSymmetricSchurVectorsJob job, NonSymmetricEigenvalueOrdering sort, Func<double, double, bool> select, int n, Span<double> a, out int sdim, Span<double> wr, Span<double> wi, Span<double> vs, Span<double> work, bool[] bwork);
 
             /// <summary>Gets a optimal workspace array length for the <c>driver_zgees</c> function.
             /// </summary>
@@ -587,7 +587,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array.</param>
             /// <param name="rwork">A workspace array of length at least <paramref name="n"/>.</param>
             /// <param name="bwork">A workspace array of length at least <paramref name="n"/>.</param>
-            void driver_zgees(NonSymmetricSchurVectorsJob job, NonSymmetricEigenvalueOrdering sort, Func<Complex, bool> select, int n, Complex[] a, out int sdim, Complex[] w, Complex[] vs, Complex[] work, double[] rwork, bool[] bwork);
+            void driver_zgees(NonSymmetricSchurVectorsJob job, NonSymmetricEigenvalueOrdering sort, Func<Complex, bool> select, int n, Span<Complex> a, out int sdim, Span<Complex> w, Span<Complex> vs, Span<Complex> work, Span<double> rwork, bool[] bwork);
 
             /// <summary>Gets a optimal workspace array length for the <c>driver_dgeesx</c> function.
             /// </summary>
@@ -615,7 +615,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array.</param>
             /// <param name="iwork">A workspace array with dimension at least <paramref name="sdim"/> * ( <paramref name="n"/> - <paramref name="sdim"/>).</param>
             /// <param name="bwork">A workspace array of length at least <paramref name="n"/>.</param>
-            void driver_dgeesx(NonSymmetricSchurVectorsJob job, NonSymmetricEigenvalueOrdering sort, Func<double, double, bool> select, NonSymmetricSense sense, int n, double[] a, out int sdim, double[] wr, double[] wi, double[] vs, out double rconde, out double rcondv, double[] work, int[] iwork, bool[] bwork);
+            void driver_dgeesx(NonSymmetricSchurVectorsJob job, NonSymmetricEigenvalueOrdering sort, Func<double, double, bool> select, NonSymmetricSense sense, int n, Span<double> a, out int sdim, Span<double> wr, Span<double> wi, Span<double> vs, out double rconde, out double rcondv, Span<double> work, int[] iwork, bool[] bwork);
 
             /// <summary>Gets a optimal workspace array length for the <c>driver_zgeesx</c> function.
             /// </summary>
@@ -642,7 +642,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array.</param>
             /// <param name="rwork">A workspace array with dimension at least <paramref name="n"/>.</param>
             /// <param name="bwork">A workspace array of length at least <paramref name="n"/>.</param>
-            void driver_zgeesx(NonSymmetricSchurVectorsJob job, NonSymmetricEigenvalueOrdering sort, Func<Complex, bool> select, NonSymmetricSense sense, int n, Complex[] a, out int sdim, Complex[] w, Complex[] vs, out double rconde, out double rcondv, Complex[] work, double[] rwork, bool[] bwork);
+            void driver_zgeesx(NonSymmetricSchurVectorsJob job, NonSymmetricEigenvalueOrdering sort, Func<Complex, bool> select, NonSymmetricSense sense, int n, Span<Complex> a, out int sdim, Span<Complex> w, Span<Complex> vs, out double rconde, out double rcondv, Span<Complex> work, Span<double> rwork, bool[] bwork);
 
             /// <summary>Gets a optimal workspace array length for the <c>driver_dgeev</c> function.
             /// </summary>
@@ -663,7 +663,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="vl">Contains computed left eigenvectors if specified by <paramref name="computeLeftEigenvectors"/> (output).</param>
             /// <param name="vr">Contains computed right eigenvectors if specified by <paramref name="computeRightEigenvectors"/> (output).</param>
             /// <param name="work">A workspace array.</param>
-            void driver_dgeev(bool computeLeftEigenvectors, bool computeRightEigenvectors, int n, double[] a, double[] wr, double[] wi, double[] vl, double[] vr, double[] work);
+            void driver_dgeev(bool computeLeftEigenvectors, bool computeRightEigenvectors, int n, Span<double> a, Span<double> wr, Span<double> wi, Span<double> vl, Span<double> vr, Span<double> work);
 
             /// <summary>Gets a optimal workspace array length for the <c>driver_zgeev</c> function.
             /// </summary>
@@ -684,7 +684,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="vr">Contains computed right eigenvectors if specified by <paramref name="computeRightEigenvectors"/> (output).</param>
             /// <param name="work">A workspace array.</param>
             /// <param name="rwork">A workspace array length at least 2 * <paramref name="n"/>.</param>
-            void driver_zgeev(bool computeLeftEigenvectors, bool computeRightEigenvectors, int n, Complex[] a, Complex[] w, Complex[] vl, Complex[] vr, Complex[] work, double[] rwork);
+            void driver_zgeev(bool computeLeftEigenvectors, bool computeRightEigenvectors, int n, Span<Complex> a, Span<Complex> w, Span<Complex> vl, Span<Complex> vr, Span<Complex> work, Span<double> rwork);
 
             /// <summary>Gets a optimal workspace array length for the <c>driver_dgeevx</c> function.
             /// </summary>
@@ -716,7 +716,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="rcondv">For each right eigenvector the corresponding reciprocal condition number (output).</param>
             /// <param name="work">A workspace array.</param>
             /// <param name="iwork">A workspace array with dimension at least 2 * <paramref name="n"/> - 2.</param>
-            void driver_dgeevx(LapackEigenvalues.NonSymmetricMatrixBalancesType balanceType, bool computeLeftEigenvectors, bool computeRightEigenvectors, NonSymmetricXgeevxSense sense, int n, double[] a, double[] wr, double[] wi, double[] vl, double[] vr, out int ilo, out int ihi, double[] scale, out double abnrm, double[] rconde, double[] rcondv, double[] work, int[] iwork);
+            void driver_dgeevx(LapackEigenvalues.NonSymmetricMatrixBalancesType balanceType, bool computeLeftEigenvectors, bool computeRightEigenvectors, NonSymmetricXgeevxSense sense, int n, Span<double> a, Span<double> wr, Span<double> wi, Span<double> vl, Span<double> vr, out int ilo, out int ihi, Span<double> scale, out double abnrm, Span<double> rconde, Span<double> rcondv, Span<double> work, int[] iwork);
 
             /// <summary>Gets a optimal workspace array length for the <c>driver_zgeevx</c> function.
             /// </summary>
@@ -747,7 +747,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="rcondv">For each right eigenvector the corresponding reciprocal condition number (output).</param>
             /// <param name="work">A workspace array.</param>
             /// <param name="rwork">A workspace array with dimension at least 2 * <paramref name="n"/>.</param>
-            void driver_zgeevx(LapackEigenvalues.NonSymmetricMatrixBalancesType balanceType, bool computeLeftEigenvectors, bool computeRightEigenvectors, NonSymmetricXgeevxSense sense, int n, Complex[] a, Complex[] w, Complex[] vl, Complex[] vr, out int ilo, out int ihi, double[] scale, out double abnrm, double[] rconde, double[] rcondv, Complex[] work, double[] rwork);
+            void driver_zgeevx(LapackEigenvalues.NonSymmetricMatrixBalancesType balanceType, bool computeLeftEigenvectors, bool computeRightEigenvectors, NonSymmetricXgeevxSense sense, int n, Span<Complex> a, Span<Complex> w, Span<Complex> vl, Span<Complex> vr, out int ilo, out int ihi, Span<double> scale, out double abnrm, Span<double> rconde, Span<double> rcondv, Span<Complex> work, Span<double> rwork);
         }
     }
 }

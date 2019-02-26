@@ -219,7 +219,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.Interdisciplinary
         /// </summary>
         /// <param name="fourierCoefficients">The input as well as the output [in place] with at least <see cref="FFT.IOneDimensional.Length"/> elements.</param>
         /// <param name="scalingFactor">The scaling factor with respect to the input domain.</param>
-        public void ForwardTransformation(Complex[] fourierCoefficients, double scalingFactor)
+        public void ForwardTransformation(Span<Complex> fourierCoefficients, double scalingFactor)
         {
             ForwardTransformation(fourierCoefficients, fourierCoefficients, scalingFactor);
         }
@@ -228,7 +228,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.Interdisciplinary
         /// </summary>
         /// <param name="fourierCoefficients">The input as well as the output [in place] with at least <see cref="FFT.IOneDimensional.Length"/> elements.</param>
         /// <remarks>The scaling factor is assumed to be <c>1.0</c>.</remarks>
-        public void ForwardTransformation(Complex[] fourierCoefficients)
+        public void ForwardTransformation(Span<Complex> fourierCoefficients)
         {
             ForwardTransformation(fourierCoefficients, fourierCoefficients, 1.0);
         }
@@ -238,7 +238,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.Interdisciplinary
         /// <param name="inputFourierCoefficients">The input Fourier coefficients with at least <see cref="FFT.IOneDimensional.Length"/> elements.</param>
         /// <param name="outputFourierCoefficients">The output Fourier coefficients, i.e. out-of-place calculation with at least <see cref="FFT.IOneDimensional.Length"/> elements (output).</param>
         /// <param name="scalingFactor">The scaling factor with respect to the input domain.</param>
-        public void ForwardTransformation(Complex[] inputFourierCoefficients, Complex[] outputFourierCoefficients, double scalingFactor)
+        public void ForwardTransformation(ReadOnlySpan<Complex> inputFourierCoefficients, Span<Complex> outputFourierCoefficients, double scalingFactor)
         {
             int n = 2 * m_Length;
 
@@ -248,7 +248,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.Interdisciplinary
                 y = new Complex[n];
             }
             BLAS.Level1.zcopy(m_Length, m_ForwardPreFactor, y);
-            BLAS.Level1.zscal(m_Length, 0.0, y, 1, m_Length);
+            BLAS.Level1.zscal(m_Length, 0.0, y.AsSpan().Slice(m_Length, m_Length));
 
             VectorUnit.Basics.Mul(m_Length, y, inputFourierCoefficients, y);
 
@@ -269,7 +269,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.Interdisciplinary
         /// <param name="outputFourierCoefficients">The output Fourier coefficients, i.e. out-of-place calculation with at
         /// least <see cref="FFT.IOneDimensional.Length"/> elements (output).</param>
         /// <remarks>The scaling factor is assumed to be <c>1.0</c>.</remarks>
-        public void ForwardTransformation(Complex[] inputFourierCoefficients, Complex[] outputFourierCoefficients)
+        public void ForwardTransformation(ReadOnlySpan<Complex> inputFourierCoefficients, Span<Complex> outputFourierCoefficients)
         {
             ForwardTransformation(inputFourierCoefficients, outputFourierCoefficients, 1.0);
         }
@@ -278,7 +278,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.Interdisciplinary
         /// </summary>
         /// <param name="fourierCoefficients">The input as well as the output [in place] with at least <see cref="FFT.IOneDimensional.Length"/> elements.</param>
         /// <param name="scalingFactor">The scaling factor with respect to the input domain.</param>
-        public void BackwardTransformation(Complex[] fourierCoefficients, double scalingFactor)
+        public void BackwardTransformation(Span<Complex> fourierCoefficients, double scalingFactor)
         {
             BackwardTransformation(fourierCoefficients, fourierCoefficients, scalingFactor);
         }
@@ -287,7 +287,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.Interdisciplinary
         /// </summary>
         /// <param name="fourierCoefficients">The input as well as the output [in place] with at least <see cref="FFT.IOneDimensional.Length"/> elements.</param>
         /// <remarks>The scaling factor is assumed to be <c>1.0</c>.</remarks>
-        public void BackwardTransformation(Complex[] fourierCoefficients)
+        public void BackwardTransformation(Span<Complex> fourierCoefficients)
         {
             BackwardTransformation(fourierCoefficients, fourierCoefficients, 1.0);
         }
@@ -298,7 +298,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.Interdisciplinary
         /// <param name="outputFourierCoefficients">The output Fourier coefficients, i.e. out-of-place calculation with at
         /// least <see cref="FFT.IOneDimensional.Length"/> elements (output).</param>
         /// <param name="scalingFactor">The scaling factor with respect to the input domain.</param>
-        public void BackwardTransformation(Complex[] inputFourierCoefficients, Complex[] outputFourierCoefficients, double scalingFactor)
+        public void BackwardTransformation(ReadOnlySpan<Complex> inputFourierCoefficients, Span<Complex> outputFourierCoefficients, double scalingFactor)
         {
             // apply the approach with '-\alpha' instead of \alpha:
             int n = 2 * m_Length;
@@ -309,7 +309,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.Interdisciplinary
                 y = new Complex[n];
             }
             BLAS.Level1.zcopy(m_Length, m_BackwardPreFactor, y);
-            BLAS.Level1.zscal(m_Length, 0.0, y, 1, m_Length);
+            BLAS.Level1.zscal(m_Length, 0.0, y.AsSpan().Slice(m_Length, m_Length));
 
             VectorUnit.Basics.Mul(m_Length, y, inputFourierCoefficients, y);
 
@@ -330,7 +330,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.Interdisciplinary
         /// <param name="outputFourierCoefficients">The output Fourier coefficients, i.e. out-of-place calculation with at
         /// least <see cref="FFT.IOneDimensional.Length"/> elements (output).</param>
         /// <remarks>The scaling factor is assumed to be <c>1.0</c>.</remarks>
-        public void BackwardTransformation(Complex[] inputFourierCoefficients, Complex[] outputFourierCoefficients)
+        public void BackwardTransformation(ReadOnlySpan<Complex> inputFourierCoefficients, Span<Complex> outputFourierCoefficients)
         {
             BackwardTransformation(inputFourierCoefficients, outputFourierCoefficients, 1.0);
         }

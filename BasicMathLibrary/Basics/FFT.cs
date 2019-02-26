@@ -96,20 +96,20 @@ namespace Dodoni.MathLibrary.Basics
             /// </summary>
             /// <param name="fourierCoefficients">The input as well as the output [in place] with at least <see cref="FFT.IOneDimensional.Length"/> elements.</param>
             /// <param name="scalingFactor">The scaling factor with respect to the input domain.</param>
-            void ForwardTransformation(Complex[] fourierCoefficients, double scalingFactor);
+            void ForwardTransformation(Span<Complex> fourierCoefficients, double scalingFactor);
 
             /// <summary>Computes the forward Fourier transformation.
             /// </summary>
             /// <param name="fourierCoefficients">The input as well as the output [in place] with at least <see cref="FFT.IOneDimensional.Length"/> elements.</param>
             /// <remarks>The scaling factor is assumed to be <c>1.0</c>.</remarks>
-            void ForwardTransformation(Complex[] fourierCoefficients);
+            void ForwardTransformation(Span<Complex> fourierCoefficients);
 
             /// <summary>Computes the forward Fourier transformation.
             /// </summary>
             /// <param name="inputFourierCoefficients">The input Fourier coefficients with at least <see cref="FFT.IOneDimensional.Length"/> elements.</param>
             /// <param name="outputFourierCoefficients">The output Fourier coefficients, i.e. out-of-place calculation with at least <see cref="FFT.IOneDimensional.Length"/> elements (output).</param>
             /// <param name="scalingFactor">The scaling factor with respect to the input domain.</param>
-            void ForwardTransformation(Complex[] inputFourierCoefficients, Complex[] outputFourierCoefficients, double scalingFactor);
+            void ForwardTransformation(ReadOnlySpan<Complex> inputFourierCoefficients, Span<Complex> outputFourierCoefficients, double scalingFactor);
 
             /// <summary>Computes the forward Fourier transformation.
             /// </summary>
@@ -117,19 +117,19 @@ namespace Dodoni.MathLibrary.Basics
             /// <param name="outputFourierCoefficients">The output Fourier coefficients, i.e. out-of-place calculation with at 
             /// least <see cref="FFT.IOneDimensional.Length"/> elements (output).</param>
             /// <remarks>The scaling factor is assumed to be <c>1.0</c>.</remarks>
-            void ForwardTransformation(Complex[] inputFourierCoefficients, Complex[] outputFourierCoefficients);
+            void ForwardTransformation(ReadOnlySpan<Complex> inputFourierCoefficients, Span<Complex> outputFourierCoefficients);
 
             /// <summary>Computes the backward Fourier transformation.
             /// </summary>
             /// <param name="fourierCoefficients">The input as well as the output [in place] with at least <see cref="FFT.IOneDimensional.Length"/> elements.</param>
             /// <param name="scalingFactor">The scaling factor with respect to the input domain.</param>
-            void BackwardTransformation(Complex[] fourierCoefficients, double scalingFactor);
+            void BackwardTransformation(Span<Complex> fourierCoefficients, double scalingFactor);
 
             /// <summary>Computes the backward Fourier transformation.
             /// </summary>
             /// <param name="fourierCoefficients">The input as well as the output [in place] with at least <see cref="FFT.IOneDimensional.Length"/> elements.</param>
             /// <remarks>The scaling factor is assumed to be <c>1.0</c>.</remarks>
-            void BackwardTransformation(Complex[] fourierCoefficients);
+            void BackwardTransformation(Span<Complex> fourierCoefficients);
 
             /// <summary>Computes the backward Fourier transformation.
             /// </summary>
@@ -137,7 +137,7 @@ namespace Dodoni.MathLibrary.Basics
             /// <param name="outputFourierCoefficients">The output Fourier coefficients, i.e. out-of-place calculation with at 
             /// least <see cref="FFT.IOneDimensional.Length"/> elements (output).</param>
             /// <param name="scalingFactor">The scaling factor with respect to the input domain.</param>
-            void BackwardTransformation(Complex[] inputFourierCoefficients, Complex[] outputFourierCoefficients, double scalingFactor);
+            void BackwardTransformation(ReadOnlySpan<Complex> inputFourierCoefficients, Span<Complex> outputFourierCoefficients, double scalingFactor);
 
             /// <summary>Computes the backward Fourier transformation.
             /// </summary>
@@ -145,7 +145,7 @@ namespace Dodoni.MathLibrary.Basics
             /// <param name="outputFourierCoefficients">The output Fourier coefficients, i.e. out-of-place calculation with at 
             /// least <see cref="FFT.IOneDimensional.Length"/> elements (output).</param>
             /// <remarks>The scaling factor is assumed to be <c>1.0</c>.</remarks>
-            void BackwardTransformation(Complex[] inputFourierCoefficients, Complex[] outputFourierCoefficients);
+            void BackwardTransformation(ReadOnlySpan<Complex> inputFourierCoefficients, Span<Complex> outputFourierCoefficients);
         }
 
         /// <summary>Serves as interface for a one-dimensional (Fast) Fourier transformation, i.e.
@@ -214,14 +214,14 @@ namespace Dodoni.MathLibrary.Basics
             /// <param name="fourierCoefficients">The input as well as the output [in place] with at least 2* (<see cref="FFT.IOneDimensionalRealData.Length"/>/2 + 1) elements.</param>
             /// <param name="scalingFactor">The scaling factor with respect to the input domain.</param>
             /// <remarks>The output are complex numbers with Hermitian symmetry, stored in the CCE format.</remarks>
-            void ForwardTransformation(double[] fourierCoefficients, double scalingFactor);
+            void ForwardTransformation(Span<double> fourierCoefficients, double scalingFactor);
 
             /// <summary>Computes the forward Fourier transformation.
             /// </summary>
             /// <param name="fourierCoefficients">The input as well as the output [in place] with at least 2* (<see cref="FFT.IOneDimensionalRealData.Length"/>/2 + 1) elements.</param>
             /// <remarks>The output are complex numbers with Hermitian symmetry, stored in the CCE format.
             /// <para>The scaling factor is assumed to be <c>1.0</c>.</para></remarks>
-            void ForwardTransformation(double[] fourierCoefficients);
+            void ForwardTransformation(Span<double> fourierCoefficients);
 
             /// <summary>Computes the forward Fourier transformation.
             /// </summary>
@@ -229,7 +229,7 @@ namespace Dodoni.MathLibrary.Basics
             /// <param name="outputFourierCoefficients">The output Fourier coefficients, i.e. out-of-place calculation with at least 2* (<see cref="FFT.IOneDimensionalRealData.Length"/> / 2 + 1) elements (output).</param>
             /// <param name="scalingFactor">The scaling factor with respect to the input domain.</param>
             /// <remarks>The output are complex numbers with Hermitian symmetry, stored in the CCE format.</remarks>
-            void ForwardTransformation(double[] inputFourierCoefficients, double[] outputFourierCoefficients, double scalingFactor);
+            void ForwardTransformation(ReadOnlySpan<double> inputFourierCoefficients, Span<double> outputFourierCoefficients, double scalingFactor);
 
             /// <summary>Computes the forward Fourier transformation.
             /// </summary>
@@ -237,7 +237,7 @@ namespace Dodoni.MathLibrary.Basics
             /// <param name="outputFourierCoefficients">The output Fourier coefficients, i.e. out-of-place calculation with at least 2* (<see cref="FFT.IOneDimensionalRealData.Length"/> / 2 + 1) elements (output).</param>
             /// <remarks>The output are complex numbers with Hermitian symmetry, stored in the CCE format.
             /// <para>The scaling factor is assumed to be <c>1.0</c>.</para></remarks>
-            void ForwardTransformation(double[] inputFourierCoefficients, double[] outputFourierCoefficients);
+            void ForwardTransformation(ReadOnlySpan<double> inputFourierCoefficients, Span<double> outputFourierCoefficients);
 
             /// <summary>Computes the backward Fourier transformation.
             /// </summary>
@@ -245,7 +245,7 @@ namespace Dodoni.MathLibrary.Basics
             /// <param name="scalingFactor">The scaling factor with respect to the input domain.</param>
             /// <remarks>The input are complex numbers with Hermitian symmetry, stored in the CCE format, i.e. 2* (<see cref="FFT.IOneDimensionalRealData.Length"/> / 2 + 1) real numbers, the output 
             /// are <see cref="IOneDimensionalRealData.Length"/> real numbers.</remarks>
-            void BackwardTransformation(double[] fourierCoefficients, double scalingFactor);
+            void BackwardTransformation(Span<double> fourierCoefficients, double scalingFactor);
 
             /// <summary>Computes the backward Fourier transformation.
             /// </summary>
@@ -253,7 +253,7 @@ namespace Dodoni.MathLibrary.Basics
             /// <remarks>The input are complex numbers with Hermitian symmetry, stored in the CCE format, i.e. 2* (<see cref="FFT.IOneDimensionalRealData.Length"/> / 2 + 1) real numbers, the output 
             /// are <see cref="IOneDimensionalRealData.Length"/> real numbers.
             /// <para>The scaling factor is assumed to be <c>1.0</c>.</para></remarks>
-            void BackwardTransformation(double[] fourierCoefficients);
+            void BackwardTransformation(Span<double> fourierCoefficients);
 
             /// <summary>Computes the backward Fourier transformation.
             /// </summary>
@@ -263,7 +263,7 @@ namespace Dodoni.MathLibrary.Basics
             /// <param name="scalingFactor">The scaling factor with respect to the input domain.</param>
             /// <remarks>The input are complex numbers with Hermitian symmetry, stored in the CCE format, i.e. 2* (<see cref="FFT.IOneDimensionalRealData.Length"/> / 2 + 1) real numbers, the output 
             /// are <see cref="FFT.IOneDimensionalRealData.Length"/> real numbers.</remarks>
-            void BackwardTransformation(double[] inputFourierCoefficients, double[] outputFourierCoefficients, double scalingFactor);
+            void BackwardTransformation(ReadOnlySpan<double> inputFourierCoefficients, Span<double> outputFourierCoefficients, double scalingFactor);
 
             /// <summary>Computes the backward Fourier transformation.
             /// </summary>
@@ -273,7 +273,7 @@ namespace Dodoni.MathLibrary.Basics
             /// <remarks>The input are complex numbers with Hermitian symmetry, stored in the CCE format, i.e. 2* (<see cref="FFT.IOneDimensionalRealData.Length"/> / 2 + 1) real numbers, the output 
             /// are <see cref="FFT.IOneDimensionalRealData.Length"/> real numbers.
             /// <para>The scaling factor is assumed to be <c>1.0</c>.</para></remarks>
-            void BackwardTransformation(double[] inputFourierCoefficients, double[] outputFourierCoefficients);
+            void BackwardTransformation(ReadOnlySpan<double> inputFourierCoefficients, Span<double> outputFourierCoefficients);
         }
 
         /// <summary>Represents the restriction of the parameter \alpha in the (Forward/Backward) transformation, i.e.

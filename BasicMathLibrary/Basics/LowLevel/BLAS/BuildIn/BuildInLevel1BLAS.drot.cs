@@ -24,13 +24,6 @@ SOFTWARE.
 Please see http://www.dodoni-project.net/ for more information concerning the Dodoni.net project. 
 */
 using System;
-using System.Text;
-using System.Numerics;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-
-using Dodoni.MathLibrary.Basics;
-using Dodoni.MathLibrary.Basics.LowLevel;
 
 namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
 {
@@ -41,14 +34,14 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
     {
         /// <summary>Performs rotation of points in the plane, i.e. x(i) = c * x(i) + s * y(i) and y(i) = c * y(i) - s * x(i).
         /// </summary>
-        /// <param name="n">The number of elements of <paramref name="x"/> and <paramref name="y"/>.</param>
-        /// <param name="x">The vector 'x' with at least <paramref name="n"/> elements; 'x(i) = c * x(i) + s * y(i)' after function evaluation.</param>
-        /// <param name="y">The vector 'y' with at least <paramref name="n"/> elements; 'y(i) = c * y(i) - s * x(i)' after function evaluation.</param>
+        /// <param name="n">The number of elements of <paramref name="x" /> and <paramref name="y" />.</param>
+        /// <param name="x">The vector 'x' with at least <paramref name="n" /> elements; 'x(i) = c * x(i) + s * y(i)' after function evaluation.</param>
+        /// <param name="y">The vector 'y' with at least <paramref name="n" /> elements; 'y(i) = c * y(i) - s * x(i)' after function evaluation.</param>
         /// <param name="c">The scalar 'c'.</param>
         /// <param name="s">The scalar 's'.</param>
-        /// <param name="incX">The increment for <paramref name="x"/>.</param>
-        /// <param name="incY">The increment for <paramref name="y"/>.</param>
-        public void drot(int n, double[] x, double[] y, double c, double s, int incX = 1, int incY = 1)
+        /// <param name="incX">The increment for <paramref name="x" />.</param>
+        /// <param name="incY">The increment for <paramref name="y" />.</param>
+        public void drot(int n, Span<double> x, Span<double> y, double c, double s, int incX = 1, int incY = 1)
         {
             if (incX == 1 && incY == 1)
             {

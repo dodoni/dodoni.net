@@ -190,10 +190,10 @@ namespace Dodoni.MathLibrary.Miscellaneous
             /// <param name="inequalityVector">The inequality vector d. On exit the number of elements is at least equal to the number of columns of <paramref name="inequalityMatrix"/>, i.e. will be filled with respect to the constraints represented by the current instance (output).</param>
             /// <param name="offset">The arguments will be filled under the assumption that a specific number of constraints are already contained.</param>
             /// <returns>The nummber of contraints added to the arguments, i.e. identical to <see cref="MultiDimRegion.LinearInequality.InequalityCount"/>.</returns>
-            public int GetRegionConstraints(double[] inequalityMatrix, double[] inequalityVector, int offset = 0)
+            public int GetRegionConstraints(Span<double> inequalityMatrix, Span<double> inequalityVector, int offset = 0)
             {
-                BLAS.Level1.dcopy(InequalityCount, m_InequalityVector, inequalityVector, 1, 1, 0, offset);
-                BLAS.Level1.dcopy(Dimension * InequalityCount, m_InequalityMatrix.Data, inequalityMatrix, 1, 1, 0, offset * Dimension);
+                BLAS.Level1.dcopy(InequalityCount, m_InequalityVector, inequalityVector.Slice(offset));
+                BLAS.Level1.dcopy(Dimension * InequalityCount, m_InequalityMatrix.Data, inequalityMatrix.Slice(offset * Dimension));
 
                 return InequalityCount;
             }

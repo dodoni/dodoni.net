@@ -24,13 +24,7 @@ SOFTWARE.
 Please see http://www.dodoni-project.net/ for more information concerning the Dodoni.net project. 
 */
 using System;
-using System.Text;
 using System.Numerics;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-
-using Dodoni.MathLibrary.Basics;
-using Dodoni.MathLibrary.Basics.LowLevel;
 
 namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
 {
@@ -42,13 +36,11 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <summary>Compute the sum of the magnitudes of elements of some vector, i.e.
         /// <para>|Re x(0)|+ |Im x(0)| + |Re x(incX)| + |Im x(incX)| + |Re x(2 * incX)| + |Im x(2 * incX)| + ...  + |Re x(k * incX)| + |x(k * incX)|.</para>
         /// </summary>
-        /// <param name="n">The number of elements in <paramref name="x"/> with at least
-        /// <c>(1 + (<paramref name="n"/>-1)*abs(<paramref name="incX"/>))</c> elements.</param>
+        /// <param name="n">The number of elements in <paramref name="x" /> with at least  <c>(1 + (<paramref name="n" />-1)*abs(<paramref name="incX" />))</c> elements.</param>
         /// <param name="x">The vector.</param>
-        /// <param name="incX">The increment for indexing vector <paramref name="x"/>.</param>
-        /// <returns>The sum of magnitudes of elements of the vector <paramref name="x"/>.
-        /// </returns>
-        public double zasum(int n, Complex[] x, int incX)
+        /// <param name="incX">The increment for indexing vector <paramref name="x" />.</param>
+        /// <returns>The sum of magnitudes of elements of the vector <paramref name="x" />.</returns>
+        public double zasum(int n, ReadOnlySpan<Complex> x, int incX = 1)
         {
             double value = 0.0;
 

@@ -50,7 +50,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a.</param>
         /// <param name="y">The output vector N(a[j]), j=0,...,<paramref name="n"/>-1, where N(x) =\int_{-\infty}^x  1/\sqrt(2*PI) * exp(-1/2 *t^2) dt.</param>
-        public void CdfNorm(int n, double[] a, double[] y)
+        public void CdfNorm(int n, ReadOnlySpan<double> a, Span<double> y)
         {
             for (int j = 0; j < n; j++)
             {
@@ -62,26 +62,11 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// </summary>
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a; overwritten by the result of the operation, i.e. N(a[j]), j=0,...,<paramref name="n" />-1, where N(x) =\int_{-\infty}^x  1/\sqrt(2*PI) * exp(-1/2 *t^2) dt.</param>
-        public void CdfNorm(int n, double[] a)
+        public void CdfNorm(int n, Span<double> a)
         {
             for (int j = 0; j < n; j++)
             {
                 a[j] = StandardNormalDistribution.GetCdfValue(a[j]);
-            }
-        }
-
-        /// <summary>Computes the cumulative normal distribution function values of vector elements.
-        /// </summary>
-        /// <param name="n">The number of elements to be calculated.</param>
-        /// <param name="a">The input vector a.</param>
-        /// <param name="y">The output vector y with y[<paramref name="startIndexY"/> + j] := N(a[<paramref name="startIndexA"/> + j]) for j = 0,...,<paramref name="n"/>-1, where N(x) =\int_{-\infty}^x  1/\sqrt(2*PI) * exp(-1/2 *t^2) dt.</param>
-        /// <param name="startIndexA">The null-based start index of <paramref name="a"/>.</param>
-        /// <param name="startIndexY">The null-based start index of <paramref name="y"/>.</param>
-        public void CdfNorm(int n, double[] a, double[] y, int startIndexA, int startIndexY)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                y[j + startIndexY] = StandardNormalDistribution.GetCdfValue(a[j + startIndexA]);
             }
         }
 
@@ -90,7 +75,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a.</param>
         /// <param name="y">The output vector N^{-1}(a[j]), j=0,...,<paramref name="n"/>-1, where N(x) =\int_{-\infty}^x  1/\sqrt(2*PI) * exp(-1/2 *t^2) dt.</param>
-        public void CdfNormInv(int n, double[] a, double[] y)
+        public void CdfNormInv(int n, ReadOnlySpan<double> a, Span<double> y)
         {
             for (int j = 0; j < n; j++)
             {
@@ -102,26 +87,11 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// </summary>
         /// <param name="n">The number of elements to be calculated.</param>
         /// <param name="a">The input vector a; overwritten by the result of the operation, i.e. N^{-1}(a[j]), j=0,...,<paramref name="n" />-1, where N(x) =\int_{-\infty}^x  1/\sqrt(2*PI) * exp(-1/2 *t^2) dt.</param>
-        public void CdfNormInv(int n, double[] a)
+        public void CdfNormInv(int n, Span<double> a)
         {
             for (int j = 0; j < n; j++)
             {
                 a[j] = StandardNormalDistribution.GetInverseCdfValue(a[j]);
-            }
-        }
-
-        /// <summary>Computes the inverse cumulative normal distribution function values of vector elements.
-        /// </summary>
-        /// <param name="n">The number of elements to be calculated.</param>
-        /// <param name="a">The input vector a.</param>
-        /// <param name="y">The output vector y with y[<paramref name="startIndexY"/> + j] := N^{-1}(a[<paramref name="startIndexA"/> + j]) for j = 0,...,<paramref name="n"/>-1, where N(x) =\int_{-\infty}^x  1/\sqrt(2*PI) * exp(-1/2 *t^2) dt.</param>
-        /// <param name="startIndexA">The null-based start index of <paramref name="a"/>.</param>
-        /// <param name="startIndexY">The null-based start index of <paramref name="y"/>.</param>
-        public void CdfNormInv(int n, double[] a, double[] y, int startIndexA, int startIndexY)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                y[j + startIndexY] = StandardNormalDistribution.GetInverseCdfValue(a[j + startIndexA]);
             }
         }
 
@@ -131,7 +101,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="a">The input vector a.</param>
         /// <param name="y">The output vector \Gamma(a[j]), j=0,...,<paramref name="n" />-1.</param>
         /// <exception cref="NotImplementedException"></exception>
-        public void Gamma(int n, double[] a, double[] y)
+        public void Gamma(int n, ReadOnlySpan<double> a, Span<double> y)
         {
             for (int j = 0; j < n; j++)
             {
@@ -139,17 +109,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
             }
         }
 
-        public void Gamma(int n, double[] a, double[] y, int startIndexA, int startIndexY)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void GammaLn(int n, double[] a, double[] y)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void GammaLn(int n, double[] a, double[] y, int startIndexA, int startIndexY)
+        public void GammaLn(int n, ReadOnlySpan<double> a, Span<double> y)
         {
             throw new NotImplementedException();
         }

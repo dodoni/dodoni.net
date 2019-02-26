@@ -24,13 +24,6 @@ SOFTWARE.
 Please see http://www.dodoni-project.net/ for more information concerning the Dodoni.net project. 
 */
 using System;
-using System.Text;
-using System.Numerics;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-
-using Dodoni.MathLibrary.Basics;
-using Dodoni.MathLibrary.Basics.LowLevel;
 
 namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
 {
@@ -41,34 +34,11 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
     {
         /// <summary>Finds the index of the element with maximum absolute value.
         /// </summary>
-        /// <param name="n">The number of elements in vector <paramref name="x"/>.</param>
-        /// <param name="x">The vector with at least <paramref name="n"/> elements.</param>
-        /// <returns>The position of vector element <paramref name="x"/> that has the largest absolute value.
-        /// </returns>
-        public int idamax(int n, double[] x)
-        {
-            int index = 0;
-            double compareValue = Math.Abs(x[0]);
-
-            for (int j = 1; j < n; j++)
-            {
-                if (Math.Abs(x[j]) > compareValue)
-                {
-                    compareValue = Math.Abs(x[j]);
-                    index = j;
-                }
-            }
-            return index;
-        }
-
-        /// <summary>Finds the index of the element with maximum absolute value.
-        /// </summary>
-        /// <param name="n">The number of elements in vector <paramref name="x"/>.</param>
-        /// <param name="x">The vector with at least <paramref name="n"/> elements.</param>
-        /// <param name="incX">The increment for <paramref name="x"/>.</param>
-        /// <returns>The position of vector element <paramref name="x"/> that has the largest absolute value.
-        /// </returns>
-        public int idamax(int n, double[] x, int incX)
+        /// <param name="n">The number of elements in vector <paramref name="x" />.</param>
+        /// <param name="x">The vector with at least <paramref name="n" /> elements.</param>
+        /// <param name="incX">The increment for <paramref name="x" />.</param>
+        /// <returns>The position of vector element <paramref name="x" /> that has the largest absolute value.</returns>
+        public int idamax(int n, ReadOnlySpan<double> x, int incX = 1)
         {
             int index = 0;
             double compareValue = Math.Abs(x[0]);

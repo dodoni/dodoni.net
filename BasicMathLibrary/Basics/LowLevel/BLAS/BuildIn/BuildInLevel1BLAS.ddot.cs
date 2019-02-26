@@ -24,13 +24,6 @@ SOFTWARE.
 Please see http://www.dodoni-project.net/ for more information concerning the Dodoni.net project. 
 */
 using System;
-using System.Text;
-using System.Numerics;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-
-using Dodoni.MathLibrary.Basics;
-using Dodoni.MathLibrary.Basics.LowLevel;
 
 namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
 {
@@ -39,40 +32,20 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
     /// <remarks>Some of the methods are straightforward ports of the Fortran implementation (http://www.netlib.org/blas). It is recommended to use wrapper of a native code implementation.</remarks>
     internal partial class BuildInLevel1BLAS
     {
-        /// <summary>Computes a vector-vector dot product, i.e. \sum_j x_j*y_j.
+        /// <summary>Computes a vector-vector dot product, i.e. \sum_j x_{j * <paramref name="incX" />} * y_{j * <paramref name="incY" />).
         /// </summary>
-        /// <param name="n">The number of elements of <paramref name="x"/> and <paramref name="y"/>.</param>
-        /// <param name="x">The vector 'x' with at least <paramref name="n"/> elements.</param>
-        /// <param name="y">The vector 'y' with at least <paramref name="n"/> elements.</param>
-        /// <returns>The dot product of <paramref name="x"/> and <paramref name="y"/>, i.e. \sum_j x_j * y_j.
-        /// </returns>
-        public double ddot(int n, double[] x, double[] y)
+        /// <param name="n">The number of elements of <paramref name="x" /> and <paramref name="y" />.</param>
+        /// <param name="x">The vector 'x' with at least <paramref name="n" /> elements.</param>
+        /// <param name="y">The vector 'y' with at least <paramref name="n" /> elements.</param>
+        /// <param name="incX">The increment for <paramref name="x" />.</param>
+        /// <param name="incY">The increment for <paramref name="y" />.</param>
+        /// <returns>The dot product of <paramref name="x" /> and <paramref name="y" />, i.e. \sum_j x_{j * <paramref name="incX" />} * y_{j * <paramref name="incY" />).</returns>
+        public double ddot(int n, ReadOnlySpan<double> x, ReadOnlySpan<double> y, int incX = 1, int incY = 1)
         {
             double value = 0.0;
             for (int j = 0; j < n; j++)
             {
-                value += x[j] * y[j];
-            }
-            return value;
-        }
-
-        /// <summary>Computes a vector-vector dot product, i.e. \sum_j x_{<paramref name="startIndexX"/> + j * <paramref name="incX"/>} * y_{<paramref name="startIndexY"/> + j * <paramref name="incY"/>).
-        /// </summary>
-        /// <param name="n">The number of elements of <paramref name="x"/> and <paramref name="y"/>.</param>
-        /// <param name="x">The vector 'x' with at least <paramref name="n"/> elements.</param>
-        /// <param name="y">The vector 'y' with at least <paramref name="n"/> elements.</param>
-        /// <param name="incX">The increment for <paramref name="x"/>.</param>
-        /// <param name="incY">The increment for <paramref name="y"/>.</param>
-        /// <param name="startIndexX">The null-based start index for <paramref name="x"/>.</param>
-        /// <param name="startIndexY">The null-based start index for <paramref name="y"/>.</param>
-        /// <returns>The dot product of <paramref name="x"/> and <paramref name="y"/>, i.e. \sum_j x_{<paramref name="startIndexX"/> + j * <paramref name="incX"/>} * y_{<paramref name="startIndexY"/> + j * <paramref name="incY"/>).
-        /// </returns>
-        public double ddot(int n, double[] x, double[] y, int incX, int incY, int startIndexX, int startIndexY)
-        {
-            double value = 0.0;
-            for (int j = 0; j < n; j++)
-            {
-                value += x[startIndexX + j * incX] * y[startIndexY + j * incY];
+                value += x[j * incX] * y[j * incY];
             }
             return value;
         }

@@ -24,13 +24,6 @@ SOFTWARE.
 Please see http://www.dodoni-project.net/ for more information concerning the Dodoni.net project. 
 */
 using System;
-using System.Text;
-using System.Numerics;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-
-using Dodoni.MathLibrary.Basics;
-using Dodoni.MathLibrary.Basics.LowLevel;
 
 namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
 {
@@ -39,17 +32,18 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
     /// <remarks>Some of the methods are straightforward ports of the Fortran implementation (http://www.netlib.org/blas). It is recommended to use wrapper of a native code implementation.</remarks>
     internal partial class BuildInLevel1BLAS
     {
-        /// <summary>Performs rotation of points in the modified plane; x(i) = H*x(i) + H*y(i), y(i) = H*y(i) - H*x(i), where H is a modified Givens transformation matrix
-        /// whose values are stored in the <paramref name="param"/>.
+        /// <summary>Performs rotation of points in the modified plane; x(i) = H*x(i) + H*y(i), y(i) = H*y(i) - H*x(i),
+        /// i.e. x[i] = h11 * x[i] + h12 * y[i], y[i] = h21 * x[i] + h22 * y[i] for each i, where H is a modified Givens transformation matrix
+        /// whose values are stored in the <paramref name="param" />.
         /// </summary>
-        /// <param name="n">The number of elements of <paramref name="x"/> and <paramref name="y"/>.</param>
-        /// <param name="x">The vector 'x' with at least <paramref name="n"/> elements.</param>
-        /// <param name="y">The vector 'y' with at least <paramref name="n"/> elements.</param>
+        /// <param name="n">The number of elements of <paramref name="x" /> and <paramref name="y" />.</param>
+        /// <param name="x">The vector 'x' with at least <paramref name="n" /> elements.</param>
+        /// <param name="y">The vector 'y' with at least <paramref name="n" /> elements.</param>
         /// <param name="param">The elements of the param array are: param(0) contains a switch, flag. param(1-4) contain h11, h21, h12, and h22, respectively,
         /// the components of the array H.</param>
-        /// <param name="incX">The increment for <paramref name="x"/>.</param>
-        /// <param name="incY">The increment for <paramref name="y"/>.</param>
-        public void drotm(int n, double[] x, double[] y, double[] param, int incX = 1, int incY = 1)
+        /// <param name="incX">The increment for <paramref name="x" />.</param>
+        /// <param name="incY">The increment for <paramref name="y" />.</param>
+        public void drotm(int n, Span<double> x, Span<double> y, ReadOnlySpan<double> param, int incX = 1, int incY = 1)
         {
             /*  
              * Purpose 

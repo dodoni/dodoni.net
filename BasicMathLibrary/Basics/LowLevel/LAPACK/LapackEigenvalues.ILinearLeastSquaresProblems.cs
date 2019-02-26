@@ -23,6 +23,7 @@ SOFTWARE.
  
 Please see http://www.dodoni-project.net/ for more information concerning the Dodoni.net project. 
 */
+using System;
 using System.Numerics;
 
 namespace Dodoni.MathLibrary.Basics.LowLevel
@@ -51,7 +52,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="b">The <paramref name="m"/>-by-<paramref name="nrhs"/> matrix B of right hand side vectors, stored columnwise.</param>
             /// <param name="work">A workspace array.</param>
             /// <param name="transposeState">A value indicating whether to take into account A or A'.</param>
-            void driver_dgels(int m, int n, int nrhs, double[] a, double[] b, double[] work, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
+            void driver_dgels(int m, int n, int nrhs, Span<double> a, Span<double> b, Span<double> work, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
 
             /// <summary>Gets a optimal workspace array length for the <c>zgels</c> function.
             /// </summary>
@@ -71,7 +72,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="b">The <paramref name="m"/>-by-<paramref name="nrhs"/> matrix B of right hand side vectors, stored columnwise.</param>
             /// <param name="work">A workspace array.</param>
             /// <param name="transposeState">A value indicating whether to take into account A or A'.</param>
-            void driver_zgels(int m, int n, int nrhs, Complex[] a, Complex[] b, Complex[] work, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
+            void driver_zgels(int m, int n, int nrhs, Span<Complex> a, Span<Complex> b, Span<Complex> work, BLAS.MatrixTransposeState transposeState = BLAS.MatrixTransposeState.NoTranspose);
 
             /// <summary>Gets a optimal workspace array length for the <c>dgelsy</c> function.
             /// </summary>
@@ -96,7 +97,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array.</param>
             /// <param name="rank">The effective rank of A, which is defined as the order of the largest leading triangular submatrix R_11 in the 
             /// QR factorization with pivoting of A, whose estimated condition number &lt; 1 / rcond.</param>
-            void driver_dgelsy(int m, int n, int nrhs, double[] a, double[] b, int[] jpvt, double rcond, double[] work, out int rank);
+            void driver_dgelsy(int m, int n, int nrhs, Span<double> a, Span<double> b, int[] jpvt, double rcond, Span<double> work, out int rank);
 
             /// <summary>Gets a optimal workspace array length for the <c>zgelsy</c> function.
             /// </summary>
@@ -122,7 +123,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="rwork">A workspace array with dimension at least 2 * <paramref name="n"/>.</param>
             /// <param name="rank">The effective rank of A, which is defined as the order of the largest leading triangular submatrix R_11 in the 
             /// QR factorization with pivoting of A, whose estimated condition number &lt; 1 / rcond.</param>
-            void driver_zgelsy(int m, int n, int nrhs, Complex[] a, Complex[] b, int[] jpvt, double rcond, Complex[] work, double[] rwork, out int rank);
+            void driver_zgelsy(int m, int n, int nrhs, Span<Complex> a, Span<Complex> b, int[] jpvt, double rcond, Span<Complex> work, Span<double> rwork, out int rank);
 
             /// <summary>Gets a optimal workspace array length for the <c>dgelss</c> function.
             /// </summary>
@@ -144,7 +145,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="rcond">Is used to determine the effective rank of A. Singular values s_i &lt;= rcond * s_1 are treated as zero.</param>
             /// <param name="work">A workspace array.</param>
             /// <param name="rank">The effective rank of matrix A, that is, the number of singular values which are reater than <paramref name="rcond"/> * s_1 (output).</param>
-            void driver_dgelss(int m, int n, int nrhs, double[] a, double[] b, double[] s, double rcond, double[] work, out int rank);
+            void driver_dgelss(int m, int n, int nrhs, Span<double> a, Span<double> b, Span<double> s, double rcond, Span<double> work, out int rank);
 
             /// <summary>Gets a optimal workspace array length for the <c>zgelss</c> function.
             /// </summary>
@@ -167,7 +168,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array.</param>
             /// <param name="rwork">A workspace array with dimension at least 5 * min(<paramref name="m"/>, <paramref name="n"/>).</param>
             /// <param name="rank">The effective rank of matrix A, that is, the number of singular values which are reater than <paramref name="rcond"/> * s_1 (output).</param>
-            void driver_zgelss(int m, int n, int nrhs, Complex[] a, Complex[] b, double[] s, double rcond, Complex[] work, double[] rwork, out int rank);
+            void driver_zgelss(int m, int n, int nrhs, Span<Complex> a, Span<Complex> b, Span<double> s, double rcond, Span<Complex> work, Span<double> rwork, out int rank);
 
             /// <summary>Gets a optimal workspace array length for the <c>dgelsd</c> function.
             /// </summary>
@@ -190,7 +191,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array.</param>
             /// <param name="iwork">A workspace array.</param>
             /// <param name="rank">The effective rank of matrix A, that is, the number of singular values which are reater than <paramref name="rcond"/> * s_1 (output).</param>
-            void driver_dgelsd(int m, int n, int nrhs, double[] a, double[] b, double[] s, double rcond, double[] work, int[] iwork, out int rank);
+            void driver_dgelsd(int m, int n, int nrhs, Span<double> a, Span<double> b, Span<double> s, double rcond, Span<double> work, int[] iwork, out int rank);
 
             /// <summary>Gets a optimal workspace array length for the <c>zgelsd</c> function.
             /// </summary>
@@ -215,7 +216,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="rwork">A workspace array.</param>
             /// <param name="iwork">A workspace array.</param>
             /// <param name="rank">The effective rank of matrix A, that is, the number of singular values which are reater than <paramref name="rcond"/> * s_1 (output).</param>
-            void driver_zgelsd(int m, int n, int nrhs, Complex[] a, Complex[] b, double[] s, double rcond, Complex[] work, double[] rwork, int[] iwork, out int rank);
+            void driver_zgelsd(int m, int n, int nrhs, Span<Complex> a, Span<Complex> b, Span<double> s, double rcond, Span<Complex> work, Span<double> rwork, int[] iwork, out int rank);
 
             /// <summary>Gets a optimal workspace array length for the <c>dgglse</c> function.
             /// </summary>
@@ -236,7 +237,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="d">The right hand side vector for the constrained equation; dimension at least <paramref name="p"/>.</param>
             /// <param name="x">The solution of the LSE problem; dimension at least <paramref name="n"/>.</param>
             /// <param name="work">A workspace array.</param>
-            void driver_dgglse(int m, int n, int p, double[] a, double[] b, double[] c, double[] d, double[] x, double[] work);
+            void driver_dgglse(int m, int n, int p, Span<double> a, Span<double> b, Span<double> c, Span<double> d, Span<double> x, Span<double> work);
 
             /// <summary>Gets a optimal workspace array length for the <c>zgglse</c> function.
             /// </summary>
@@ -257,7 +258,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="d">The right hand side vector for the constrained equation; dimension at least <paramref name="p"/>.</param>
             /// <param name="x">The solution of the LSE problem; dimension at least <paramref name="n"/>.</param>
             /// <param name="work">A workspace array.</param>
-            void driver_zgglse(int m, int n, int p, Complex[] a, Complex[] b, Complex[] c, Complex[] d, Complex[] x, Complex[] work);
+            void driver_zgglse(int m, int n, int p, Span<Complex> a, Span<Complex> b, Span<Complex> c, Span<Complex> d, Span<Complex> x, Span<Complex> work);
 
             /// <summary>Gets a optimal workspace array length for the <c>dggglm</c> function.
             /// </summary>
@@ -278,7 +279,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="x">The solution x of the LSE problem; dimension at least <paramref name="m"/>.</param>
             /// <param name="y">The solution y of the LSE problem; dimension at least <paramref name="p"/>.</param>
             /// <param name="work">A workspace array.</param>
-            void driver_dggglm(int n, int m, int p, double[] a, double[] b, double[] d, double[] x, double[] y, double[] work);
+            void driver_dggglm(int n, int m, int p, Span<double> a, Span<double> b, Span<double> d, Span<double> x, Span<double> y, Span<double> work);
 
             /// <summary>Gets a optimal workspace array length for the <c>zggglm</c> function.
             /// </summary>
@@ -299,7 +300,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="x">The solution x of the LSE problem; dimension at least <paramref name="m"/>.</param>
             /// <param name="y">The solution y of the LSE problem; dimension at least <paramref name="p"/>.</param>
             /// <param name="work">A workspace array.</param>
-            void driver_zggglm(int n, int m, int p, Complex[] a, Complex[] b, Complex[] d, Complex[] x, Complex[] y, Complex[] work);
+            void driver_zggglm(int n, int m, int p, Span<Complex> a, Span<Complex> b, Span<Complex> d, Span<Complex> x, Span<Complex> y, Span<Complex> work);
         }
     }
 }

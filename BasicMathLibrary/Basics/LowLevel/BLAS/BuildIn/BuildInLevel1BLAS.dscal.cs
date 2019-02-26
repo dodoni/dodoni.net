@@ -24,13 +24,6 @@ SOFTWARE.
 Please see http://www.dodoni-project.net/ for more information concerning the Dodoni.net project. 
 */
 using System;
-using System.Text;
-using System.Numerics;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-
-using Dodoni.MathLibrary.Basics;
-using Dodoni.MathLibrary.Basics.LowLevel;
 
 namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
 {
@@ -39,40 +32,17 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
     /// <remarks>Some of the methods are straightforward ports of the Fortran implementation (http://www.netlib.org/blas). It is recommended to use wrapper of a native code implementation.</remarks>
     internal partial class BuildInLevel1BLAS
     {
-        /// <summary>Computes the product of a vector by a scalar, i.e. x = a * x.
+        /// <summary>Computes the product of a vector by a scalar, i.e. x[j * <paramref name="incX" />] = a * x[j * <paramref name="incX" />], for j = 0,..., n-1.
         /// </summary>
-        /// <param name="n">The number of elements of <paramref name="x"/>.</param>
+        /// <param name="n">The number of elements of <paramref name="x" />.</param>
         /// <param name="a">The scalar factor 'a'.</param>
-        /// <param name="x">The vector 'x' with at least <paramref name="n"/> elements, contains the updated vector after function call.</param>
-        public void dscal(int n, double a, double[] x)
-        {
-            dscal(a, x);
-        }
-
-        /// <summary>Computes the product of a vector by a scalar, i.e. x[iStart + j * increment] = a * x[iStart + j * increment], for j = 0,..., n-1.
-        /// </summary>
-        /// <param name="n">The number of elements of <paramref name="x"/>.</param>
-        /// <param name="a">The scalar factor 'a'.</param>
-        /// <param name="x">The vector 'x' with at least <paramref name="startIndex"/> + 1 + (<paramref name="n"/> -1) * <paramref name="increment"/> elements.</param>
-        /// <param name="startIndex">The null-based start index.</param>
-        /// <param name="increment">The increment.</param>
-        public void dscal(int n, double a, double[] x, int increment, int startIndex)
+        /// <param name="x">The vector 'x' with at least 1 + (<paramref name="n" /> -1) * <paramref name="incX" /> elements.</param>
+        /// <param name="incX">The increment for <paramref name="x" />.</param>
+        public void dscal(int n, double a, Span<double> x, int incX)
         {
             for (int j = 0; j < n; j++)
             {
-                x[startIndex + j * increment] *= a;
-            }
-        }
-
-        /// <summary>Computes the product of a vector by a scalar, i.e. x = a * x.
-        /// </summary>
-        /// <param name="a">The scalar factor 'a'.</param>
-        /// <param name="x">The vector 'x', contains the updated vector after function call.</param>
-        public void dscal(double a, Span<double> x)
-        {
-            for (int j = 0; j < x.Length; j++)
-            {
-                x[j] *= a;
+                x[j * incX] *= a;
             }
         }
     }

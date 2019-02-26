@@ -6,6 +6,7 @@
     <RootNamespace>Dodoni.MathLibrary</RootNamespace>
     <Authors>Markus Wendt</Authors>
     <Product>Dodoni.net</Product>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

@@ -47,11 +47,24 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="rowCount">The number of rows.</param>
         /// <param name="columnCount">The number of columns.</param>
         /// <param name="a">The matrix provided column-by-column (column-major ordering).</param>
+        public void aux_dgetrans(int rowCount, int columnCount, Span<double> a)
+        {
+            int lwork = aux_dgetransQuery(rowCount, columnCount);
+            var work = new double[lwork];
+
+            aux_dgetrans(rowCount, columnCount, work);
+        }
+
+        /// <summary>Performs in-place transposition of a specific matrix.
+        /// </summary>
+        /// <param name="rowCount">The number of rows.</param>
+        /// <param name="columnCount">The number of columns.</param>
+        /// <param name="a">The matrix provided column-by-column (column-major ordering).</param>
         /// <param name="work">A workspace array.</param>
         /// <remarks>The implementation is base on 'A decomposition for In-place Matrix Transposition', Bryan Catanzaro, Alexander Keller, Michael Garland; 2014.</remarks>
-        public void aux_dgetrans(int rowCount, int columnCount, double[] a, double[] work = null)
+        public void aux_dgetrans(int rowCount, int columnCount, Span<double> a, Span<double> work)
         {
-            int lwork = Math.Max(rowCount, columnCount);
+            int lwork = aux_dgetransQuery(rowCount, columnCount);
             if ((work == null) || (work.Length < lwork))
             {
                 work = new double[lwork];
@@ -107,6 +120,8 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
             }
         }
 
+        #region private (static) methods
+
         /// <summary>Get the greatest common divisor.
         /// </summary>
         /// <param name="m">The first number.</param>
@@ -122,5 +137,6 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
             }
             return m;
         }
+        #endregion
     }
 }

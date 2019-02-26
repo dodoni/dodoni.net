@@ -23,6 +23,7 @@ SOFTWARE.
  
 Please see http://www.dodoni-project.net/ for more information concerning the Dodoni.net project. 
 */
+using System;
 using System.Numerics;
 
 using Dodoni.MathLibrary.Basics.LowLevel;
@@ -61,7 +62,7 @@ namespace Dodoni.MathLibrary.Basics
         /// <param name="transpose">A value indicating whether 'op(A)=A' or 'op(A)=A^t'.</param>
         /// <param name="incX">The increment for the elements of <paramref name="x"/>.</param>
         /// <param name="incY">The increment for the elements of <paramref name="y"/>.</param>
-        public static void dgbmv(this ILevel2BLAS level2, int m, int n, int kl, int ku, double alpha, double[] a, double[] x, double beta, double[] y, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose, int incX = 1, int incY = 1)
+        public static void dgbmv(this ILevel2BLAS level2, int m, int n, int kl, int ku, double alpha, ReadOnlySpan<double> a, ReadOnlySpan<double> x, double beta, Span<double> y, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose, int incX = 1, int incY = 1)
         {
             level2.dgbmv(m, n, kl, ku, alpha, a, x, beta, y, kl + ku + 1, transpose, incX, incY);
         }
@@ -79,7 +80,7 @@ namespace Dodoni.MathLibrary.Basics
         /// <param name="transpose">A value indicating whether 'op(A)=A' or 'op(A)=A^t'.</param>
         /// <param name="incX">The increment for the elements of <paramref name="x"/>.</param>
         /// <param name="incY">The increment for the elements of <paramref name="y"/>.</param>
-        public static void dgemv(this ILevel2BLAS level2, int m, int n, double alpha, double[] a, double[] x, double beta, double[] y, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose, int incX = 1, int incY = 1)
+        public static void dgemv(this ILevel2BLAS level2, int m, int n, double alpha, ReadOnlySpan<double> a, ReadOnlySpan<double> x, double beta, Span<double> y, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose, int incX = 1, int incY = 1)
         {
             level2.dgemv(m, n, alpha, a, x, beta, y, m, transpose, incX, incY);
         }
@@ -95,7 +96,7 @@ namespace Dodoni.MathLibrary.Basics
         /// <param name="a">The matrix A of dimension (<paramref name="m"/>, <paramref name="n"/>) supplied column-by-column (input/output).</param>
         /// <param name="incX">The increment for the elements of <paramref name="x"/>.</param>
         /// <param name="incY">The increment for the elements of <paramref name="y"/>.</param>
-        public static void dger(this ILevel2BLAS level2, int m, int n, double alpha, double[] x, double[] y, double[] a, int incX = 1, int incY = 1)
+        public static void dger(this ILevel2BLAS level2, int m, int n, double alpha, ReadOnlySpan<double> x, ReadOnlySpan<double> y, Span<double> a, int incX = 1, int incY = 1)
         {
             level2.dger(m, n, alpha, x, y, a, m, incX, incY);
         }
@@ -113,7 +114,7 @@ namespace Dodoni.MathLibrary.Basics
         /// <param name="triangularMatrixType">A value whether matrix A is in its upper or lower triangular representation.</param>
         /// <param name="incX">The increment for the elements of <paramref name="x"/>.</param>
         /// <param name="incY">The increment for the elements of <paramref name="y"/>.</param>
-        public static void dsbmv(this ILevel2BLAS level2, int n, int k, double alpha, double[] a, double[] x, double beta, double[] y, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, int incX = 1, int incY = 1)
+        public static void dsbmv(this ILevel2BLAS level2, int n, int k, double alpha, ReadOnlySpan<double> a, ReadOnlySpan<double> x, double beta, Span<double> y, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, int incX = 1, int incY = 1)
         {
             level2.dsbmv(n, k, alpha, a, x, beta, y, 1 + k, triangularMatrixType, incX, incY);
         }
@@ -130,7 +131,7 @@ namespace Dodoni.MathLibrary.Basics
         /// <param name="triangularMatrixType">A value whether matrix A is in its upper or lower triangular representation.</param>
         /// <param name="incX">The increment for the elements of <paramref name="x"/>.</param>
         /// <param name="incY">The increment for the elements of <paramref name="y"/>.</param>
-        public static void dsymv(this ILevel2BLAS level2, int n, double alpha, double[] a, double[] x, double beta, double[] y, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, int incX = 1, int incY = 1)
+        public static void dsymv(this ILevel2BLAS level2, int n, double alpha, ReadOnlySpan<double> a, ReadOnlySpan<double> x, double beta, Span<double> y, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, int incX = 1, int incY = 1)
         {
             level2.dsymv(n, alpha, a, x, beta, y, n, triangularMatrixType, incX, incY);
         }
@@ -144,7 +145,7 @@ namespace Dodoni.MathLibrary.Basics
         /// <param name="a">The symmetric matrix A of dimension (<paramref name="n"/>, <paramref name="n"/>) supplied column-by-column (input/output).</param>
         /// <param name="triangularMatrixType">A value whether matrix A is in its upper or lower triangular representation.</param>
         /// <param name="incX">The increment for the elements of <paramref name="x"/>.</param>
-        public static void dsyr(this ILevel2BLAS level2, int n, double alpha, double[] x, double[] a, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, int incX = 1)
+        public static void dsyr(this ILevel2BLAS level2, int n, double alpha, ReadOnlySpan<double> x, Span<double> a, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, int incX = 1)
         {
             level2.dsyr(n, alpha, x, a, n, triangularMatrixType, incX);
         }
@@ -160,7 +161,7 @@ namespace Dodoni.MathLibrary.Basics
         /// <param name="triangularMatrixType">A value whether matrix A is in its upper or lower triangular representation.</param>
         /// <param name="incX">The increment for the elements of <paramref name="x"/>.</param>
         /// <param name="incY">The increment for the elements of <paramref name="y"/>.</param>
-        public static void dsyr2(this ILevel2BLAS level2, int n, double alpha, double[] x, double[] y, double[] a, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, int incX = 1, int incY = 1)
+        public static void dsyr2(this ILevel2BLAS level2, int n, double alpha, ReadOnlySpan<double> x, ReadOnlySpan<double> y, Span<double> a, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, int incX = 1, int incY = 1)
         {
             level2.dsyr2(n, alpha, x, y, a, n, triangularMatrixType, incX, incY);
         }
@@ -176,7 +177,7 @@ namespace Dodoni.MathLibrary.Basics
         /// <param name="isUnitTriangular">A value indicating whether the matrix A is unit triangular.</param>
         /// <param name="transpose">A value indicating whether 'op(A)=A' or 'op(A)=A^t'.</param>
         /// <param name="incX">The increment for the elements of <paramref name="x"/>.</param>
-        public static void dtbmv(this ILevel2BLAS level2, int n, int k, double[] a, double[] x, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, bool isUnitTriangular = true, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose, int incX = 1)
+        public static void dtbmv(this ILevel2BLAS level2, int n, int k, ReadOnlySpan<double> a, Span<double> x, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, bool isUnitTriangular = true, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose, int incX = 1)
         {
             level2.dtbmv(n, k, a, x, 1 + k, triangularMatrixType, isUnitTriangular, transpose, incX);
         }
@@ -192,7 +193,7 @@ namespace Dodoni.MathLibrary.Basics
         /// <param name="isUnitTriangular">A value indicating whether the matrix A is unit triangular.</param>
         /// <param name="transpose">A value indicating whether 'op(A)=A' or 'op(A)=A^t'.</param>
         /// <param name="incX">The increment for the elements of <paramref name="x"/>.</param>
-        public static void dtbsv(this ILevel2BLAS level2, int n, int k, double[] a, double[] x, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, bool isUnitTriangular = true, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose, int incX = 1)
+        public static void dtbsv(this ILevel2BLAS level2, int n, int k, ReadOnlySpan<double> a, Span<double> x, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, bool isUnitTriangular = true, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose, int incX = 1)
         {
             level2.dtbsv(n, k, a, x, 1 + k, triangularMatrixType, isUnitTriangular, transpose, incX);
         }
@@ -207,7 +208,7 @@ namespace Dodoni.MathLibrary.Basics
         /// <param name="isUnitTriangular">A value indicating whether the matrix A is unit triangular.</param>
         /// <param name="transpose">A value indicating whether 'op(A)=A' or 'op(A)=A^t'.</param>
         /// <param name="incX">The increment for the elements of <paramref name="x"/>.</param>
-        public static void dtrmv(this ILevel2BLAS level2, int n, double[] a, double[] x, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, bool isUnitTriangular = true, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose, int incX = 1)
+        public static void dtrmv(this ILevel2BLAS level2, int n, ReadOnlySpan<double> a, Span<double> x, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, bool isUnitTriangular = true, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose, int incX = 1)
         {
             level2.dtrmv(n, a, x, n, triangularMatrixType, isUnitTriangular, transpose, incX);
         }
@@ -222,7 +223,7 @@ namespace Dodoni.MathLibrary.Basics
         /// <param name="isUnitTriangular">A value indicating whether the matrix A is unit triangular.</param>
         /// <param name="transpose">A value indicating whether op(A) = A or op(A) = A^t.</param>
         /// <param name="incX">The increment for the elements of <paramref name="x"/>.</param>
-        public static void dtrsv(this ILevel2BLAS level2, int n, double[] a, double[] x, BLAS.TriangularMatrixType triangularMatrixType, bool isUnitTriangular = true, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose, int incX = 1)
+        public static void dtrsv(this ILevel2BLAS level2, int n, ReadOnlySpan<double> a, Span<double> x, BLAS.TriangularMatrixType triangularMatrixType, bool isUnitTriangular = true, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose, int incX = 1)
         {
             level2.dtrsv(n, a, x, n, triangularMatrixType, isUnitTriangular, transpose, incX);
         }
@@ -258,7 +259,7 @@ namespace Dodoni.MathLibrary.Basics
         /// <param name="transpose">A value indicating whether 'op(A)=A' or 'op(A)=A^t'.</param>
         /// <param name="incX">The increment for the elements of <paramref name="x"/>.</param>
         /// <param name="incY">The increment for the elements of <paramref name="y"/>.</param>
-        public static void zgbmv(this ILevel2BLAS level2, int m, int n, int kl, int ku, Complex alpha, Complex[] a, Complex[] x, Complex beta, Complex[] y, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose, int incX = 1, int incY = 1)
+        public static void zgbmv(this ILevel2BLAS level2, int m, int n, int kl, int ku, Complex alpha, ReadOnlySpan<Complex> a, ReadOnlySpan<Complex> x, Complex beta, Span<Complex> y, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose, int incX = 1, int incY = 1)
         {
             level2.zgbmv(m, n, kl, ku, alpha, a, x, beta, y, kl + ku + 1, transpose, incX, incY);
         }
@@ -276,7 +277,7 @@ namespace Dodoni.MathLibrary.Basics
         /// <param name="transpose">A value indicating whether 'op(A)=A' or 'op(A)=A^t'.</param>
         /// <param name="incX">The increment for the elements of <paramref name="x"/>.</param>
         /// <param name="incY">The increment for the elements of <paramref name="y"/>.</param>
-        public static void zgemv(this ILevel2BLAS level2, int m, int n, Complex alpha, Complex[] a, Complex[] x, Complex beta, Complex[] y, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose, int incX = 1, int incY = 1)
+        public static void zgemv(this ILevel2BLAS level2, int m, int n, Complex alpha, ReadOnlySpan<Complex> a, ReadOnlySpan<Complex> x, Complex beta, Span<Complex> y, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose, int incX = 1, int incY = 1)
         {
             level2.zgemv(m, n, alpha, a, x, beta, y, m, transpose, incX, incY);
         }
@@ -292,12 +293,12 @@ namespace Dodoni.MathLibrary.Basics
         /// <param name="a">The matrix A of dimension (<paramref name="m"/>, <paramref name="n"/>) supplied column-by-column.</param>
         /// <param name="incX">The increment for the elements of <paramref name="x"/>.</param>
         /// <param name="incY">The increment for the elements of <paramref name="y"/>.</param>
-        public static void zgerc(this ILevel2BLAS level2, int m, int n, Complex alpha, Complex[] x, Complex[] y, Complex[] a, int incX = 1, int incY = 1)
+        public static void zgerc(this ILevel2BLAS level2, int m, int n, Complex alpha, ReadOnlySpan<Complex> x, ReadOnlySpan<Complex> y, Span<Complex> a, int incX = 1, int incY = 1)
         {
             level2.zgerc(m, n, alpha, x, y, a, m, incX, incY);
         }
 
-        /// <summary>Performs a rank-1 update (unconjugated) of a general matrix., i.e. A := \alpha * x * y^t + A.
+        /// <summary>Performs a rank-1 update (unconjugated) of a general matrix, i.e. A := \alpha * x * y^t + A.
         /// </summary>
         /// <param name="level2">The BLAS level 2 implementation.</param>
         /// <param name="m">The number of rows of matrix A.</param>
@@ -308,7 +309,7 @@ namespace Dodoni.MathLibrary.Basics
         /// <param name="a">The matrix A with dimension (<paramref name="m"/>, <paramref name="n"/>) supplied column-by-column.</param>
         /// <param name="incX">The increment for the elements of <paramref name="x"/>.</param>
         /// <param name="incY">The increment for the elements of <paramref name="y"/>.</param>
-        public static void zgeru(this ILevel2BLAS level2, int m, int n, Complex alpha, Complex[] x, Complex[] y, Complex[] a, int incX = 1, int incY = 1)
+        public static void zgeru(this ILevel2BLAS level2, int m, int n, Complex alpha, ReadOnlySpan<Complex> x, ReadOnlySpan<Complex> y, Span<Complex> a, int incX = 1, int incY = 1)
         {
             level2.zgeru(m, n, alpha, x, y, a, m, incX, incY);
         }
@@ -326,7 +327,7 @@ namespace Dodoni.MathLibrary.Basics
         /// <param name="triangularMatrixType">A value whether matrix A is in its upper or lower triangular representation.</param>
         /// <param name="incX">The increment for the elements of <paramref name="x"/>.</param>
         /// <param name="incY">The increment for the elements of <paramref name="y"/>.</param>
-        public static void zhbmv(this ILevel2BLAS level2, int n, int k, Complex alpha, Complex[] a, Complex[] x, Complex beta, Complex[] y, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, int incX = 1, int incY = 1)
+        public static void zhbmv(this ILevel2BLAS level2, int n, int k, Complex alpha, ReadOnlySpan<Complex> a, ReadOnlySpan<Complex> x, Complex beta, Span<Complex> y, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, int incX = 1, int incY = 1)
         {
             level2.zhbmv(n, k, alpha, a, x, beta, y, 1 + k, triangularMatrixType, incX, incY);
         }
@@ -343,7 +344,7 @@ namespace Dodoni.MathLibrary.Basics
         /// <param name="triangularMatrixType">A value whether matrix A is in its upper or lower triangular representation.</param>
         /// <param name="incX">The increment for the elements of <paramref name="x"/>.</param>
         /// <param name="incY">The increment for the elements of <paramref name="y"/>.</param>
-        public static void zhemv(this ILevel2BLAS level2, int n, Complex alpha, Complex[] x, Complex beta, Complex[] y, Complex[] a, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, int incX = 1, int incY = 1)
+        public static void zhemv(this ILevel2BLAS level2, int n, Complex alpha, ReadOnlySpan<Complex> x, Complex beta, Span<Complex> y, ReadOnlySpan<Complex> a, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, int incX = 1, int incY = 1)
         {
             level2.zhemv(n, alpha, x, beta, y, a, n, triangularMatrixType, incX, incY);
         }
@@ -357,7 +358,7 @@ namespace Dodoni.MathLibrary.Basics
         /// <param name="a">The Hermitian matrix A with dimension (<paramref name="n"/>, <paramref name="n"/>).</param>
         /// <param name="triangularMatrixType">A value whether matrix A is in its upper or lower triangular representation.</param>
         /// <param name="incX">The increment for the elements of <paramref name="x"/>.</param>
-        public static void zher(this ILevel2BLAS level2, int n, double alpha, Complex[] x, Complex[] a, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, int incX = 1)
+        public static void zher(this ILevel2BLAS level2, int n, double alpha, ReadOnlySpan<Complex> x, Span<Complex> a, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, int incX = 1)
         {
             level2.zher(n, alpha, x, a, n, triangularMatrixType, incX);
         }
@@ -373,7 +374,7 @@ namespace Dodoni.MathLibrary.Basics
         /// <param name="triangularMatrixType">A value whether matrix A is in its upper or lower triangular representation.</param>
         /// <param name="incX">The increment for the elements of <paramref name="x"/>.</param>
         /// <param name="incY">The increment for the elements of <paramref name="y"/>.</param>
-        public static void zher2(this ILevel2BLAS level2, int n, Complex alpha, Complex[] x, Complex[] y, Complex[] a, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, int incX = 1, int incY = 1)
+        public static void zher2(this ILevel2BLAS level2, int n, Complex alpha, ReadOnlySpan<Complex> x, ReadOnlySpan<Complex> y, Span<Complex> a, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, int incX = 1, int incY = 1)
         {
             level2.zher2(n, alpha, x, y, a, n, triangularMatrixType, incX, incY);
         }
@@ -389,7 +390,7 @@ namespace Dodoni.MathLibrary.Basics
         /// <param name="isUnitTriangular">A value indicating whether the matrix A is unit triangular.</param>
         /// <param name="transpose">A value indicating whether 'op(A)=A', 'op(A)=A^t' or 'op(A)=A^h'.</param>
         /// <param name="incX">The increment for the elements of <paramref name="x"/>.</param>
-        public static void ztbmv(this ILevel2BLAS level2, int n, int k, Complex[] a, Complex[] x, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, bool isUnitTriangular = true, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose, int incX = 1)
+        public static void ztbmv(this ILevel2BLAS level2, int n, int k, ReadOnlySpan<Complex> a, Span<Complex> x, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, bool isUnitTriangular = true, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose, int incX = 1)
         {
             level2.ztbmv(n, k, a, x, 1 + k, triangularMatrixType, isUnitTriangular, transpose, incX);
         }
@@ -405,7 +406,7 @@ namespace Dodoni.MathLibrary.Basics
         /// <param name="isUnitTriangular">A value indicating whether the matrix A is unit triangular.</param>
         /// <param name="transpose">A value indicating whether 'op(A)=A', 'op(A)=A^t' or 'op(A)=A^h'.</param>
         /// <param name="incX">The increment for the elements of <paramref name="x"/>.</param>
-        public static void ztbsv(this ILevel2BLAS level2, int n, int k, Complex[] a, Complex[] x, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, bool isUnitTriangular = true, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose, int incX = 1)
+        public static void ztbsv(this ILevel2BLAS level2, int n, int k, ReadOnlySpan<Complex> a, Span<Complex> x, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, bool isUnitTriangular = true, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose, int incX = 1)
         {
             level2.ztbsv(n, k, a, x, 1 + k, triangularMatrixType, isUnitTriangular, transpose, incX);
         }
@@ -420,7 +421,7 @@ namespace Dodoni.MathLibrary.Basics
         /// <param name="isUnitTriangular">A value indicating whether the matrix A is unit triangular.</param>
         /// <param name="transpose">A value indicating whether 'op(A)=A', 'op(A)=A^t' or 'op(A)=A^h'.</param>
         /// <param name="incX">The increment for the elements of <paramref name="x"/>.</param>
-        public static void ztrmv(this ILevel2BLAS level2, int n, Complex[] a, Complex[] x, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, bool isUnitTriangular = true, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose, int incX = 1)
+        public static void ztrmv(this ILevel2BLAS level2, int n, ReadOnlySpan<Complex> a, Span<Complex> x, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, bool isUnitTriangular = true, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose, int incX = 1)
         {
             level2.ztrmv(n, a, x, n, triangularMatrixType, isUnitTriangular, transpose, incX);
         }
@@ -435,7 +436,8 @@ namespace Dodoni.MathLibrary.Basics
         /// <param name="isUnitTriangular">A value indicating whether the matrix A is unit triangular.</param>
         /// <param name="transpose">A value indicating whether 'op(A)=A', 'op(A)=A^t' or 'op(A)=A^h'.</param>
         /// <param name="incX">The increment for the elements of <paramref name="x"/>.</param>
-        public static void ztrsv(this ILevel2BLAS level2, int n, Complex[] a, Complex[] x, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, bool isUnitTriangular = true, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose, int incX = 1)
+        public static void ztrsv(this ILevel2BLAS level2, int n, ReadOnlySpan<Complex> a, Span<Complex> x, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, bool isUnitTriangular = true, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose, int incX = 1)
+
         {
             level2.ztrsv(n, a, x, n, triangularMatrixType, isUnitTriangular, transpose, incX);
         }

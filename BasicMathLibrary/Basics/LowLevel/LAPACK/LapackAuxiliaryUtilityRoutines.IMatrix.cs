@@ -23,6 +23,7 @@ SOFTWARE.
  
 Please see http://www.dodoni-project.net/ for more information concerning the Dodoni.net project. 
 */
+using System;
 using System.Numerics;
 
 namespace Dodoni.MathLibrary.Basics.LowLevel
@@ -41,7 +42,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="a">The <paramref name="m"/>-by-<paramref name="n"/> dense matrix provided column-by-column.</param>
             /// <param name="work">A workspace array which is referenced in the case of infinity norm only. In this case the length must be at least <paramref name="m"/>.</param>
             /// <returns>The value of the specific matrix norm.</returns>
-            double dlange(MatrixNormType matrixNormType, int m, int n, double[] a, double[] work);
+            double dlange(MatrixNormType matrixNormType, int m, int n, ReadOnlySpan<double> a, Span<double> work);
 
             /// <summary>Returns the value of the 1-norm, Frobenius norm, infinity-norm, or the largest absolute value of any element of general rectangular matrix.
             /// </summary>
@@ -51,7 +52,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="a">The <paramref name="m"/>-by-<paramref name="n"/> dense matrix provided column-by-column.</param>
             /// <param name="work">A workspace array which is referenced in the case of infinity norm only. In this case the length must be at least <paramref name="m"/>.</param>
             /// <returns>The value of the specific matrix norm.</returns>
-            double zlange(MatrixNormType matrixNormType, int m, int n, Complex[] a, Complex[] work);
+            double zlange(MatrixNormType matrixNormType, int m, int n, ReadOnlySpan<Complex> a, Span<Complex> work);
 
             /// <summary>Returns the value of the 1-norm, Frobenius norm, infinity-norm, or the largest absolute value of any element of symmetric matrix supplied in packed form.
             /// </summary>
@@ -61,7 +62,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array which is referenced in the case of 1- or infinity-norm only. In this case the length must be at least <paramref name="n"/>.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of the symmetric input matrix is stored.</param>
             /// <returns>The value of the specific matrix norm.</returns>
-            double dlansp(MatrixNormType matrixNormType, int n, double[] ap, double[] work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            double dlansp(MatrixNormType matrixNormType, int n, ReadOnlySpan<double> ap, Span<double> work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Returns the value of the 1-norm, Frobenius norm, infinity-norm, or the largest absolute value of any element of symmetric matrix supplied in packed form.
             /// </summary>
@@ -71,7 +72,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array which is referenced in the case of 1- or infinity-norm only. In this case the length must be at least <paramref name="n"/>.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of the symmetric input matrix is stored.</param>
             /// <returns>The value of the specific matrix norm.</returns>
-            double zlansp(MatrixNormType matrixNormType, int n, Complex[] ap, Complex[] work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+            double zlansp(MatrixNormType matrixNormType, int n, ReadOnlySpan<Complex> ap, Span<Complex> work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
 
             /// <summary>Returns the value of the 1-norm, Frobenius norm, infinity-norm, or the largest absolute value of any element of general band matrix.
             /// </summary>
@@ -82,7 +83,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="a">The general band matrix stored in general band matrix storage, i.e. column-by-column, where each column contains exactly <paramref name="kl" /> + <paramref name="ku" /> + 1 elements.</param>
             /// <param name="work">A workspace array which is referenced in the case of infinity norm only. In this case the length must be at least <paramref name="n" />.</param>
             /// <returns>The value of the specific matrix norm.</returns>
-            double dlangb(MatrixNormType matrixNormType, int n, int kl, int ku, double[] a, double[] work);
+            double dlangb(MatrixNormType matrixNormType, int n, int kl, int ku, ReadOnlySpan<double> a, Span<double> work);
 
             /// <summary>Returns the value of the 1-norm, Frobenius norm, infinity-norm, or the largest absolute value of any element of general band matrix.
             /// </summary>
@@ -93,7 +94,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="a">The general band matrix stored in general band matrix storage, i.e. column-by-column, where each column contains exactly <paramref name="kl" /> + <paramref name="ku" /> + 1 elements.</param>
             /// <param name="work">A workspace array which is referenced in the case of infinity norm only. In this case the length must be at least <paramref name="n" />.</param>
             /// <returns>The value of the specific matrix norm.</returns>
-            double zlangb(MatrixNormType matrixNormType, int n, int kl, int ku, Complex[] a, Complex[] work);
+            double zlangb(MatrixNormType matrixNormType, int n, int kl, int ku, ReadOnlySpan<Complex> a, Span<Complex> work);
         }
     }
 }

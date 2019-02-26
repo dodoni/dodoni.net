@@ -24,13 +24,7 @@ SOFTWARE.
 Please see http://www.dodoni-project.net/ for more information concerning the Dodoni.net project. 
 */
 using System;
-using System.Text;
 using System.Numerics;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-
-using Dodoni.MathLibrary.Basics;
-using Dodoni.MathLibrary.Basics.LowLevel;
 
 namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
 {
@@ -39,38 +33,14 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
     /// <remarks>Some of the methods are straightforward ports of the Fortran implementation (http://www.netlib.org/blas). It is recommended to use wrapper of a native code implementation.</remarks>
     internal partial class BuildInLevel1BLAS
     {
-        /// <summary>Finds the index of the element with smallest absolute value, i.e. |Re(x(i))| + |Im(x(i))|.
+        /// <summary>Finds the index of the element with smallest absolute value, i.e. |Re(x(j + <paramref name="incX" />))| + |Im(x( j + <paramref name="incX" />))| with specified j.
         /// </summary>
-        /// <param name="n">The number of elements in vector <paramref name="x"/>.</param>
-        /// <param name="x">The vector with at least <paramref name="n"/> elements.</param>
-        /// <returns>The position of vector element <paramref name="x"/> that has the smallest absolute value.
-        /// </returns>
+        /// <param name="n">The number of elements in vector <paramref name="x" />.</param>
+        /// <param name="x">The vector with at least 1 + (<paramref name="n" /> -1 ) * <paramref name="incX" /> elements.</param>
+        /// <param name="incX">The increment for <paramref name="x" />.</param>
+        /// <returns>The position of vector element <paramref name="x" /> that has the smallest absolute value.</returns>
         /// <remarks>This method is not part of the BLAS standard.</remarks>
-        public int izamin(int n, Complex[] x)
-        {
-            int index = 0;
-            double compareValue = Complex.Abs(x[0]);
-
-            for (int j = 1; j < n; j++)
-            {
-                if (Complex.Abs(x[j]) < compareValue)
-                {
-                    compareValue = Complex.Abs(x[j]);
-                    index = j;
-                }
-            }
-            return index;
-        }
-
-        /// <summary>Finds the index of the element with smallest absolute value, i.e. |Re(x(i))| + |Im(x(i))|.
-        /// </summary>
-        /// <param name="n">The number of elements in vector <paramref name="x"/>.</param>
-        /// <param name="x">The vector with at least <paramref name="n"/> elements.</param>
-        /// <param name="incX">The increment for <paramref name="x"/>.</param>
-        /// <returns>The position of vector element <paramref name="x"/> that has the smallest absolute value.
-        /// </returns>
-        /// <remarks>This method is not part of the BLAS standard.</remarks>
-        public int izamin(int n, Complex[] x, int incX)
+        public int izamin(int n, ReadOnlySpan<Complex> x, int incX = 1)
         {
             int index = 0;
             double compareValue = Complex.Abs(x[0]);

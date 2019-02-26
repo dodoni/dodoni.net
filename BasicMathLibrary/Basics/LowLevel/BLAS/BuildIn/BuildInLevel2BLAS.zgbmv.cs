@@ -24,12 +24,7 @@ SOFTWARE.
 Please see http://www.dodoni-project.net/ for more information concerning the Dodoni.net project. 
 */
 using System;
-using System.Text;
 using System.Numerics;
-using System.Collections.Generic;
-
-using Dodoni.MathLibrary.Basics;
-using Dodoni.MathLibrary.Basics.LowLevel;
 
 namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
 {
@@ -65,8 +60,8 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="lda">The leading dimension, must be at least <paramref name="kl" /> + <paramref name="ku" /> +1.</param>
         /// <param name="transpose">A value indicating whether 'op(A)=A' or 'op(A)=A^t'.</param>
         /// <param name="incX">The increment for the elements of <paramref name="x" />.</param>
-        /// <param name="incY">The increment for the elements of <paramref name="y" />.</param>        
-        public void zgbmv(int m, int n, int kl, int ku, Complex alpha, Complex[] a, Complex[] x, Complex beta, Complex[] y, int lda, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose, int incX = 1, int incY = 1)
+        /// <param name="incY">The increment for the elements of <paramref name="y" />.</param>
+        public void zgbmv(int m, int n, int kl, int ku, Complex alpha, ReadOnlySpan<Complex> a, ReadOnlySpan<Complex> x, Complex beta, Span<Complex> y, int lda, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose, int incX = 1, int incY = 1)
         {
             if (m == 0 || n == 0 || alpha.Real == 0.0 && alpha.Imaginary == 0.0 && (beta.Real == 1.0 && beta.Imaginary == 0.0))
             {

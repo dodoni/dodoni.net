@@ -24,13 +24,7 @@ SOFTWARE.
 Please see http://www.dodoni-project.net/ for more information concerning the Dodoni.net project. 
 */
 using System;
-using System.Text;
 using System.Numerics;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-
-using Dodoni.MathLibrary.Basics;
-using Dodoni.MathLibrary.Basics.LowLevel;
 
 namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
 {
@@ -41,13 +35,13 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
     {
         /// <summary>Computes a dot product of a conjugated vector with another vector, i.e. \sum conjugate(x) * y.
         /// </summary>
-        /// <param name="n">The number of elements of <paramref name="x"/> and <paramref name="y"/>.</param>
-        /// <param name="x">The vector 'x' with at least <paramref name="n"/> elements.</param>
-        /// <param name="y">The vector 'y' with at least <paramref name="n"/> elements.</param>
-        /// <param name="incX">The increment for <paramref name="x"/>.</param>
-        /// <param name="incY">The increment for <paramref name="y"/>.</param>
-        /// <returns>The dot product of <paramref name="x"/> and <paramref name="y"/>, i.e. \sum conjugate(x) * y.</returns>
-        public Complex zdotc(int n, Complex[] x, Complex[] y, int incX = 1, int incY = 1)
+        /// <param name="n">The number of elements of <paramref name="x" /> and <paramref name="y" />.</param>
+        /// <param name="x">The vector 'x' with at least <paramref name="n" /> elements.</param>
+        /// <param name="y">The vector 'y' with at least <paramref name="n" /> elements.</param>
+        /// <param name="incX">The increment for <paramref name="x" />.</param>
+        /// <param name="incY">The increment for <paramref name="y" />.</param>
+        /// <returns>The dot product of <paramref name="x" /> and <paramref name="y" />, i.e. \sum conjugate(x) * y.</returns>
+        public Complex zdotc(int n, ReadOnlySpan<Complex> x, ReadOnlySpan<Complex> y, int incX = 1, int incY = 1)
         {
             if (n <= 0)
             {

@@ -24,12 +24,6 @@ SOFTWARE.
 Please see http://www.dodoni-project.net/ for more information concerning the Dodoni.net project. 
 */
 using System;
-using System.Text;
-using System.Numerics;
-using System.Collections.Generic;
-
-using Dodoni.MathLibrary.Basics;
-using Dodoni.MathLibrary.Basics.LowLevel;
 
 namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
 {
@@ -47,11 +41,11 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="x">The vector x with at least 1 + (<paramref name="n" />-1) * |<paramref name="incX" />| elements if 'op(A)=A'; 1 + (<paramref name="m" />-1) * |<paramref name="incY" />| elements otherwise.</param>
         /// <param name="beta">The scalar \beta.</param>
         /// <param name="y">The vector y with at least 1 + (<paramref name="m" />-1) * |<paramref name="incY" />| elements if 'op(A)=A'; 1 + (<paramref name="n" />-1) * | <paramref name="incX" />| otherwise (input/output).</param>
-        /// <param name="lda">The leading dimension of <paramref name="a"/>, must be at least max(1,<paramref name="m"/>).</param>
+        /// <param name="lda">The leading dimension of <paramref name="a" />, must be at least max(1,<paramref name="m" />).</param>
         /// <param name="transpose">A value indicating whether 'op(A)=A' or 'op(A)=A^t'.</param>
         /// <param name="incX">The increment for the elements of <paramref name="x" />.</param>
         /// <param name="incY">The increment for the elements of <paramref name="y" />.</param>
-        public void dgemv(int m, int n, double alpha, double[] a, double[] x, double beta, double[] y, int lda, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose, int incX = 1, int incY = 1)
+        public void dgemv(int m, int n, double alpha, ReadOnlySpan<double> a, ReadOnlySpan<double> x, double beta, Span<double> y, int lda, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose, int incX = 1, int incY = 1)
         {
             if (m == 0 || n == 0 || alpha == 0.0 && beta == 1.0)
             {

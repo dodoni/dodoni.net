@@ -24,13 +24,7 @@ SOFTWARE.
 Please see http://www.dodoni-project.net/ for more information concerning the Dodoni.net project. 
 */
 using System;
-using System.Text;
 using System.Numerics;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-
-using Dodoni.MathLibrary.Basics;
-using Dodoni.MathLibrary.Basics.LowLevel;
 
 namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
 {
@@ -40,7 +34,8 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
     internal partial class BuildInLevel1BLAS
     {
         /// <summary>Computes the parameters for a Givens rotation; given the Cartesian coordinates (a, b) of a point p, these routines
-        /// return the parameters a, b, c, and s associated with the Givens rotation that zeros the y-coordinate of the point.
+        /// return the parameters a, b, c, and s associated with the Givens rotation that zeros the y-coordinate of the point, i.e.
+        /// <para>(c s \\ -\conjugate(s) c) * (a \\ b) = (r \\ 0).</para>
         /// </summary>
         /// <param name="a">Provides the x-coordinate of the point p; contains the parameter r associated with the Givens rotation after function evaluation.</param>
         /// <param name="b">Provides the y-coordinate of the point p; contains the parameter z associated with the Givens rotation after function evaluation.</param>

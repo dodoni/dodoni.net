@@ -24,12 +24,6 @@ SOFTWARE.
 Please see http://www.dodoni-project.net/ for more information concerning the Dodoni.net project. 
 */
 using System;
-using System.Text;
-using System.Numerics;
-using System.Collections.Generic;
-
-using Dodoni.MathLibrary.Basics;
-using Dodoni.MathLibrary.Basics.LowLevel;
 
 namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
 {
@@ -43,16 +37,16 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="n">The order of matrix C.</param>
         /// <param name="k">The The number of columns of matrices A and B or the number .</param>
         /// <param name="alpha">The scalar \alpha.</param>
-        /// <param name="a">The matrix A supplied column-by-column of dimension (<paramref name="lda"/>, ka), where ka is <paramref name="k"/> if to calculate C := alpha*A*B^t + alpha*B*A^t + beta*C; otherwise <paramref name="n"/>.</param>
-        /// <param name="b">The matrix B supplied column-by-column of dimension (<paramref name="ldb"/>, kb), where ka is at least max(1,<paramref name="n"/>) if to calculate C := alpha*A*B^t + alpha*B*A^t + beta*C; otherwise at least max(1,<paramref name="k"/>).</param>
+        /// <param name="a">The matrix A supplied column-by-column of dimension (<paramref name="lda" />, ka), where ka is <paramref name="k" /> if to calculate C := alpha*A*B^t + alpha*B*A^t + beta*C; otherwise <paramref name="n" />.</param>
+        /// <param name="b">The matrix B supplied column-by-column of dimension (<paramref name="ldb" />, kb), where ka is at least max(1,<paramref name="n" />) if to calculate C := alpha*A*B^t + alpha*B*A^t + beta*C; otherwise at least max(1,<paramref name="k" />).</param>
         /// <param name="beta">The scalar \beta.</param>
-        /// <param name="c">The symmetric matrix C supplied column-by-column of dimension (<paramref name="ldc"/>, <paramref name="n"/>).</param>
-        /// <param name="lda">The leading dimension of <paramref name="a"/>, must be at least max(1,<paramref name="n"/>) if to calculate C:= alpha*A*B^t+alpha*B*A^t+beta*C; max(1,<paramref name="k"/>) otherwise.</param>
-        /// <param name="ldb">The leading dimension of <paramref name="b"/>, must be at least max(1,<paramref name="n"/>) if to calculate C:= alpha*A*B^t+alpha*B*A^t+beta*C; max(1,<paramref name="k"/>) otherwise.</param>
-        /// <param name="ldc">The leading dimension of <paramref name="c"/>, must be at least max(1,<paramref name="n"/>).</param>
+        /// <param name="c">The symmetric matrix C supplied column-by-column of dimension (<paramref name="ldc" />, <paramref name="n" />).</param>
+        /// <param name="lda">The leading dimension of <paramref name="a" />, must be at least max(1,<paramref name="n" />) if to calculate C:= alpha*A*B^t+alpha*B*A^t+beta*C; max(1,<paramref name="k" />) otherwise.</param>
+        /// <param name="ldb">The leading dimension of <paramref name="b" />, must be at least max(1,<paramref name="n" />) if to calculate C:= alpha*A*B^t+alpha*B*A^t+beta*C; max(1,<paramref name="k" />) otherwise.</param>
+        /// <param name="ldc">The leading dimension of <paramref name="c" />, must be at least max(1,<paramref name="n" />).</param>
         /// <param name="triangularMatrixType">A value whether matrix C is in its upper or lower triangular representation.</param>
         /// <param name="operation">A value indicating whether to calculate C := alpha*A*B^t + alpha*B*A^t + beta*C or C := alpha*A^t*B + alpha*B^t*A + beta*C.</param>
-        public void dsyr2k(int n, int k, double alpha, double[] a, double[] b, double beta, double[] c, int lda, int ldb, int ldc, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, BLAS.Xsyr2kOperation operation = BLAS.Xsyr2kOperation.ATimesBTransPlusBTimesATrans)
+        public void dsyr2k(int n, int k, double alpha, ReadOnlySpan<double> a, ReadOnlySpan<double> b, double beta, Span<double> c, int lda, int ldb, int ldc, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, BLAS.Xsyr2kOperation operation = BLAS.Xsyr2kOperation.ATimesBTransPlusBTimesATrans)
         {
             if (n == 0 || ((alpha == 0.0 || k == 0) && (beta == 1.0)))
             {

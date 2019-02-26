@@ -36,32 +36,32 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
     /// <seealso cref="Dodoni.MathLibrary.Basics.LowLevel.LapackAuxiliaryUtilityRoutines.IMatrix" />
     internal class BuildInDummyLapackAuxiliaryUtilityRoutines : LapackAuxiliaryUtilityRoutines.IMatrix
     {
-        public double dlangb(MatrixNormType matrixNormType, int n, int kl, int ku, double[] a, double[] work)
+        public double dlangb(MatrixNormType matrixNormType, int n, int kl, int ku, ReadOnlySpan<double> a, Span<double> work)
         {
             throw new NotImplementedException();
         }
 
-        public double dlange(MatrixNormType matrixNormType, int m, int n, double[] a, double[] work)
+        public double dlange(MatrixNormType matrixNormType, int m, int n, ReadOnlySpan<double> a, Span<double> work)
         {
             throw new NotImplementedException();
         }
 
-        public double dlansp(MatrixNormType matrixNormType, int n, double[] ap, double[] work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public double dlansp(MatrixNormType matrixNormType, int n, ReadOnlySpan<double> ap, Span<double> work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
 
-        public double zlangb(MatrixNormType matrixNormType, int n, int kl, int ku, Complex[] a, Complex[] work)
+        public double zlangb(MatrixNormType matrixNormType, int n, int kl, int ku, ReadOnlySpan<Complex> a, Span<Complex> work)
         {
             throw new NotImplementedException();
         }
 
-        public double zlange(MatrixNormType matrixNormType, int m, int n, Complex[] a, Complex[] work)
+        public double zlange(MatrixNormType matrixNormType, int m, int n, ReadOnlySpan<Complex> a, Span<Complex> work)
         {
             throw new NotImplementedException();
         }
 
-        public double zlansp(MatrixNormType matrixNormType, int n, Complex[] ap, Complex[] work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
+        public double zlansp(MatrixNormType matrixNormType, int n, ReadOnlySpan<Complex> ap, Span<Complex> work, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix)
         {
             throw new NotImplementedException();
         }
