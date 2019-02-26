@@ -25,11 +25,12 @@ Please see http://www.dodoni-project.net/ for more information concerning the Do
 */
 using System;
 using System.Globalization;
-using Microsoft.Extensions.Logging;
 
 using Dodoni.BasicComponents;
 using Dodoni.BasicComponents.Logging;
 using Dodoni.MathLibrary.Basics.LowLevel;
+
+using Microsoft.Extensions.Logging;
 
 namespace Dodoni.MathLibrary.Basics
 {

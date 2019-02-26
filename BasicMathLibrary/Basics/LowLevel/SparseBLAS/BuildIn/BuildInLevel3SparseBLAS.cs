@@ -55,7 +55,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// kuC = max { <paramref name="kuA"/> - <paramref name="klB"/>, 0}, i.e. at least (klC + kuC + 1) * <paramref name="n"/> elements (output).</param>
         /// <remarks>The general band matrix storage is given in the same way as in BLAS level 3, i.e. perhaps for the first/last
         /// column the array contains more elements than necessary.</remarks>
-        public void dgbmm(int m, int n, int k, double alpha, int klA, int kuA, double[] a, int klB, int kuB, double[] b, double beta, double[] c)
+        public void dgbmm(int m, int n, int k, double alpha, int klA, int kuA, ReadOnlySpan<double> a, int klB, int kuB, ReadOnlySpan<double> b, double beta, Span<double> c)
         {
             // we do not need 'm' and 'k' here, perhaps for some later implementation it seems to be reasonable to pass these parameters as well
 
@@ -97,7 +97,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// kuC = max { <paramref name="kuA"/> - <paramref name="klB"/>, 0}, i.e. at least (klC + kuC + 1) * <paramref name="n"/> elements (output).</param>
         /// <remarks>The general band matrix storage is given in the same way as in BLAS level 3, i.e. perhaps for the first/last
         /// column the array contains more elements than necessary.</remarks>
-        public void dgbmm(int m, int n, int k, double alpha, int klA, int kuA, double[] a, int klB, int kuB, double[] b, double[] c)
+        public void dgbmm(int m, int n, int k, double alpha, int klA, int kuA, ReadOnlySpan<double> a, int klB, int kuB, ReadOnlySpan<double> b, Span<double> c)
         {
             // we do not need 'm' and 'k' here, perhaps for some later implementation it seems to be reasonable to pass these parameters as well
 

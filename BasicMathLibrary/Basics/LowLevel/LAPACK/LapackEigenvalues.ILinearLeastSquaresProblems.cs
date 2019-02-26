@@ -34,6 +34,8 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         /// </summary>
         public interface ILinearLeastSquaresProblems
         {
+#pragma warning disable IDE1006 // Naming Styles
+
             /// <summary>Gets a optimal workspace array length for the <c>dgels</c> function.
             /// </summary>
             /// <param name="m">The number of rows of the matrix A.</param>
@@ -301,6 +303,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="y">The solution y of the LSE problem; dimension at least <paramref name="p"/>.</param>
             /// <param name="work">A workspace array.</param>
             void driver_zggglm(int n, int m, int p, Span<Complex> a, Span<Complex> b, Span<Complex> d, Span<Complex> x, Span<Complex> y, Span<Complex> work);
+#pragma warning restore IDE1006 // Naming Styles
         }
     }
 }

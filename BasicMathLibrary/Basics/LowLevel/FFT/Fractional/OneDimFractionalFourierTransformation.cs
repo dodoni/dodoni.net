@@ -243,12 +243,13 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.Interdisciplinary
             int n = 2 * m_Length;
 
             /* prepare working array 'y': */
+            
             if (m_WorkingArrays.TryPop(out Complex[] y) == false)
             {
                 y = new Complex[n];
             }
             BLAS.Level1.zcopy(m_Length, m_ForwardPreFactor, y);
-            BLAS.Level1.zscal(m_Length, 0.0, y.AsSpan().Slice(m_Length, m_Length));
+            BLAS.Level1.zscal(m_Length, 0.0,  y.AsSpan().Slice(m_Length, m_Length));
 
             VectorUnit.Basics.Mul(m_Length, y, inputFourierCoefficients, y);
 

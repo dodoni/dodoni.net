@@ -35,6 +35,8 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
     /// Here we restrict ourself to double precision and complex number arguments, the order of the arguments are other than the standard BLAS.</remarks>
     public interface ILevel2BLAS
     {
+#pragma warning disable IDE1006 // Naming Styles
+
         #region double precision methods
 
         /// <summary>Computes a matrix-vector product using a general band matrix, i.e. y := \alpha * op(A) * x + \beta * y, where op(A) = A or op(A) = A^t.
@@ -489,5 +491,6 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         /// <param name="incX">The increment for the elements of <paramref name="x"/>.</param>
         void ztrsv(int n, ReadOnlySpan<Complex> a, Span<Complex> x, int lda, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, bool isUnitTriangular = true, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose, int incX = 1);
         #endregion
+#pragma warning restore IDE1006 // Naming Styles
     }
 }

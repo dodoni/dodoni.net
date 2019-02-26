@@ -46,6 +46,8 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         /// </summary>
         public interface IMatrixConditionalNumbers
         {
+#pragma warning disable IDE1006 // Naming Styles
+
             /// <summary>Estimates the reciprocal of the conditional number of a general matrix in the 1-norm or the infinity-norm.
             /// </summary>
             /// <param name="n">The order of the matrix.</param>
@@ -84,6 +86,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             double dgtcon(int n, Span<double> dl, Span<double> d, Span<double> du, Span<double> du2, int[] iPivot, double normOfOriginalMatrix, Span<double> work, MatrixConditionNormType matrixNormType = MatrixConditionNormType.Infinity);
 
             // todo: add further LAPACK functions on demand
+#pragma warning restore IDE1006 // Naming Styles
         }
     }
 }

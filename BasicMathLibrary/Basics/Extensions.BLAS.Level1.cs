@@ -32,6 +32,8 @@ namespace Dodoni.MathLibrary.Basics
 {
     public static partial class Extensions
     {
+#pragma warning disable IDE1006 // Naming Styles
+
         /// <summary>Computes the square of the Euclidean norm of a specific vector, i.e. ||x||^2.
         /// </summary>
         /// <param name="level1">The BLAS level 1 implementation.</param>
@@ -44,5 +46,6 @@ namespace Dodoni.MathLibrary.Basics
             var norm = level1.dnrm2(n, x, incX);
             return norm * norm;
         }
+#pragma warning restore IDE1006 // Naming Styles
     }
 }

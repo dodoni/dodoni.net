@@ -30,9 +30,10 @@ using Dodoni.MathLibrary.Basics.LowLevel;
 
 namespace Dodoni.MathLibrary.Basics
 {
-#pragma warning disable IDE1006 // Naming Styles
     public static partial class Extensions
     {
+#pragma warning disable IDE1006 // Naming Styles
+
         #region double precision
 
         /// <summary>Computes a matrix-matrix product with a general matrix, i.e. C := \alpha * op(A)*op(B) + \beta * C, where op(.) is the identity or the transpose operation.
@@ -318,6 +319,6 @@ namespace Dodoni.MathLibrary.Basics
             level3.ztrsm(m, n, alpha, a, b, side == BLAS.Side.Left ? m : n, m, isUnitTriangular, side, triangularMatrixType, transpose);
         }
         #endregion
-    }
 #pragma warning restore IDE1006 // Naming Styles
+    }
 }

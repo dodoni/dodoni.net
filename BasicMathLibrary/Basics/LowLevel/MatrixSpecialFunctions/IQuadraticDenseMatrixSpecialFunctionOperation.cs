@@ -23,6 +23,8 @@ SOFTWARE.
  
 Please see http://www.dodoni-project.net/ for more information concerning the Dodoni.net project. 
 */
+using System;
+
 namespace Dodoni.MathLibrary.Basics.LowLevel
 {
     /// <summary>Represents a specific scalar function with respect to a specified <see cref="DenseMatrix"/> object.
@@ -31,7 +33,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
     /// <param name="resultMatrixEntries">Contains on exit the column-by-column provided matrix entries of the result; at least dim(A)^2 elements, where A is the specified dense (quadratic) matrix.</param>
     /// <param name="work">Serves as workspace array for the calculation with a suitable minimum length; if <c>null</c> no workspace array will be used.</param>
     /// <returns>The result of the calculation, where the <see cref="DenseMatrix.Data"/> property is a shallow copy of <paramref name="resultMatrixEntries"/>.</returns>
-    public delegate DenseMatrix DenseMatrixRealScalarFunction(double t, double[] resultMatrixEntries, double[] work = null);
+    public delegate DenseMatrix DenseMatrixRealScalarFunction(double t, Span<double> resultMatrixEntries, double[] work = null);
 
     /// <summary>Serves as interface for calculation of a specific matrix operation with respect to a quadratic dense matrix, for example exp(A), ln(A), sin(A) etc.
     /// </summary>
@@ -66,7 +68,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         /// <param name="work">Serves as workspace array for the calculation with minimum length specified by <see cref="GetWorkspaceLength(int)"/>; if <c>null</c> no workspace array will be used.</param>
         /// <returns>The value of the specified matrix operation in its <see cref="DenseMatrix"/> representation, where the <see cref="DenseMatrix.Data"/> property is a shallow copy of <paramref name="resultMatrixEntries"/>.</returns>
         /// <remarks>This method can be used to avoid memory allocation for the calculation of several matrix operations of the same type.</remarks>
-        DenseMatrix GetValue(DenseMatrix a, double[] resultMatrixEntries, double[] work = null);
+        DenseMatrix GetValue(DenseMatrix a, Span<double> resultMatrixEntries, double[] work = null);
 
         /// <summary>Creates a <see cref="DenseMatrixRealScalarFunction"/> object that encapsulate the specified matrix operation f(t * <paramref name="a"/>) for real parameter t.
         /// </summary>

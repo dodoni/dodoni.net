@@ -32,6 +32,8 @@ namespace Dodoni.MathLibrary.Basics
 {
     public static partial class Extensions
     {
+#pragma warning disable IDE1006 // Naming Styles
+
         #region double precision methods
 
         /// <summary>Computes a matrix-vector product using a general band matrix, i.e. y := \alpha * op(A) * x + \beta * y, where op(A) = A or op(A) = A^t.
@@ -437,10 +439,10 @@ namespace Dodoni.MathLibrary.Basics
         /// <param name="transpose">A value indicating whether 'op(A)=A', 'op(A)=A^t' or 'op(A)=A^h'.</param>
         /// <param name="incX">The increment for the elements of <paramref name="x"/>.</param>
         public static void ztrsv(this ILevel2BLAS level2, int n, ReadOnlySpan<Complex> a, Span<Complex> x, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.UpperTriangularMatrix, bool isUnitTriangular = true, BLAS.MatrixTransposeState transpose = BLAS.MatrixTransposeState.NoTranspose, int incX = 1)
-
         {
             level2.ztrsv(n, a, x, n, triangularMatrixType, isUnitTriangular, transpose, incX);
         }
         #endregion
+#pragma warning restore IDE1006 // Naming Styles
     }
 }

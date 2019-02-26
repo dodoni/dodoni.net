@@ -214,6 +214,8 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         /// </summary>
         public interface INonSymmetricEigenvalueProblems
         {
+#pragma warning disable IDE1006 // Naming Styles
+
             /// <summary>Gets a optimal workspace array length for the <c>dgehrd</c> function.
             /// </summary>
             /// <param name="n">The order of the matrix.</param>
@@ -748,6 +750,8 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array.</param>
             /// <param name="rwork">A workspace array with dimension at least 2 * <paramref name="n"/>.</param>
             void driver_zgeevx(LapackEigenvalues.NonSymmetricMatrixBalancesType balanceType, bool computeLeftEigenvectors, bool computeRightEigenvectors, NonSymmetricXgeevxSense sense, int n, Span<Complex> a, Span<Complex> w, Span<Complex> vl, Span<Complex> vr, out int ilo, out int ihi, Span<double> scale, out double abnrm, Span<double> rconde, Span<double> rcondv, Span<Complex> work, Span<double> rwork);
+
+#pragma warning restore IDE1006 // Naming Styles
         }
     }
 }

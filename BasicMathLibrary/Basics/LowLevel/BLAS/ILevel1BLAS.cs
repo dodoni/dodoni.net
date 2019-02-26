@@ -36,6 +36,8 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
     /// See for example https://medium.com/@antao.almada/p-invoking-using-span-t-a398b86f95d3 for the use of Span{T} with respect to unmanaged libraries.</remarks>
     public interface ILevel1BLAS
     {
+#pragma warning disable IDE1006 // Naming Styles
+
         #region double precision methods
 
         /// <summary>Compute the sum of the magnitudes of elements of some vector, i.e.
@@ -302,5 +304,6 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         /// <remarks>This method is not part of the BLAS standard.</remarks>
         int izamin(int n, ReadOnlySpan<Complex> x, int incX = 1);
         #endregion
+#pragma warning restore IDE1006 // Naming Styles
     }
 }

@@ -34,6 +34,8 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         /// </summary>
         public interface IMatrixFactorization
         {
+#pragma warning disable IDE1006 // Naming Styles
+
             /// <summary>Computes the LU factorization of a general m-by-n matrix, i.e. A = P * L * U, where P is a permutation matrix, L is lower triangular with unit diagonal elements and U is upper triangular.
             /// </summary>
             /// <param name="m">The number of rows of the matrix.</param>
@@ -254,6 +256,8 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="iPivot">Contains details of the interchanges an the block structure of D, at least <paramref name="n"/> elements (output).</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of matrix A is stored and how matrix A is factored.</param>
             void zhptrf(int n, Span<Complex> aPacked, int[] iPivot, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+
+#pragma warning restore IDE1006 // Naming Styles
         }
     }
 }

@@ -196,7 +196,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <remarks>The output are complex numbers with Hermitian symmetry, stored in the CCE format.</remarks>
         public void ForwardTransformation(Span<double> fourierCoefficients, double scalingFactor)
         {
-            double[] tempOutput = new double[2 * (m_Length / 2 + 1)];
+            var tempOutput = new double[2 * (m_Length / 2 + 1)];
 
             ForwardTransformation(fourierCoefficients, tempOutput, scalingFactor);
 

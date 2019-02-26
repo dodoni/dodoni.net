@@ -341,6 +341,8 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         /// </summary>
         public interface ISingularValueDecomposition
         {
+#pragma warning disable IDE1006 // Naming Styles
+
             /// <summary>Gets a optimal workspace array length for the <c>dgebrd</c> function.
             /// </summary>
             /// <param name="m">The number of rows in the matrix.</param>
@@ -713,6 +715,8 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="rwork">A workspace array with dimension at least 2 * <paramref name="n"/>.</param>
             /// <param name="iwork">A workspace array with dimension at least <paramref name="n"/>.</param>
             void driver_zggsvd(LapackEigenvalues.SVDxggsvdJob jobu, LapackEigenvalues.SVDxggsvdJob jobv, LapackEigenvalues.SVDxggsvdJob jobq, int m, int n, int p, out int k, out int l, Span<Complex> a, Span<Complex> b, Span<double> alpha, Span<double> beta, Span<Complex> u, Span<Complex> v, Span<Complex> q, Span<Complex> work, Span<double> rwork, int[] iwork);
+
+#pragma warning restore IDE1006 // Naming Styles
         }
     }
 }

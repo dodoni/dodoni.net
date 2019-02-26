@@ -127,6 +127,8 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         /// </summary>
         public interface ISymmetricEigenvalueProblems
         {
+#pragma warning disable IDE1006 // Naming Styles
+
             /// <summary>Gets a optimal workspace array length for the <c>dsytrd</c> function.
             /// </summary>
             /// <param name="n">The order of the matrix.</param>
@@ -839,6 +841,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="rwork">A workspace array with at least 3 * <paramref name="n"/> - 2 elements.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of the Hermitian input matrix is stored.</param>
             void driver_zhpev(LapackEigenvalues.SymmetricGeneralJob job, int n, Span<Complex> ap, Span<double> w, Span<Complex> z, Span<Complex> work, Span<double> rwork, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+#pragma warning restore IDE1006 // Naming Styles
         }
     }
 }

@@ -181,8 +181,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="scalingFactor">The scaling factor with respect to the input domain.</param>
         public void ForwardTransformation(Span<Complex> fourierCoefficients, double scalingFactor)
         {
-            Complex[] tempOutput = new Complex[m_Length];
-
+            var tempOutput = new Complex[m_Length];
             ForwardTransformation(fourierCoefficients, tempOutput, scalingFactor);
 
             for (int j = 0; j < m_Length; j++)
@@ -234,8 +233,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel.BuildIn
         /// <param name="scalingFactor">The scaling factor with respect to the input domain.</param>
         public void BackwardTransformation(Span<Complex> fourierCoefficients, double scalingFactor)
         {
-            Complex[] tempOutput = new Complex[m_Length];
-
+            var tempOutput = new Complex[m_Length];
             BackwardTransformation(fourierCoefficients, tempOutput, scalingFactor);
 
             for (int j = 0; j < m_Length; j++)

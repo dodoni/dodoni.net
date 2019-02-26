@@ -35,6 +35,8 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         /// <remarks>Before calling most of these routines, you need to factorize the matrix of your system of equations. However, the factorization is not necessary if your system of equations has a triangular matrix.</remarks>
         public interface ISolver
         {
+#pragma warning disable IDE1006 // Naming Styles
+
             /// <summary>Solves a system of linear equations with a LU-factored square matrix, with multiple right-hand sides, i.e. op(A) * X = B.
             /// </summary>
             /// <param name="n">The order of matrix A, i.e. the number of rows in B.</param>
@@ -584,6 +586,8 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="nrhs">The number of right-hand sides.</param>
             /// <param name="triangularMatrixType">A value indicating whether the upper or lower triangular part of matrix A is stored and how matrix A is factored.</param>        
             void driver_zhpsv(int n, Span<Complex> ap, int[] ipiv, Span<Complex> b, int nrhs = 1, BLAS.TriangularMatrixType triangularMatrixType = BLAS.TriangularMatrixType.LowerTriangularMatrix);
+
+#pragma warning restore IDE1006 // Naming Styles
         }
     }
 }

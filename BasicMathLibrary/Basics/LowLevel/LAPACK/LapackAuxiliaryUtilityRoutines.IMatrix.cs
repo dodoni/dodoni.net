@@ -34,6 +34,8 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         /// </summary>
         public interface IMatrix
         {
+#pragma warning disable IDE1006 // Naming Styles
+
             /// <summary>Returns the value of the 1-norm, Frobenius norm, infinity-norm, or the largest absolute value of any element of general rectangular matrix.
             /// </summary>
             /// <param name="matrixNormType">The type of the matrix norm.</param>
@@ -95,6 +97,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             /// <param name="work">A workspace array which is referenced in the case of infinity norm only. In this case the length must be at least <paramref name="n" />.</param>
             /// <returns>The value of the specific matrix norm.</returns>
             double zlangb(MatrixNormType matrixNormType, int n, int kl, int ku, ReadOnlySpan<Complex> a, Span<Complex> work);
+#pragma warning restore IDE1006 // Naming Styles
         }
     }
 }

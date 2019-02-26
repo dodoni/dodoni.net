@@ -34,6 +34,8 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
     /// restrict to double precision and complex numbers.</remarks>
     public interface ILevel3BLAS
     {
+#pragma warning disable IDE1006 // Naming Styles
+
         #region double precision methods
 
         /// <summary>Computes a matrix-matrix product with a general matrix, i.e. C := \alpha * op(A)*op(B) + \beta * C, where op(.) is the identity or the transpose operation.
@@ -333,5 +335,6 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         /// <param name="work">A workspace array.</param>
         void aux_zgetrans(int rowCount, int columnCount, Span<Complex> a, Span<Complex> work);
         #endregion
+#pragma warning restore IDE1006 // Naming Styles
     }
 }

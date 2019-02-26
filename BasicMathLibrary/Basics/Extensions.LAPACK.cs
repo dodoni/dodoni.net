@@ -31,6 +31,8 @@ namespace Dodoni.MathLibrary.Basics
 {
     public static partial class Extensions
     {
+#pragma warning disable IDE1006 // Naming Styles
+
         /// <summary>Computes all eigenvalues and, optionally, eigenvectors of a real symmetric matrix using the Relatively Robust Representations.
         /// </summary>
         /// <param name="symmetricEigenvalueProblems">The <see cref="LapackEigenvalues.ISymmetricEigenvalueProblems"/> object.</param>
@@ -114,5 +116,6 @@ namespace Dodoni.MathLibrary.Basics
             //singularValueDecomposition.dgbbrd(vect, m, n, ncc, kl, ku, a, ldab, s, e, u, m, vt, n, null, ldc, work);
             //singularValueDecomposition.dbdsqr(LAPACK.BidiagonalMatrixType.UpperBidiagonalMatrix, n, ncvt, nru, ncc, s, e, vt, n, u, m, null, ldc, work);
         }
+#pragma warning restore IDE1006 // Naming Styles
     }
 }
