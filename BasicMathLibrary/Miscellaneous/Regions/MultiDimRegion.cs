@@ -27,7 +27,7 @@ namespace Dodoni.MathLibrary.Miscellaneous
 {
     /// <summary>Serves as factory for multi-dimensional regions.
     /// </summary>
-    public  partial class MultiDimRegion
+    public partial class MultiDimRegion
     {
     }
 }

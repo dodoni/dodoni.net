@@ -72,7 +72,7 @@ namespace Dodoni.MathLibrary
                         double[] aData = a.Data;
                         for (int i = 0; i < m_RowCount; i++)
                         {
-                            BLAS.Level1.daxpy(m_ColumnCount, alpha, aData, m_Data, 1, m_RowCount, i * a.m_RowCount, i);
+                            BLAS.Level1.daxpy(m_ColumnCount, alpha, aData.AsSpan().Slice(i * a.m_RowCount), m_Data.AsSpan().Slice(i), 1, m_RowCount);
                         }
                         break;
                     default: throw new InvalidOperationException();
@@ -89,7 +89,7 @@ namespace Dodoni.MathLibrary
                     case BLAS.MatrixTransposeState.NoTranspose:
                         for (int i = 0; i < m_RowCount; i++)
                         {
-                            BLAS.Level1.daxpy(m_ColumnCount, alpha, a.m_Data, m_Data, a.m_RowCount, 1, i, i * m_RowCount); //    m_Data[j + i * m_RowCount] += alpha * a.m_Data[i + j * a.m_RowCount] for j \in [0, m_ColumnCount), 
+                            BLAS.Level1.daxpy(m_ColumnCount, alpha, a.m_Data.AsSpan().Slice(i), m_Data.AsSpan().Slice(i * m_RowCount), a.m_RowCount, 1); //    m_Data[j + i * m_RowCount] += alpha * a.m_Data[i + j * a.m_RowCount] for j \in [0, m_ColumnCount), 
                         }
                         break;
                     default: throw new InvalidOperationException();
@@ -263,13 +263,13 @@ namespace Dodoni.MathLibrary
                 case BLAS.MatrixTransposeState.NoTranspose:  // c_{i,j} = d_{i,i} * c_{i,j}:                    
                     for (int i = 0; i < m_RowCount; i++)
                     {
-                        BLAS.Level1.dscal(m_ColumnCount, diagonalMatrix[i], m_Data, m_RowCount, i);
+                        BLAS.Level1.dscal(m_ColumnCount, diagonalMatrix[i], m_Data.AsSpan().Slice(i), m_RowCount);
                     }
                     break;
                 case BLAS.MatrixTransposeState.Transpose:  // c_{j,i} = d_{i,i} * c_{j,i}:
                     for (int i = 0; i < m_ColumnCount; i++)
                     {
-                        BLAS.Level1.dscal(m_RowCount, diagonalMatrix[i], m_Data, 1, m_RowCount * i);
+                        BLAS.Level1.dscal(m_RowCount, diagonalMatrix[i], m_Data.AsSpan().Slice(m_RowCount * i), 1);
                     }
                     break;
 
@@ -289,14 +289,14 @@ namespace Dodoni.MathLibrary
                 case BLAS.MatrixTransposeState.NoTranspose: // c_{i,j} = c_{i,j} * d_j
                     for (int j = 0; j < m_ColumnCount; j++)
                     {
-                        BLAS.Level1.dscal(m_RowCount, diagonalMatrix[j], m_Data, 1, m_RowCount * j);
+                        BLAS.Level1.dscal(m_RowCount, diagonalMatrix[j], m_Data.AsSpan().Slice(m_RowCount * j), 1);
                     }
                     break;
 
                 case BLAS.MatrixTransposeState.Transpose: // c_{j,i} = c_{j,i} * d_j
                     for (int j = 0; j < m_RowCount; j++)
                     {
-                        BLAS.Level1.dscal(m_ColumnCount, diagonalMatrix[j], m_Data, m_RowCount, j);
+                        BLAS.Level1.dscal(m_ColumnCount, diagonalMatrix[j], m_Data.AsSpan().Slice(j), m_RowCount);
                     }
                     break;
 
@@ -401,13 +401,13 @@ namespace Dodoni.MathLibrary
                 case BLAS.MatrixTransposeState.NoTranspose:
                     for (int i = 0; i < n; i++)
                     {
-                        value += x[i] * BLAS.Level1.ddot(n, x, quadraticDenseMatrix.Data, 1, n, 0, i);
+                        value += x[i] * BLAS.Level1.ddot(n, x, quadraticDenseMatrix.Data.AsSpan().Slice(i), 1, n);
                     }
                     break;
                 case BLAS.MatrixTransposeState.Transpose:
                     for (int i = 0; i < n; i++)
                     {
-                        value += x[i] * BLAS.Level1.ddot(n, x, quadraticDenseMatrix.Data, 1, 1, 0, i * n);
+                        value += x[i] * BLAS.Level1.ddot(n, x, quadraticDenseMatrix.Data.AsSpan().Slice(i * n));
                     }
                     break;
                 default:
@@ -448,7 +448,7 @@ namespace Dodoni.MathLibrary
                         BLAS.Level1.dcopy(n, a.Data, y);
                         for (int i = 0; i < rowCount; i++)
                         {
-                            BLAS.Level1.daxpy(columnCount, scalar, b.Data, y, 1, rowCount, i * b.m_RowCount, i);
+                            BLAS.Level1.daxpy(columnCount, scalar, b.Data.AsSpan().Slice(i * b.m_RowCount), y.AsSpan().Slice(i), 1, rowCount);
                         }
                         break;
 
@@ -464,7 +464,7 @@ namespace Dodoni.MathLibrary
                         BLAS.Level1.dcopy(n, a.Data, y);
                         for (int i = 0; i < rowCount; i++)
                         {
-                            BLAS.Level1.daxpy(columnCount, scalar, b.Data, y, 1, rowCount, i * b.m_RowCount, i);
+                            BLAS.Level1.daxpy(columnCount, scalar, b.Data.AsSpan().Slice(i * b.m_RowCount), y.AsSpan().Slice(i), 1, rowCount);
                         }
                         break;
 

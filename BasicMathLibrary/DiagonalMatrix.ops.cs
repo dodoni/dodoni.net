@@ -52,7 +52,7 @@ namespace Dodoni.MathLibrary
 
                     for (int i = 0; i < rowCount; i++)
                     {
-                        BLAS.Level1.dscal(columnCount, diagonalMatrix[i, i], data, rowCount, i);  // c[i + RowCount * j] *= diagonal[i,i]
+                        BLAS.Level1.dscal(columnCount, diagonalMatrix[i, i], data.AsSpan().Slice(i), rowCount);  // c[i + RowCount * j] *= diagonal[i,i]
                     }
                     break;
 
@@ -93,7 +93,7 @@ namespace Dodoni.MathLibrary
 
                     for (int j = 0; j < columnCount; j++)
                     {
-                        BLAS.Level1.dscal(rowCount, diagonalMatrix[j, j], data, 1, rowCount * j);  // c[i + RowCount * j] *= diagonal[j,j]
+                        BLAS.Level1.dscal(rowCount, diagonalMatrix[j, j], data.AsSpan().Slice(rowCount * j), 1);  // c[i + RowCount * j] *= diagonal[j,j]
                     }
                     break;
 

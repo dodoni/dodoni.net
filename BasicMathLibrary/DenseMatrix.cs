@@ -343,7 +343,7 @@ namespace Dodoni.MathLibrary
                     /* create a deep copy of the current object and reorder the matrix entries with respect to the transposed representation */
                     for (int i = 0; i < m_ColumnCount; i++)
                     {
-                        BLAS.Level1.dcopy(m_RowCount, m_Data, dataOfNewDenseMatrix, 1, m_ColumnCount, m_RowCount * i, i);  // new[i + m_ColumnCount * j] = old[j + m_RowCount * i] for j = 0,..,m_RowCount-1
+                        BLAS.Level1.dcopy(m_RowCount, m_Data.AsSpan().Slice(m_RowCount * i), dataOfNewDenseMatrix.AsSpan().Slice(i), 1, m_ColumnCount);  // new[i + m_ColumnCount * j] = old[j + m_RowCount * i] for j = 0,..,m_RowCount-1
                     }
                     break;
                 default:
@@ -371,11 +371,11 @@ namespace Dodoni.MathLibrary
             switch (m_TransposeState)
             {
                 case BLAS.MatrixTransposeState.NoTranspose:
-                    BLAS.Level1.dcopy(rowCount, m_Data, column, 1, 1, m_RowCount * columnIndex, 0); // column[j] = m_Data[j + m_RowCount(!) * columnIndex] for j=0,..,rowCount-1
+                    BLAS.Level1.dcopy(rowCount, m_Data.AsSpan().Slice(m_RowCount * columnIndex), column); // column[j] = m_Data[j + m_RowCount(!) * columnIndex] for j=0,..,rowCount-1
                     break;
 
                 case BLAS.MatrixTransposeState.Transpose:
-                    BLAS.Level1.dcopy(rowCount, m_Data, column, m_RowCount, 1, columnIndex, 0); // column[j] = m_Data[columnIndex + m_RowCount * j] for j=0,..,rowCount-1
+                    BLAS.Level1.dcopy(rowCount, m_Data.AsSpan().Slice(columnIndex), column, m_RowCount, 1); // column[j] = m_Data[columnIndex + m_RowCount * j] for j=0,..,rowCount-1
                     break;
 
                 default:
@@ -403,11 +403,11 @@ namespace Dodoni.MathLibrary
             switch (m_TransposeState)
             {
                 case BLAS.MatrixTransposeState.NoTranspose:
-                    BLAS.Level1.dcopy(columnCount, m_Data, row, m_RowCount, 1, rowIndex, 0);  // row[j] = m_Data[rowIndex + m_RowCount * j] for j =0,...,columnCount-1
+                    BLAS.Level1.dcopy(columnCount, m_Data.AsSpan().Slice(rowIndex), row, m_RowCount, 1);  // row[j] = m_Data[rowIndex + m_RowCount * j] for j =0,...,columnCount-1
                     break;
 
                 case BLAS.MatrixTransposeState.Transpose:
-                    BLAS.Level1.dcopy(columnCount, m_Data, row, 1, 1, m_RowCount * rowIndex, 0); // row[j] = m_Data[j + m_RowCount * rowIndex] for j =0,...,columnCount-1
+                    BLAS.Level1.dcopy(columnCount, m_Data.AsSpan().Slice(m_RowCount * rowIndex), row); // row[j] = m_Data[j + m_RowCount * rowIndex] for j =0,...,columnCount-1
                     break;
 
                 default:
@@ -447,7 +447,7 @@ namespace Dodoni.MathLibrary
                 int sourceArrayOffset = startRowIndex + startColumnIndex * m_RowCount;
                 for (int i = 0; i < subRowCount; i++)
                 {
-                    BLAS.Level1.dcopy(subColumnCount, m_Data, subMatrix, m_RowCount, subRowCount, i + sourceArrayOffset, i);
+                    BLAS.Level1.dcopy(subColumnCount, m_Data.AsSpan().Slice(i + sourceArrayOffset), subMatrix.AsSpan().Slice(i), m_RowCount, subRowCount);
                 }
             }
             else
@@ -456,7 +456,7 @@ namespace Dodoni.MathLibrary
                 int sourceArrayOffset = startColumnIndex + startRowIndex * m_RowCount;
                 for (int j = 0; j < subColumnCount; j++)
                 {
-                    BLAS.Level1.dcopy(subColumnCount, m_Data, subMatrix, m_RowCount, 1, j + sourceArrayOffset, j * subRowCount);
+                    BLAS.Level1.dcopy(subColumnCount, m_Data.AsSpan().Slice(j + sourceArrayOffset), subMatrix.AsSpan().Slice(j * subRowCount), m_RowCount, 1);
                 }
             }
             return new DenseMatrix(subRowCount, subColumnCount, subMatrix);

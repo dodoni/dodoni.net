@@ -23,6 +23,8 @@ SOFTWARE.
  
 Please see http://www.dodoni-project.net/ for more information concerning the Dodoni.net project. 
 */
+using System;
+
 namespace Dodoni.MathLibrary.Miscellaneous
 {
     /// <summary>Serves as interface for a multi-dimensional (closed) region; for example the domain of a specific objective function with respect to a specific optimization algorithm etc.

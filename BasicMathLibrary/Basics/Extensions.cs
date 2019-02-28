@@ -128,7 +128,7 @@ namespace Dodoni.MathLibrary.Basics
         {
             if (source is double[])  // try to improve performance
             {
-                BLAS.Level1.dcopy(count, source as double[], destination as double[], sourceIncrement, destinationIncrement, sourceStartIndex, destinationStartIndex);
+                BLAS.Level1.dcopy(count, (source as double[]).AsSpan().Slice(sourceStartIndex), (destination as double[]).AsSpan().Slice(destinationStartIndex), sourceIncrement, destinationIncrement);
             }
             else if (source is IList<T> sourceAsList)
             {

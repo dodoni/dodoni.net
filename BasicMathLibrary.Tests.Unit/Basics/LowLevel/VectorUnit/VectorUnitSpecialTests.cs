@@ -113,10 +113,10 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         public void CdfNorm_ExtendedDoubleTestCaseData_BenchmarkResult(int n, int startIndexA, int startIndexY, params double[] a)
         {
             var actual = new double[startIndexY + n];
-            m_MathVectorOperations.CdfNorm(n, a, actual, startIndexA, startIndexY);
+            m_MathVectorOperations.CdfNorm(n, a.AsSpan().Slice(startIndexA), actual.AsSpan().Slice(startIndexY));
 
             var expected = new double[startIndexY + n];
-            m_Benchmark.CdfNorm(n, a, expected, startIndexA, startIndexY);
+            m_Benchmark.CdfNorm(n, a.AsSpan().Slice(startIndexA), expected.AsSpan().Slice(startIndexY));
 
             Assert.That(actual, Is.EqualTo(expected).AsCollection.Within(1E-8));
         }
@@ -167,10 +167,10 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         public void CdfNormInv_ExtendedDoubleTestCaseData_BenchmarkResult(int n, int startIndexA, int startIndexY, params double[] a)
         {
             var actual = new double[startIndexY + n];
-            m_MathVectorOperations.CdfNormInv(n, a, actual, startIndexA, startIndexY);
+            m_MathVectorOperations.CdfNormInv(n, a.AsSpan().Slice(startIndexA), actual.AsSpan().Slice(startIndexY));
 
             var expected = new double[startIndexY + n];
-            m_Benchmark.CdfNormInv(n, a, expected, startIndexA, startIndexY);
+            m_Benchmark.CdfNormInv(n, a.AsSpan().Slice(startIndexA), expected.AsSpan().Slice(startIndexY));
 
             Assert.That(actual, Is.EqualTo(expected).AsCollection.Within(1E-8));
         }

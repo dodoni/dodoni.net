@@ -150,8 +150,8 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             }
             int n = diagonalElements.Length;
             double[] values = new double[n * n];  // [j*(n+1)] = [j+ j*n] = diag(j) for j = 0,...,n-1
-
-            BLAS.Level1.dcopy(n, diagonalElements, values, 1, n + 1, 0, 0);
+            
+            BLAS.Level1.dcopy(n, diagonalElements, values, 1, n + 1);
             return values;
         }
 
@@ -169,7 +169,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             int n = diagonalElements.Length;
             var values = new Complex[n * n];  // [j*(n+1)] = [j+ j*n] = diag(j) for j = 0,...,n-1
 
-            BLAS.Level1.zcopy(n, diagonalElements, values, 1, n + 1, 0, 0);
+            BLAS.Level1.zcopy(n, diagonalElements, values, 1, n + 1);
             return values;
         }
 

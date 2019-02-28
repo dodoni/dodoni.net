@@ -117,10 +117,10 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         public void Add_ExtendedDoubleTestCaseData_BenchmarkResult(int n, double[] a, double[] b, int startIndexA, int startIndexB, int startIndexY)
         {
             var actual = new double[startIndexY + n];
-            m_MathVectorOperations.Add(n, a, b, actual, startIndexA, startIndexB, startIndexY);
+            m_MathVectorOperations.Add(n, a.AsSpan().Slice(startIndexA), b.AsSpan().Slice(startIndexB), actual.AsSpan().Slice(startIndexY));
 
             var expected = new double[startIndexY + n];
-            m_Benchmark.Add(n, a, b, expected, startIndexA, startIndexB, startIndexY);
+            m_Benchmark.Add(n, a.AsSpan().Slice(startIndexA), b.AsSpan().Slice(startIndexB), expected.AsSpan().Slice(startIndexY));
 
             Assert.That(actual, Is.EqualTo(expected).AsCollection.Within(1E-7));
         }
@@ -205,10 +205,10 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         public void Add_ExtendedComplexTestCaseData_BenchmarkResult(int n, Complex[] a, Complex[] b, int startIndexA, int startIndexB, int startIndexY)
         {
             var actual = new Complex[startIndexY + n];
-            m_MathVectorOperations.Add(n, a, b, actual, startIndexA, startIndexB, startIndexY);
+            m_MathVectorOperations.Add(n, a.AsSpan().Slice(startIndexA), b.AsSpan().Slice(startIndexB), actual.AsSpan().Slice(startIndexY));
 
             var expected = new Complex[startIndexY + n];
-            m_Benchmark.Add(n, a, b, expected, startIndexA, startIndexB, startIndexY);
+            m_Benchmark.Add(n, a.AsSpan().Slice(startIndexA), b.AsSpan().Slice(startIndexB), expected.AsSpan().Slice(startIndexY));
 
             Assert.That(actual, new ComplexArrayNUnitConstraint(expected, tolerance: 1E-7));
         }
@@ -259,10 +259,10 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         public void Sub_ExtendedDoubleTestCaseData_BenchmarkResult(int n, double[] a, double[] b, int startIndexA, int startIndexB, int startIndexY)
         {
             var actual = new double[startIndexY + n];
-            m_MathVectorOperations.Sub(n, a, b, actual, startIndexA, startIndexB, startIndexY);
+            m_MathVectorOperations.Sub(n, a.AsSpan().Slice(startIndexA), b.AsSpan().Slice(startIndexB), actual.AsSpan().Slice(startIndexY));
 
             var expected = new double[startIndexY + n];
-            m_Benchmark.Sub(n, a, b, expected, startIndexA, startIndexB, startIndexY);
+            m_Benchmark.Sub(n, a.AsSpan().Slice(startIndexA), b.AsSpan().Slice(startIndexB), expected.AsSpan().Slice(startIndexY));
 
             Assert.That(actual, Is.EqualTo(expected).AsCollection.Within(1E-7));
         }
@@ -313,10 +313,10 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         public void Sub_ExtendedComplexTestCaseData_BenchmarkResult(int n, Complex[] a, Complex[] b, int startIndexA, int startIndexB, int startIndexY)
         {
             var actual = new Complex[startIndexY + n];
-            m_MathVectorOperations.Sub(n, a, b, actual, startIndexA, startIndexB, startIndexY);
+            m_MathVectorOperations.Sub(n, a.AsSpan().Slice(startIndexA), b.AsSpan().Slice(startIndexB), actual.AsSpan().Slice(startIndexY));
 
             var expected = new Complex[startIndexY + n];
-            m_Benchmark.Sub(n, a, b, expected, startIndexA, startIndexB, startIndexY);
+            m_Benchmark.Sub(n, a.AsSpan().Slice(startIndexA), b.AsSpan().Slice(startIndexB), expected.AsSpan().Slice(startIndexY));
 
             Assert.That(actual, new ComplexArrayNUnitConstraint(expected, tolerance: 1E-7));
         }
@@ -367,10 +367,10 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         public void Sqr_ExtendedDoubleTestCaseData_BenchmarkResult(int n, int startIndexA, int startIndexY, params double[] a)
         {
             var actual = new double[startIndexY + n];
-            m_MathVectorOperations.Sqr(n, a, actual, startIndexA, startIndexY);
+            m_MathVectorOperations.Sqr(n, a.AsSpan().Slice(startIndexA), actual.AsSpan().Slice(startIndexY));
 
             var expected = new double[startIndexY + n];
-            m_Benchmark.Sqr(n, a, expected, startIndexA, startIndexY);
+            m_Benchmark.Sqr(n, a.AsSpan().Slice(startIndexA), expected.AsSpan().Slice(startIndexY));
 
             Assert.That(actual, Is.EqualTo(expected).AsCollection.Within(1E-7));
         }
@@ -421,10 +421,10 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         public void Mul_ExtendedDoubleTestCaseData_BenchmarkResult(int n, double[] a, double[] b, int startIndexA, int startIndexB, int startIndexY)
         {
             var actual = new double[startIndexY + n];
-            m_MathVectorOperations.Mul(n, a, b, actual, startIndexA, startIndexB, startIndexY);
+            m_MathVectorOperations.Mul(n, a.AsSpan().Slice(startIndexA), b.AsSpan().Slice(startIndexB), actual.AsSpan().Slice(startIndexY));
 
             var expected = new double[startIndexY + n];
-            m_Benchmark.Mul(n, a, b, expected, startIndexA, startIndexB, startIndexY);
+            m_Benchmark.Mul(n, a.AsSpan().Slice(startIndexA), b.AsSpan().Slice(startIndexB), expected.AsSpan().Slice(startIndexY));
 
             Assert.That(actual, Is.EqualTo(expected).AsCollection.Within(1E-7));
         }
@@ -475,10 +475,10 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         public void Mul_ExtendedComplexTestCaseData_BenchmarkResult(int n, Complex[] a, Complex[] b, int startIndexA, int startIndexB, int startIndexY)
         {
             var actual = new Complex[startIndexY + n];
-            m_MathVectorOperations.Mul(n, a, b, actual, startIndexA, startIndexB, startIndexY);
+            m_MathVectorOperations.Mul(n, a.AsSpan().Slice(startIndexA), b.AsSpan().Slice(startIndexB), actual.AsSpan().Slice(startIndexY));
 
             var expected = new Complex[startIndexY + n];
-            m_Benchmark.Mul(n, a, b, expected, startIndexA, startIndexB, startIndexY);
+            m_Benchmark.Mul(n, a.AsSpan().Slice(startIndexA), b.AsSpan().Slice(startIndexB), expected.AsSpan().Slice(startIndexY));
 
             Assert.That(actual, new ComplexArrayNUnitConstraint(expected, tolerance: 1E-7));
         }
@@ -525,10 +525,10 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         public void Conjugate_ExtendedTestCaseData_BenchmarkResult(int n, Complex[] a, int startIndexA, int startIndexY)
         {
             var actual = new Complex[startIndexY + n];
-            m_MathVectorOperations.Conjugate(n, a, actual, startIndexA, startIndexY);
+            m_MathVectorOperations.Conjugate(n, a.AsSpan().Slice(startIndexA), actual.AsSpan().Slice(startIndexY));
 
             var expected = new Complex[startIndexY + n];
-            m_Benchmark.Conjugate(n, a, expected, startIndexA, startIndexY);
+            m_Benchmark.Conjugate(n, a.AsSpan().Slice(startIndexA), expected.AsSpan().Slice(startIndexY));
 
             Assert.That(actual, new ComplexArrayNUnitConstraint(expected, tolerance: 1E-7));
         }
@@ -579,10 +579,10 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         public void Abs_ExtendedDoubleTestCaseData_BenchmarkResult(int n, int startIndexA, int startIndexY, params double[] a)
         {
             var actual = new double[startIndexY + n];
-            m_MathVectorOperations.Abs(n, a, actual, startIndexA, startIndexY);
+            m_MathVectorOperations.Abs(n, a.AsSpan().Slice(startIndexA), actual.AsSpan().Slice(startIndexY));
 
             var expected = new double[startIndexY + n];
-            m_Benchmark.Abs(n, a, expected, startIndexA, startIndexY);
+            m_Benchmark.Abs(n, a.AsSpan().Slice(startIndexA), expected.AsSpan().Slice(startIndexY));
 
             Assert.That(actual, Is.EqualTo(expected).AsCollection.Within(1E-7));
         }
@@ -613,10 +613,10 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         public void Abs_ExtendedTestCaseData_BenchmarkResult(int n, Complex[] a, int startIndexA, int startIndexY)
         {
             var actual = new double[startIndexY + n];
-            m_MathVectorOperations.Abs(n, a, actual, startIndexA, startIndexY);
+            m_MathVectorOperations.Abs(n, a.AsSpan().Slice(startIndexA), actual.AsSpan().Slice(startIndexY));
 
             var expected = new double[startIndexY + n];
-            m_Benchmark.Abs(n, a, expected, startIndexA, startIndexY);
+            m_Benchmark.Abs(n, a.AsSpan().Slice(startIndexA), expected.AsSpan().Slice(startIndexY));
 
             Assert.That(actual, Is.EqualTo(expected).AsCollection.Within(1E-7));
         }
@@ -657,10 +657,10 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         public void LinearFraction_ExtendedTestCaseData_BenchmarkResult(int n, double[] a, double[] b, int startIndexA, int startIndexB, int startIndexY, double scaleFactorA, double scaleFactorB, double shiftA = 0.0, double shiftB = 0.0)
         {
             var actual = new double[startIndexY + n];
-            m_MathVectorOperations.LinearFraction(n, a, b, actual, startIndexA, startIndexB, startIndexY, scaleFactorA, scaleFactorB, shiftA, shiftB);
+            m_MathVectorOperations.LinearFraction(n, a.AsSpan().Slice(startIndexA), b.AsSpan().Slice(startIndexB), actual.AsSpan().Slice(startIndexY), scaleFactorA, scaleFactorB, shiftA, shiftB);
 
             var expected = new double[startIndexY + n];
-            m_Benchmark.LinearFraction(n, a, b, expected, startIndexA, startIndexB, startIndexY, scaleFactorA, scaleFactorB, shiftA, shiftB);
+            m_Benchmark.LinearFraction(n, a.AsSpan().Slice(startIndexA), b.AsSpan().Slice(startIndexB), expected.AsSpan().Slice(startIndexY), scaleFactorA, scaleFactorB, shiftA, shiftB);
 
             Assert.That(actual, Is.EqualTo(expected).AsCollection.Within(1E-7));
         }
@@ -714,10 +714,10 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         public void Inv_ExtendedTestCaseData_BenchmarkResult(int n, int startIndexA, int startIndexY, params double[] a)
         {
             var actual = new double[startIndexY + n];
-            m_MathVectorOperations.Inv(n, a, actual, startIndexA, startIndexY);
+            m_MathVectorOperations.Inv(n, a.AsSpan().Slice(startIndexA), actual.AsSpan().Slice(startIndexY));
 
             var expected = new double[startIndexY + n];
-            m_Benchmark.Inv(n, a, expected, startIndexA, startIndexY);
+            m_Benchmark.Inv(n, a.AsSpan().Slice(startIndexA), expected.AsSpan().Slice(startIndexY));
 
             Assert.That(actual, Is.EqualTo(expected).AsCollection.Within(1E-7));
         }
@@ -768,10 +768,10 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         public void Sqrt_ExtendedTestCaseData_BenchmarkResult(int n, int startIndexA, int startIndexY, params double[] a)
         {
             var actual = new double[startIndexY + n];
-            m_MathVectorOperations.Sqrt(n, a, actual, startIndexA, startIndexY);
+            m_MathVectorOperations.Sqrt(n, a.AsSpan().Slice(startIndexA), actual.AsSpan().Slice(startIndexY));
 
             var expected = new double[startIndexY + n];
-            m_Benchmark.Sqrt(n, a, expected, startIndexA, startIndexY);
+            m_Benchmark.Sqrt(n, a.AsSpan().Slice(startIndexA), expected.AsSpan().Slice(startIndexY));
 
             Assert.That(actual, Is.EqualTo(expected).AsCollection.Within(1E-7));
         }
@@ -822,10 +822,10 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         public void Pow_ExtendedDoubleTestCaseData_BenchmarkResult(int n, double[] a, double[] b, int startIndexA, int startIndexB, int startIndexY)
         {
             var actual = new double[startIndexY + n];
-            m_MathVectorOperations.Pow(n, a, b, actual, startIndexA, startIndexB, startIndexY);
+            m_MathVectorOperations.Pow(n, a.AsSpan().Slice(startIndexA), b.AsSpan().Slice(startIndexB), actual.AsSpan().Slice(startIndexY));
 
             var expected = new double[startIndexY + n];
-            m_Benchmark.Pow(n, a, b, expected, startIndexA, startIndexB, startIndexY);
+            m_Benchmark.Pow(n, a.AsSpan().Slice(startIndexA), b.AsSpan().Slice(startIndexB), expected.AsSpan().Slice(startIndexY));
 
             Assert.That(actual, Is.EqualTo(expected).AsCollection.Within(1E-7).Percent);  // take relative deviation only: perhaps some value is large
         }
@@ -876,10 +876,10 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         public void Pow_ExtendedComplexTestCaseData_BenchmarkResult(int n, Complex[] a, Complex[] b, int startIndexA, int startIndexB, int startIndexY)
         {
             var actual = new Complex[startIndexY + n];
-            m_MathVectorOperations.Pow(n, a, b, actual, startIndexA, startIndexB, startIndexY);
+            m_MathVectorOperations.Pow(n, a.AsSpan().Slice(startIndexA), b.AsSpan().Slice(startIndexB), actual.AsSpan().Slice(startIndexY));
 
             var expected = new Complex[startIndexY + n];
-            m_Benchmark.Pow(n, a, b, expected, startIndexA, startIndexB, startIndexY);
+            m_Benchmark.Pow(n, a.AsSpan().Slice(startIndexA), b.AsSpan().Slice(startIndexB), expected.AsSpan().Slice(startIndexY));
 
             Assert.That(actual, new ComplexArrayNUnitConstraint(expected, tolerance: 1E-7));
         }
@@ -937,10 +937,10 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         public void Pow_ExtendedTestCaseData_BenchmarkResult(int n, double b, int startIndexA, int startIndexY, params double[] a)
         {
             var actual = new double[startIndexY + n];
-            m_MathVectorOperations.Pow(n, a, b, actual, startIndexA, startIndexY);
+            m_MathVectorOperations.Pow(n, a.AsSpan().Slice(startIndexA), b, actual.AsSpan().Slice(startIndexY));
 
             var expected = new double[startIndexY + n];
-            m_Benchmark.Pow(n, a, b, expected, startIndexA, startIndexY);
+            m_Benchmark.Pow(n, a.AsSpan().Slice(startIndexA), b, expected.AsSpan().Slice(startIndexY));
 
             Assert.That(actual, Is.EqualTo(expected).AsCollection.Within(1E-7));
         }
@@ -996,10 +996,10 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             Complex b = new Complex(0.51, 1.23);
 
             var actual = new Complex[startIndexY + n];
-            m_MathVectorOperations.Pow(n, a, b, actual, startIndexA, startIndexY);
+            m_MathVectorOperations.Pow(n, a.AsSpan().Slice(startIndexA), b, actual.AsSpan().Slice(startIndexY));
 
             var expected = new Complex[startIndexY + n];
-            m_Benchmark.Pow(n, a, b, expected, startIndexA, startIndexY);
+            m_Benchmark.Pow(n, a.AsSpan().Slice(startIndexA), b, expected.AsSpan().Slice(startIndexY));
 
             Assert.That(actual, new ComplexArrayNUnitConstraint(expected, tolerance: 1E-7), String.Format("constant power: {0}", b));
         }
@@ -1053,10 +1053,10 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         public void Exp_ExtendedDoubleTestCaseData_BenchmarkResult(int n, int startIndexA, int startIndexY, params double[] a)
         {
             var actual = new double[startIndexY + n];
-            m_MathVectorOperations.Exp(n, a, actual, startIndexA, startIndexY);
+            m_MathVectorOperations.Exp(n, a.AsSpan().Slice(startIndexA), actual.AsSpan().Slice(startIndexY));
 
             var expected = new double[startIndexY + n];
-            m_Benchmark.Exp(n, a, expected, startIndexA, startIndexY);
+            m_Benchmark.Exp(n, a.AsSpan().Slice(startIndexA), expected.AsSpan().Slice(startIndexY));
 
             Assert.That(actual, Is.EqualTo(expected).AsCollection.Within(1E-7));
         }
@@ -1103,10 +1103,10 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         public void Exp_ExtendedTestCaseData_BenchmarkResult(int n, Complex[] a, int startIndexA, int startIndexY)
         {
             var actual = new Complex[startIndexY + n];
-            m_MathVectorOperations.Exp(n, a, actual, startIndexA, startIndexY);
+            m_MathVectorOperations.Exp(n, a.AsSpan().Slice(startIndexA), actual.AsSpan().Slice(startIndexY));
 
             var expected = new Complex[startIndexY + n];
-            m_Benchmark.Exp(n, a, expected, startIndexA, startIndexY);
+            m_Benchmark.Exp(n, a.AsSpan().Slice(startIndexA), expected.AsSpan().Slice(startIndexY));
 
             Assert.That(actual, new ComplexArrayNUnitConstraint(expected, tolerance: 1E-7));
         }
@@ -1157,10 +1157,10 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         public void Log_ExtendedDoubleTestCaseData_BenchmarkResult(int n, int startIndexA, int startIndexY, params double[] a)
         {
             var actual = new double[startIndexY + n];
-            m_MathVectorOperations.Log(n, a, actual, startIndexA, startIndexY);
+            m_MathVectorOperations.Log(n, a.AsSpan().Slice(startIndexA), actual.AsSpan().Slice(startIndexY));
 
             var expected = new double[startIndexY + n];
-            m_Benchmark.Log(n, a, expected, startIndexA, startIndexY);
+            m_Benchmark.Log(n, a.AsSpan().Slice(startIndexA), expected.AsSpan().Slice(startIndexY));
 
             Assert.That(actual, Is.EqualTo(expected).AsCollection.Within(1E-7));
         }
@@ -1207,10 +1207,10 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         public void Log_ExtendedTestCaseData_BenchmarkResult(int n, Complex[] a, int startIndexA, int startIndexY)
         {
             var actual = new Complex[startIndexY + n];
-            m_MathVectorOperations.Log(n, a, actual, startIndexA, startIndexY);
+            m_MathVectorOperations.Log(n, a.AsSpan().Slice(startIndexA), actual.AsSpan().Slice(startIndexY));
 
             var expected = new Complex[startIndexY + n];
-            m_Benchmark.Log(n, a, expected, startIndexA, startIndexY);
+            m_Benchmark.Log(n, a.AsSpan().Slice(startIndexA), expected.AsSpan().Slice(startIndexY));
 
             Assert.That(actual, new ComplexArrayNUnitConstraint(expected, tolerance: 1E-7));
         }
@@ -1261,10 +1261,10 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         public void Log10_ExtendedDoubleTestCaseData_BenchmarkResult(int n, int startIndexA, int startIndexY, params double[] a)
         {
             var actual = new double[startIndexY + n];
-            m_MathVectorOperations.Log10(n, a, actual, startIndexA, startIndexY);
+            m_MathVectorOperations.Log10(n, a.AsSpan().Slice(startIndexA), actual.AsSpan().Slice(startIndexY));
 
             var expected = new double[startIndexY + n];
-            m_Benchmark.Log10(n, a, expected, startIndexA, startIndexY);
+            m_Benchmark.Log10(n, a.AsSpan().Slice(startIndexA), expected.AsSpan().Slice(startIndexY));
 
             Assert.That(actual, Is.EqualTo(expected).AsCollection.Within(1E-7));
         }
@@ -1311,10 +1311,10 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         public void Log10_ExtendedTestCaseData_BenchmarkResult(int n, Complex[] a, int startIndexA, int startIndexY)
         {
             var actual = new Complex[startIndexY + n];
-            m_MathVectorOperations.Log10(n, a, actual, startIndexA, startIndexY);
+            m_MathVectorOperations.Log10(n, a.AsSpan().Slice(startIndexA), actual.AsSpan().Slice(startIndexY));
 
             var expected = new Complex[startIndexY + n];
-            m_Benchmark.Log10(n, a, expected, startIndexA, startIndexY);
+            m_Benchmark.Log10(n, a.AsSpan().Slice(startIndexA), expected.AsSpan().Slice(startIndexY));
 
             Assert.That(actual, new ComplexArrayNUnitConstraint(expected, tolerance: 1E-7));
         }
@@ -1368,10 +1368,10 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         public void Cos_ExtendedDoubleTestCaseData_BenchmarkResult(int n, int startIndexA, int startIndexY, params double[] a)
         {
             var actual = new double[startIndexY + n];
-            m_MathVectorOperations.Cos(n, a, actual, startIndexA, startIndexY);
+            m_MathVectorOperations.Cos(n, a.AsSpan().Slice(startIndexA), actual.AsSpan().Slice(startIndexY));
 
             var expected = new double[startIndexY + n];
-            m_Benchmark.Cos(n, a, expected, startIndexA, startIndexY);
+            m_Benchmark.Cos(n, a.AsSpan().Slice(startIndexA), expected.AsSpan().Slice(startIndexY));
 
             Assert.That(actual, Is.EqualTo(expected).AsCollection.Within(1E-7));
         }
@@ -1418,10 +1418,10 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         public void Cos_ExtendedTestCaseData_BenchmarkResult(int n, Complex[] a, int startIndexA, int startIndexY)
         {
             var actual = new Complex[startIndexY + n];
-            m_MathVectorOperations.Cos(n, a, actual, startIndexA, startIndexY);
+            m_MathVectorOperations.Cos(n, a.AsSpan().Slice(startIndexA), actual.AsSpan().Slice(startIndexY));
 
             var expected = new Complex[startIndexY + n];
-            m_Benchmark.Cos(n, a, expected, startIndexA, startIndexY);
+            m_Benchmark.Cos(n, a.AsSpan().Slice(startIndexA), expected.AsSpan().Slice(startIndexY));
 
             Assert.That(actual, new ComplexArrayNUnitConstraint(expected, tolerance: 1E-7));
         }
@@ -1472,10 +1472,10 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         public void Sin_ExtendedDoubleTestCaseData_BenchmarkResult(int n, int startIndexA, int startIndexY, params double[] a)
         {
             var actual = new double[startIndexY + n];
-            m_MathVectorOperations.Sin(n, a, actual, startIndexA, startIndexY);
+            m_MathVectorOperations.Sin(n, a.AsSpan().Slice(startIndexA), actual.AsSpan().Slice(startIndexY));
 
             var expected = new double[startIndexY + n];
-            m_Benchmark.Sin(n, a, expected, startIndexA, startIndexY);
+            m_Benchmark.Sin(n, a.AsSpan().Slice(startIndexA), expected.AsSpan().Slice(startIndexY));
 
             Assert.That(actual, Is.EqualTo(expected).AsCollection.Within(1E-7));
         }
@@ -1522,10 +1522,10 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         public void Sin_ExtendedTestCaseData_BenchmarkResult(int n, Complex[] a, int startIndexA, int startIndexY)
         {
             var actual = new Complex[startIndexY + n];
-            m_MathVectorOperations.Sin(n, a, actual, startIndexA, startIndexY);
+            m_MathVectorOperations.Sin(n, a.AsSpan().Slice(startIndexA), actual.AsSpan().Slice(startIndexY));
 
             var expected = new Complex[startIndexY + n];
-            m_Benchmark.Sin(n, a, expected, startIndexA, startIndexY);
+            m_Benchmark.Sin(n, a.AsSpan().Slice(startIndexA), expected.AsSpan().Slice(startIndexY));
 
             Assert.That(actual, new ComplexArrayNUnitConstraint(expected, tolerance: 1E-7));
         }
@@ -1564,12 +1564,11 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         {
             var actualSin = new double[startIndexY + n];
             var actualCos = new double[startIndexZ + n];
-
-            m_MathVectorOperations.SinCos(n, a, actualSin, actualCos, startIndexA, startIndexY, startIndexZ);
+            m_MathVectorOperations.SinCos(n, a.AsSpan().Slice(startIndexA), actualSin.AsSpan().Slice(startIndexY), actualCos.AsSpan().Slice(startIndexZ));
 
             var expectedSin = new double[startIndexY + n];
             var expectedCos = new double[startIndexZ + n];
-            m_Benchmark.SinCos(n, a, expectedSin, expectedCos, startIndexA, startIndexY, startIndexZ);
+            m_Benchmark.SinCos(n, a.AsSpan().Slice(startIndexA), expectedSin.AsSpan().Slice(startIndexY), expectedCos.AsSpan().Slice(startIndexZ));
 
             Assert.That(actualSin, Is.EqualTo(expectedSin).AsCollection.Within(1E-7), "Sin");
             Assert.That(actualCos, Is.EqualTo(expectedCos).AsCollection.Within(1E-7), "Cos");

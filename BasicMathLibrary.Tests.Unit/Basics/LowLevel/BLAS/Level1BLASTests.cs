@@ -106,10 +106,10 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
 
             int incY = 3;
             int startIndexY = 2;
-            double[] x = new double[] { 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 };
-            double[] y = new double[] { 9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0 };
+            Span<double> x = new double[] { 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 };
+            Span<double> y = new double[] { 9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0 };
 
-            m_Level1BLAS.daxpy(n, a, x, y, incX, incY, startIndexX, startIndexY);
+            m_Level1BLAS.daxpy(n, a, x.Slice(startIndexX), y.Slice(startIndexY), incX, incY);
 
             Assert.That(y[0], Is.EqualTo(9.0));
             Assert.That(y[1], Is.EqualTo(8.0));
@@ -148,9 +148,9 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         [TestCase(2, 1, 0, 1, 2, -12.0, 8.0, 1.45)]
         public void dcopy_ExtendedTestCaseData_SequenceEqualArray(int n, int startIndexX, int startIndexY, int incX, int incY, params double[] x)
         {
-            double[] y = new double[startIndexY + incY * n];
+            var y = new double[startIndexY + incY * n];
 
-            m_Level1BLAS.dcopy(n, x, y, incX, incY, startIndexX, startIndexY);
+            m_Level1BLAS.dcopy(n, x.AsSpan().Slice(startIndexX), y.AsSpan().Slice(startIndexY), incX, incY);
 
             var sparseY = y.Where((z, i) => { return (i >= startIndexY) && (((i - startIndexY) % incY) == 0); });
             var sparseX = x.Where((z, i) => { return (i >= startIndexX) && (((i - startIndexX) % incX) == 0); });
@@ -185,11 +185,11 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             int startIndexY = 2;
             int incY = 3;
 
-            double[] x = new double[] { 1, 2, 3, 4, 5, 6 };
-            double[] y = new double[] { -2, -3, -5, -23, 4, 7, 8, 9, -42 };
+            ReadOnlySpan<double> x = new double[] { 1, 2, 3, 4, 5, 6 };
+            ReadOnlySpan<double> y = new double[] { -2, -3, -5, -23, 4, 7, 8, 9, -42 };
 
-            double actual = m_Level1BLAS.ddot(n, x, y, incX, incY, startIndexX, startIndexY);
-            double expected = m_BenchmarkLevel1BLAS.ddot(n, x, y, incX, incY, startIndexX, startIndexY);
+            double actual = m_Level1BLAS.ddot(n, x.Slice(startIndexX), y.Slice(startIndexY), incX, incY);
+            double expected = m_BenchmarkLevel1BLAS.ddot(n, x.Slice(startIndexX), y.Slice(startIndexY), incX, incY);
 
             Assert.That(actual, Is.EqualTo(expected).Within(1E-9));
         }
@@ -257,7 +257,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             double actualNull = -s * a + c * b;
             Assert.That(actualNull, Is.EqualTo(0).Within(1E-9));
         }
-      
+
         /// <summary>A test function for 'DROTM' with respect to a specific test case data.
         /// </summary>
         [TestCase(-1, TestName = "drotm_TestCaseData_ResultOfManuallyBenchmark(Flag -1), ie H:(h11 & h12 \\h21 & h22)")]        // '.' and '=' in test name are not allowed (bug in NunitAdapter?)
@@ -317,7 +317,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
 
         /// <summary>A test function for 'DROTMG' with respect to a specific test case data.
         /// </summary>
-        [TestCase(-1, TestName = "drotmg_TestCaseData(Flag -1), ie H:(h11 & h12 \\h21 & h22)")]        
+        [TestCase(-1, TestName = "drotmg_TestCaseData(Flag -1), ie H:(h11 & h12 \\h21 & h22)")]
         [TestCase(0, TestName = "drotmg_TestCaseData(Flag 0), ie H:(1 & h12 \\h21 & 1)")]
         [TestCase(1, TestName = "drotmg_TestCaseData(Flag 1), ie H:(h11 & 1 \\-1 & h22)")]
         [TestCase(-2, TestName = "drotmg_TestCaseData(Flag -2), ie H:(1 & 0 \\0 & 1)")]
@@ -512,7 +512,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             Complex[] x = new Complex[] { 1.0 + Complex.ImaginaryOne, 2.0 + 23.1 * Complex.ImaginaryOne, 3.0 * Complex.ImaginaryOne, 4.0, 5.0, 6.0 };
             Complex[] y = new Complex[] { 9.0 * Complex.ImaginaryOne, 8.0, 7.0 + Complex.ImaginaryOne, 6.0, 5.0, 4.0 * Complex.ImaginaryOne, 3.0, 2.0, 1.0 };
 
-            m_Level1BLAS.zaxpy(n, a, x, y, incX, incY, startIndexX, startIndexY);
+            m_Level1BLAS.zaxpy(n, a, x.AsSpan().Slice(startIndexX), y.AsSpan().Slice(startIndexY), incX, incY);
 
             Assert.That(y[0], Is.EqualTo(9.0 * Complex.ImaginaryOne));
             Assert.That(y[1], Is.EqualTo(new Complex(8.0, 0.0)));
@@ -563,7 +563,7 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
         {
             Complex[] y = new Complex[startIndexY + incY * n];
 
-            m_Level1BLAS.zcopy(n, x, y, incX, incY, startIndexX, startIndexY);
+            m_Level1BLAS.zcopy(n, x.AsSpan().Slice(startIndexX), y.AsSpan().Slice(startIndexY), incX, incY);
 
             var sparseY = y.Where((z, i) => { return (i >= startIndexY) && (((i - startIndexY) % incY) == 0); });
             var sparseX = x.Where((z, i) => { return (i >= startIndexX) && (((i - startIndexX) % incX) == 0); });
@@ -808,10 +808,10 @@ namespace Dodoni.MathLibrary.Basics.LowLevel
             var x = new Complex[] { 1, 2, 3, 4 - 5.9 * Complex.ImaginaryOne, 5, 6 + Complex.ImaginaryOne };
 
             Complex[] actual = x.ToArray();
-            m_Level1BLAS.zdscal(n, a, actual, increment, startX);
+            m_Level1BLAS.zdscal(n, a, actual.AsSpan().Slice(startX), increment);
 
             Complex[] expected = x.ToArray();
-            m_BenchmarkLevel1BLAS.zdscal(n, a, expected, increment, startX);
+            m_BenchmarkLevel1BLAS.zdscal(n, a, expected.AsSpan().Slice(startX), increment);
 
             Assert.That(actual, new ComplexArrayNUnitConstraint(expected, tolerance: 1E-9));
         }

@@ -444,16 +444,16 @@ namespace Dodoni.MathLibrary
             int k = m_SubDiagonalCount + m_SuperDiagonalCount + 1;
 
             BLAS.Level1.dscal(Math.Max(0, iMin), 0.0, column);
-            BLAS.Level1.dscal(RowCount - iCount - Math.Max(0, iMin), 0.0, column, 1, startIndex: Math.Max(0, iMin) + iCount);
+            BLAS.Level1.dscal(RowCount - iCount - Math.Max(0, iMin), 0.0, column.AsSpan().Slice(Math.Max(0, iMin) + iCount));
 
             switch (m_TransposeState)
             {
                 case BLAS.MatrixTransposeState.NoTranspose:
-                    BLAS.Level1.dcopy(iCount, m_Data, column, 1, 1, Math.Max(0, iMin) - columnIndex + m_SuperDiagonalCount + columnIndex * k, Math.Max(0, iMin));
+                    BLAS.Level1.dcopy(iCount, m_Data.AsSpan().Slice(Math.Max(0, iMin) - columnIndex + m_SuperDiagonalCount + columnIndex * k), column.AsSpan().Slice(Math.Max(0, iMin)));
                     break;
 
                 case BLAS.MatrixTransposeState.Transpose:
-                    BLAS.Level1.dcopy(iCount, m_Data, column, k - 1, 1, columnIndex + m_SuperDiagonalCount + Math.Max(0, iMin) * (k - 1), Math.Max(0, iMin));
+                    BLAS.Level1.dcopy(iCount, m_Data.AsSpan().Slice(columnIndex + m_SuperDiagonalCount + Math.Max(0, iMin) * (k - 1)), column.AsSpan().Slice(Math.Max(0, iMin)), k - 1, 1);
                     break;
 
                 default: throw new InvalidOperationException();
@@ -479,16 +479,16 @@ namespace Dodoni.MathLibrary
                 row = new double[columnCount];
             }
             BLAS.Level1.dscal(Math.Max(0, rowIndex - SubDiagonalCount), 0.0, row);
-            BLAS.Level1.dscal(Math.Max(0, columnCount - rowIndex - SuperDiagonalCount - 1), 0.0, row, 1, startIndex: rowIndex + SuperDiagonalCount + 1);
+            BLAS.Level1.dscal(Math.Max(0, columnCount - rowIndex - SuperDiagonalCount - 1), 0.0, row.AsSpan().Slice(rowIndex + SuperDiagonalCount + 1));
 
             switch (m_TransposeState)
             {
                 case BLAS.MatrixTransposeState.NoTranspose:
-                    BLAS.Level1.dcopy(columnCount - Math.Max(0, rowIndex - SubDiagonalCount) - Math.Max(0, columnCount - rowIndex - SuperDiagonalCount - 1), m_Data, row, k - 1, 1, rowIndex + SuperDiagonalCount + Math.Max(0, rowIndex - SubDiagonalCount) * (k - 1), Math.Max(0, rowIndex - SubDiagonalCount));
+                    BLAS.Level1.dcopy(columnCount - Math.Max(0, rowIndex - SubDiagonalCount) - Math.Max(0, columnCount - rowIndex - SuperDiagonalCount - 1), m_Data.AsSpan().Slice(rowIndex + SuperDiagonalCount + Math.Max(0, rowIndex - SubDiagonalCount) * (k - 1)), row.AsSpan().Slice(Math.Max(0, rowIndex - SubDiagonalCount)), k - 1, 1);
                     break;
 
                 case BLAS.MatrixTransposeState.Transpose:
-                    BLAS.Level1.dcopy(columnCount - Math.Max(0, rowIndex - SubDiagonalCount) - Math.Max(0, columnCount - rowIndex - SuperDiagonalCount - 1), m_Data, row, 1, 1, Math.Max(0, rowIndex - SubDiagonalCount) - rowIndex + m_SuperDiagonalCount + rowIndex * k, Math.Max(0, rowIndex - SubDiagonalCount));
+                    BLAS.Level1.dcopy(columnCount - Math.Max(0, rowIndex - SubDiagonalCount) - Math.Max(0, columnCount - rowIndex - SuperDiagonalCount - 1), m_Data.AsSpan().Slice(Math.Max(0, rowIndex - SubDiagonalCount) - rowIndex + m_SuperDiagonalCount + rowIndex * k), row.AsSpan().Slice(Math.Max(0, rowIndex - SubDiagonalCount)));
                     break;
 
                 default: throw new InvalidOperationException();
